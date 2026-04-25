@@ -62,23 +62,48 @@
     </div>
   </nav>
 
-  <!-- Hero: full-screen two-column split like the reference -->
-  <section class="flex flex-col md:flex-row bg-shadow-grey" style="height: 100vh; padding-top: 64px;">
+  <!-- SECTION 1: Full-viewport splash — background image, centered boxes, oval badge -->
+  <section class="relative flex items-center justify-center" style="height: 100vh; background-image: url('ynab%20coach%20background.png'); background-size: cover; background-position: center;">
 
-    <!-- LEFT: background image, two see-through text boxes pinned to bottom -->
+    <!-- Oval badge — top right, rotated like the reference -->
+    <div class="absolute top-20 right-8 md:right-14 bg-vibrant-coral text-white font-bold text-xs uppercase tracking-widest px-7 py-3 rounded-full" style="transform: rotate(12deg);">
+      I'm here for you
+    </div>
+
+    <!-- Two centered boxes -->
+    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-3xl px-6">
+      <div class="flex-1 rounded-2xl p-10 md:p-14"
+           style="background: rgba(33,26,30,0.60); backdrop-filter: blur(3px); border: 1px solid rgba(255,255,255,0.1);">
+        <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight">
+          Get better<br/>with money
+        </h1>
+      </div>
+      <div class="flex-1 rounded-2xl p-10 md:p-14"
+           style="background: rgba(255,186,73,0.80); backdrop-filter: blur(3px);">
+        <h2 class="text-4xl md:text-5xl xl:text-6xl font-bold text-shadow-grey leading-tight">
+          and live the<br/>life you want
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Split layout with service quick-links (scroll into this) -->
+  <section class="flex flex-col md:flex-row" style="height: 100vh;">
+
+    <!-- LEFT: background image, two text boxes pinned to bottom -->
     <div class="flex flex-col flex-1 md:w-3/5 p-6 md:p-10"
          style="background-image: url('ynab%20coach%20background.png'); background-size: cover; background-position: center;">
       <div class="flex-1"></div>
       <div class="flex flex-col sm:flex-row gap-3">
         <div class="flex-1 rounded-xl p-8 md:p-10 flex items-end"
              style="background: rgba(33,26,30,0.55); backdrop-filter: blur(2px); border: 1px solid rgba(255,255,255,0.1);">
-          <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight">
+          <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
             Get better<br/>with money
-          </h1>
+          </h2>
         </div>
         <div class="flex-1 rounded-xl p-8 md:p-10 flex items-end"
              style="background: rgba(255,186,73,0.75); backdrop-filter: blur(2px);">
-          <h2 class="text-3xl md:text-4xl xl:text-5xl font-bold text-shadow-grey leading-tight">
+          <h2 class="text-3xl md:text-4xl font-bold text-shadow-grey leading-tight">
             and live the<br/>life you want
           </h2>
         </div>
@@ -108,7 +133,7 @@
         <span class="text-white text-2xl md:text-3xl font-bold leading-none ml-4">+</span>
       </a>
 
-      <!-- Bottom two boxes — like "Events | Services" in the reference -->
+      <!-- Bottom two boxes -->
       <div class="flex" style="flex: 0 0 56px;">
         <a href="#packages" class="flex-1 bg-shadow-grey border-t border-white/10 text-white flex items-center justify-center font-bold uppercase tracking-widest text-xs hover:bg-sunflower-gold hover:text-shadow-grey transition-colors">
           Packages
