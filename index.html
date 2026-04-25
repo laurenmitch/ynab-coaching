@@ -66,6 +66,11 @@
   <section class="relative flex items-center justify-center"
            style="height: calc(100vh - 64px); margin-top: 64px; background-image: url('ynab%20coach%20background.png'); background-size: cover; background-position: center;">
 
+    <!-- Oval badge — top right near the Contact nav button -->
+    <div class="absolute top-6 right-8 md:right-14 flex items-center justify-center bg-vibrant-coral text-white font-bold text-sm uppercase tracking-wide text-center" style="width: 150px; height: 90px; border-radius: 50%; transform: rotate(12deg);">
+      I'm here<br/>for you
+    </div>
+
     <!-- Two centered boxes -->
     <div class="flex flex-col sm:flex-row gap-4 w-full px-8 md:px-16" style="max-width: 860px;">
       <div class="flex-1 rounded-2xl p-10 md:p-14"
@@ -118,11 +123,7 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="grain bg-shadow-grey px-6 md:px-12 py-24 relative overflow-visible">
-    <!-- Oval badge — proper oval using border-radius 50% on fixed dimensions -->
-    <div class="absolute -top-10 right-10 md:right-20 flex items-center justify-center bg-vibrant-coral text-white font-bold text-sm uppercase tracking-wide text-center" style="width: 150px; height: 90px; border-radius: 50%; transform: rotate(12deg);">
-      I'm here<br/>for you
-    </div>
+  <section id="about" class="grain bg-shadow-grey px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
       <div>
         <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-8">Hi, I'm<br/>Lauren</h2>
@@ -135,10 +136,13 @@
         <a href="#contact" class="inline-block bg-sunflower-gold text-shadow-grey font-bold uppercase tracking-widest px-8 py-4 hover:bg-vibrant-coral hover:text-white transition-colors text-sm">
           Let's Work Together
         </a>
-        <img src="2021_YNAB.png" alt="YNAB Certified Coach" class="mt-10 w-28 opacity-90" />
       </div>
-      <div class="bg-powder-blue rounded-2xl aspect-square w-full max-w-sm mx-auto flex items-center justify-center">
-        <p class="text-shadow-grey/30 text-sm uppercase tracking-widest">[Photo coming soon]</p>
+      <!-- Photo with YNAB logo overlapping bottom-right corner -->
+      <div class="relative max-w-sm mx-auto w-full">
+        <div class="bg-powder-blue rounded-2xl aspect-square w-full flex items-center justify-center">
+          <p class="text-shadow-grey/30 text-sm uppercase tracking-widest">[Photo coming soon]</p>
+        </div>
+        <img src="2021_YNAB.png" alt="YNAB Certified Coach" class="absolute bottom-4 right-4 w-24 md:w-28" />
       </div>
     </div>
   </section>
@@ -148,42 +152,45 @@
   <section id="packages" class="bg-white px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-5xl md:text-6xl font-bold uppercase mb-3">Packages</h2>
-      <p class="text-shadow-grey/40 text-lg mb-14 max-w-xl">Every package starts with a free 30-minute intro call — no commitment, no pressure.</p>
+      <p class="text-shadow-grey/40 text-lg mb-14 max-w-xl">All sessions are $80/hour. Start with a free 30-minute intro call.</p>
       <div class="grid md:grid-cols-3 gap-4">
 
         <div class="bg-shadow-grey rounded-2xl p-8 flex flex-col">
-          <h3 class="text-sunflower-gold font-bold text-xl uppercase tracking-wide mb-1">The Full Support</h3>
-          <p class="text-white/30 text-xs uppercase tracking-widest mb-6">3 months · 12 hours</p>
+          <h3 class="text-sunflower-gold font-bold text-xl uppercase tracking-wide mb-1">Getting Started</h3>
+          <p class="text-white/30 text-xs uppercase tracking-widest mb-6">3 sessions · $80/hour</p>
           <p class="text-white/60 text-sm leading-relaxed flex-1 mb-8">
-            Full-service, hands-on coaching for beginners who want to go from "what's a budget?" to completely in control. We set everything up together and build real confidence along the way.
+            New to YNAB? This is where to begin. Three focused sessions to get you set up, show you how the method works, and make sure it actually sticks.
           </p>
           <div class="border-t border-white/10 pt-6">
-            <p class="text-white font-bold text-2xl">[Price TBD]</p>
+            <p class="text-white font-bold text-2xl">$240</p>
+            <p class="text-white/30 text-xs mt-1">3 × $80/hr</p>
           </div>
         </div>
 
         <div class="bg-powder-blue rounded-2xl p-8 flex flex-col">
           <div class="flex justify-between items-start mb-1">
-            <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide">The Jump Start</h3>
+            <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide">Full Support</h3>
             <span class="bg-shadow-grey text-sunflower-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">Popular</span>
           </div>
-          <p class="text-shadow-grey/40 text-xs uppercase tracking-widest mb-6">3 months · 6 hours</p>
+          <p class="text-shadow-grey/40 text-xs uppercase tracking-widest mb-6">Ongoing · $80/hour</p>
           <p class="text-shadow-grey/70 text-sm leading-relaxed flex-1 mb-8">
-            Expert guidance and accountability without the hand-holding. Perfect if you want to learn YNAB and run with it, but still have someone to call when you get stuck.
+            Ongoing 1:1 coaching at your own pace. We'll work through your budget together, tackle what's not working, and keep building momentum as your life changes.
           </p>
           <div class="border-t border-shadow-grey/20 pt-6">
-            <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
+            <p class="text-shadow-grey font-bold text-2xl">$80/hr</p>
+            <p class="text-shadow-grey/40 text-xs mt-1">Billed per session</p>
           </div>
         </div>
 
         <div class="border-2 border-shadow-grey/10 rounded-2xl p-8 flex flex-col">
           <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide mb-1">Pick My Brain</h3>
-          <p class="text-shadow-grey/30 text-xs uppercase tracking-widest mb-6">Hourly · Pay as you go</p>
+          <p class="text-shadow-grey/30 text-xs uppercase tracking-widest mb-6">One-off · $80/hour</p>
           <p class="text-shadow-grey/60 text-sm leading-relaxed flex-1 mb-8">
-            Already using YNAB but need a little boost? Book one-off sessions for troubleshooting, fine-tuning, or levelling up. Includes up to 3 email answers per session.
+            Already using YNAB but need a quick gut-check? Book a single session to troubleshoot, fine-tune, or get unstuck — no ongoing commitment needed.
           </p>
           <div class="border-t border-shadow-grey/10 pt-6">
-            <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
+            <p class="text-shadow-grey font-bold text-2xl">$80/hr</p>
+            <p class="text-shadow-grey/30 text-xs mt-1">Billed per session</p>
           </div>
         </div>
 
@@ -197,8 +204,8 @@
       <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-6">
         Start with a free<br/>30-minute call
       </h2>
-      <p class="text-white/70 text-lg mb-12 leading-relaxed">
-        No commitment. No pitch. Just a chance to meet, talk about where you're at with money, and see if working together makes sense.
+      <p class="text-white/80 text-lg mb-12 leading-relaxed">
+        Let's make sure it's a good fit for both of us. No pressure at all — just a chance to chat and learn what your needs are when it comes to YNAB.
       </p>
       <a href="mailto:laurenynabcoach@gmail.com"
          class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-sunflower-gold hover:text-shadow-grey transition-colors">
@@ -209,11 +216,10 @@
 
   <!-- Contact -->
   <section id="contact" class="bg-white px-6 md:px-12 py-24">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-6">Get in touch</h2>
-      <p class="text-shadow-grey/40 text-lg mb-10">Have a question before booking? Send me an email.</p>
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <h2 class="text-5xl md:text-6xl font-bold uppercase shrink-0">Get in touch</h2>
       <a href="mailto:laurenynabcoach@gmail.com"
-         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-powder-blue hover:text-shadow-grey transition-colors">
+         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-powder-blue hover:text-shadow-grey transition-colors whitespace-nowrap">
         laurenynabcoach@gmail.com
       </a>
     </div>
