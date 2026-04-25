@@ -47,31 +47,28 @@
     .grain > * { position: relative; z-index: 2; }
   </style>
 </head>
-<body class="bg-shadow-grey text-shadow-grey font-sans">
+<body class="bg-white text-shadow-grey font-sans">
 
   <!-- Nav -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-shadow-grey px-6 md:px-12 py-5 flex items-center justify-between">
     <span class="text-white font-bold text-sm uppercase tracking-widest leading-tight">
       Lauren Mitchell<br/>
-      <span class="text-white/40 font-normal text-xs">Certified YNAB Coach</span>
+      <span class="text-white/40 font-normal text-xs normal-case tracking-normal">Certified YNAB Coach</span>
     </span>
     <div class="flex items-center gap-6 md:gap-10">
-      <a href="#about"   class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
-      <a href="#pricing" class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">Pricing</a>
-      <a href="#contact" class="bg-banana-cream text-shadow-grey font-bold text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-green transition-colors">Contact</a>
+      <a href="#about"    class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
+      <a href="#packages" class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">Packages</a>
+      <a href="#contact"  class="bg-banana-cream text-shadow-grey font-bold text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-green transition-colors">Contact</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="grain min-h-screen bg-shadow-grey flex flex-col items-center justify-center pt-20 px-6">
-    <!-- Badge -->
     <div class="mb-10">
-      <span class="border border-white/20 text-white/60 text-xs uppercase tracking-widest px-5 py-2 rounded-full">
+      <span class="border border-white/20 text-white/50 text-xs uppercase tracking-widest px-5 py-2 rounded-full">
         Certified YNAB Coach
       </span>
     </div>
-
-    <!-- Two boxes -->
     <div class="flex flex-col md:flex-row gap-3 w-full max-w-4xl">
       <div class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-10 md:p-14 flex items-center justify-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center leading-tight">
@@ -84,95 +81,236 @@
         </h2>
       </div>
     </div>
-
-    <!-- Scroll nudge -->
     <div class="mt-16 flex flex-col items-center gap-3 text-white/30">
       <span class="text-xs uppercase tracking-widest">Scroll</span>
       <div class="w-px h-10 bg-white/20"></div>
     </div>
   </section>
 
-  <!-- Services colorblock strip -->
-  <section id="services">
+  <!-- Pain points -->
+  <section class="bg-white px-6 md:px-12 py-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold uppercase mb-4">Does any of this<br/>sound familiar?</h2>
+      <p class="text-shadow-grey/50 text-lg mb-14 max-w-xl">If you answered yes to even one of these, you're in the right place.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-sky-surge transition-colors">
+          <p class="font-bold text-lg mb-1">Making money but not sure where it goes</p>
+          <p class="text-shadow-grey/50 text-sm">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
+        </div>
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-yellow-green transition-colors">
+          <p class="font-bold text-lg mb-1">Blindsided by one-off expenses</p>
+          <p class="text-shadow-grey/50 text-sm">Car registration. A wedding gift. A flight home. Every "surprise" sends you into a spiral.</p>
+        </div>
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-banana-cream transition-colors">
+          <p class="font-bold text-lg mb-1">Spending money before you really have it</p>
+          <p class="text-shadow-grey/50 text-sm">You're swiping the card and hoping it works out. Spoiler: it's stressful.</p>
+        </div>
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-tomato-jam transition-colors">
+          <p class="font-bold text-lg mb-1">Tried YNAB but couldn't figure it out</p>
+          <p class="text-shadow-grey/50 text-sm">You downloaded the app, poked around, and gave up. YNAB can feel overwhelming alone.</p>
+        </div>
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-sky-surge transition-colors">
+          <p class="font-bold text-lg mb-1">Struggling to get on the same page as your partner</p>
+          <p class="text-shadow-grey/50 text-sm">Money talks turn into money fights. You want a plan you both actually believe in.</p>
+        </div>
+        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-yellow-green transition-colors">
+          <p class="font-bold text-lg mb-1">Big goals, no clear path</p>
+          <p class="text-shadow-grey/50 text-sm">Travel. A house. Paying off debt. You know what you want — you just don't know how to get there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colorblock strip -->
+  <section>
     <div class="grid grid-cols-2 md:grid-cols-4">
-      <div class="bg-tomato-jam px-8 py-12 flex flex-col justify-between min-h-48 hover:opacity-90 transition-opacity cursor-default">
+      <div class="bg-tomato-jam px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
         <div class="flex justify-between items-start">
-          <h3 class="text-white font-bold text-xl uppercase leading-tight">Budgeting<br/>Basics</h3>
-          <span class="text-white text-2xl leading-none">+</span>
+          <h3 class="text-white font-bold text-xl uppercase leading-tight">YNAB<br/>Setup</h3>
+          <span class="text-white text-2xl leading-none font-bold">+</span>
         </div>
       </div>
-      <div class="bg-sky-surge px-8 py-12 flex flex-col justify-between min-h-48 hover:opacity-90 transition-opacity cursor-default">
-        <div class="flex justify-between items-start">
-          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">YNAB<br/>Setup</h3>
-          <span class="text-shadow-grey text-2xl leading-none">+</span>
-        </div>
-      </div>
-      <div class="bg-yellow-green px-8 py-12 flex flex-col justify-between min-h-48 hover:opacity-90 transition-opacity cursor-default">
+      <div class="bg-sky-surge px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
         <div class="flex justify-between items-start">
           <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">1:1<br/>Coaching</h3>
-          <span class="text-shadow-grey text-2xl leading-none">+</span>
+          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
         </div>
       </div>
-      <div class="bg-banana-cream px-8 py-12 flex flex-col justify-between min-h-48 hover:opacity-90 transition-opacity cursor-default">
+      <div class="bg-yellow-green px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
         <div class="flex justify-between items-start">
-          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">Financial<br/>Planning</h3>
-          <span class="text-shadow-grey text-2xl leading-none">+</span>
+          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">Couples<br/>Budgeting</h3>
+          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
+        </div>
+      </div>
+      <div class="bg-banana-cream px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
+        <div class="flex justify-between items-start">
+          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">Pick My<br/>Brain</h3>
+          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="bg-white px-6 md:px-12 py-24">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-12 text-shadow-grey">About Me</h2>
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <p class="text-lg leading-relaxed text-shadow-grey/70 mb-6">
-            [About me content coming soon]
-          </p>
-        </div>
-        <div class="bg-sky-surge rounded-2xl aspect-square w-full max-w-xs mx-auto md:mx-0"></div>
+  <section id="about" class="bg-shadow-grey px-6 md:px-12 py-24">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-8">Hi, I'm<br/>Lauren</h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-6">
+          I'm a Certified YNAB Coach on a mission to help people stop stressing about money and start spending with intention — so you can actually build the life you want.
+        </p>
+        <p class="text-white/50 text-base leading-relaxed mb-8">
+          I work with college students, young professionals, and couples who are tired of wondering where their money went and ready to make a real plan. No shame. No judgment. Just a practical system that actually works.
+        </p>
+        <a href="#contact" class="inline-block bg-banana-cream text-shadow-grey font-bold uppercase tracking-widest px-8 py-4 hover:bg-yellow-green transition-colors text-sm">
+          Let's Work Together
+        </a>
+      </div>
+      <div class="bg-sky-surge rounded-2xl aspect-square w-full max-w-sm mx-auto flex items-center justify-center">
+        <p class="text-shadow-grey/40 text-sm uppercase tracking-widest">[Photo coming soon]</p>
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="bg-shadow-grey px-6 md:px-12 py-24">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-12">Pricing</h2>
+  <!-- Stats bar -->
+  <section class="bg-banana-cream px-6 md:px-12 py-12">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div>
+        <p class="text-5xl font-bold text-shadow-grey">$600</p>
+        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">avg. saved in first month</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-shadow-grey">$6,000</p>
+        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">avg. saved in first year</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-shadow-grey">34</p>
+        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">day free YNAB trial included</p>
+      </div>
+    </div>
+    <p class="text-center text-shadow-grey/40 text-xs mt-8">Based on YNAB's reported average user outcomes.</p>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" class="bg-white px-6 md:px-12 py-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-4">Packages</h2>
+      <p class="text-shadow-grey/50 text-lg mb-14 max-w-xl">Every package starts with a free 30-minute intro call — no commitment, no pressure. Just a chance to see if we're a good fit.</p>
+
       <div class="grid md:grid-cols-3 gap-4">
-        <div class="border border-white/10 rounded-2xl p-8">
-          <h3 class="text-banana-cream font-bold text-lg uppercase tracking-widest mb-3">Starter</h3>
-          <p class="text-white/40 text-sm leading-relaxed">[Coming soon]</p>
+
+        <!-- Full Support -->
+        <div class="bg-shadow-grey rounded-2xl p-8 flex flex-col">
+          <h3 class="text-banana-cream font-bold text-xl uppercase tracking-wide mb-1">The Full Support</h3>
+          <p class="text-white/40 text-xs uppercase tracking-widest mb-6">3 months · 12 hours of 1:1 coaching</p>
+          <p class="text-white/70 text-sm leading-relaxed mb-8 flex-1">
+            Need someone to walk you through every single step? This is full-service, hands-on coaching for beginners who want to go from "what's a budget?" to completely in control. We'll set everything up together and build real confidence along the way.
+          </p>
+          <div class="border-t border-white/10 pt-6">
+            <p class="text-white font-bold text-2xl">[Price TBD]</p>
+          </div>
         </div>
-        <div class="bg-banana-cream rounded-2xl p-8">
-          <h3 class="text-shadow-grey font-bold text-lg uppercase tracking-widest mb-3">Most Popular</h3>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">[Coming soon]</p>
+
+        <!-- Jump Start -->
+        <div class="bg-sky-surge rounded-2xl p-8 flex flex-col">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide">The Jump Start</h3>
+            <span class="bg-shadow-grey text-banana-cream text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Popular</span>
+          </div>
+          <p class="text-shadow-grey/50 text-xs uppercase tracking-widest mb-6">3 months · 6 hours of 1:1 coaching</p>
+          <p class="text-shadow-grey/80 text-sm leading-relaxed mb-8 flex-1">
+            Already a self-starter but need help getting the ball rolling? This package gives you expert guidance and accountability without the hand-holding — perfect if you want to learn YNAB and run with it, but still have someone to call when you get stuck.
+          </p>
+          <div class="border-t border-shadow-grey/20 pt-6">
+            <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
+          </div>
         </div>
-        <div class="border border-white/10 rounded-2xl p-8">
-          <h3 class="text-banana-cream font-bold text-lg uppercase tracking-widest mb-3">Premium</h3>
-          <p class="text-white/40 text-sm leading-relaxed">[Coming soon]</p>
+
+        <!-- Pick My Brain -->
+        <div class="border-2 border-shadow-grey/10 rounded-2xl p-8 flex flex-col">
+          <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide mb-1">Pick My Brain</h3>
+          <p class="text-shadow-grey/40 text-xs uppercase tracking-widest mb-6">Hourly · Pay as you go</p>
+          <p class="text-shadow-grey/70 text-sm leading-relaxed mb-8 flex-1">
+            Already using YNAB but need a little boost? Book one-off sessions to troubleshoot, fine-tune, or level up your setup. Each session includes up to 3 email answers before or after the call.
+          </p>
+          <div class="border-t border-shadow-grey/10 pt-6">
+            <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="bg-yellow-green px-6 md:px-12 py-20">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl font-bold uppercase text-shadow-grey mb-10">All packages include</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">Personalized YNAB setup tailored to your life and goals</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">1-on-1 video or phone calls, from anywhere</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">34-day free YNAB trial (more than enough to get started)</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">Email support between sessions</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">A completely judgment-free, confidential space</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
+          <p class="text-shadow-grey font-medium">Support for couples budgeting together</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Free session CTA -->
+  <section class="bg-tomato-jam px-6 md:px-12 py-24">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-6">
+        Start with a free<br/>30-minute call
+      </h2>
+      <p class="text-white/70 text-lg mb-12 leading-relaxed">
+        No commitment. No pitch. Just a chance to meet, talk about where you're at with money, and see if working together makes sense. If it's not a fit, no hard feelings.
+      </p>
+      <a href="mailto:laurenynabcoach@gmail.com"
+         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-banana-cream hover:text-shadow-grey transition-colors">
+        Book Your Free Call
+      </a>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="bg-tomato-jam px-6 md:px-12 py-24">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-4">Let's Talk</h2>
-      <p class="text-white/70 text-lg mb-12">Ready to take control of your money?</p>
+  <section id="contact" class="bg-white px-6 md:px-12 py-24">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-6">Get in touch</h2>
+      <p class="text-shadow-grey/50 text-lg mb-10">Have a question before booking? Send me an email — I'd love to hear from you.</p>
       <a href="mailto:laurenynabcoach@gmail.com"
-         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-banana-cream hover:text-shadow-grey transition-colors">
+         class="inline-flex items-center gap-3 bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 hover:bg-sky-surge hover:text-shadow-grey transition-colors text-sm">
         laurenynabcoach@gmail.com
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-shadow-grey border-t border-white/10 px-6 py-8 text-center">
-    <p class="text-white/30 text-xs uppercase tracking-widest">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
+  <footer class="bg-shadow-grey px-6 md:px-12 py-10">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-white/30 text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
+      <p class="text-white/20 text-xs leading-relaxed max-w-3xl">
+        Disclaimer: I am not a financial advisor and do not provide investment advice. I am a YNAB Certified Coach, trained to coach people on using YNAB software and the YNAB method. I am not an employee of YNAB, and all opinions are my own. My views do not reflect the views of YNAB and its employees or affiliates.
+      </p>
+    </div>
   </footer>
 
 </body>
