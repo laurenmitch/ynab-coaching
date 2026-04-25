@@ -13,11 +13,11 @@
       theme: {
         extend: {
           colors: {
-            'sky-surge':    '#5bc0eb',
-            'banana-cream': '#fde74c',
-            'yellow-green': '#9bc53d',
-            'tomato-jam':   '#c3423f',
-            'shadow-grey':  '#211a1e',
+            'shadow-grey':     '#211a1e',
+            'sunflower-gold':  '#ffba49',
+            'powder-blue':     '#98c1d9',
+            'vibrant-coral':   '#ed6a5e',
+            'violet-twilight': '#6153cc',
           },
           fontFamily: {
             sans: ['Space Grotesk', 'sans-serif'],
@@ -50,188 +50,185 @@
 <body class="bg-white text-shadow-grey font-sans">
 
   <!-- Nav -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-shadow-grey px-6 md:px-12 py-5 flex items-center justify-between">
-    <span class="text-white font-bold text-sm uppercase tracking-widest leading-tight">
-      Lauren Mitchell<br/>
-      <span class="text-white/40 font-normal text-xs normal-case tracking-normal">Certified YNAB Coach</span>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-shadow-grey px-6 md:px-10 h-16 flex items-center justify-between">
+    <span class="text-white font-bold text-sm uppercase tracking-widest">
+      Lauren Mitchell
+      <span class="text-white/30 font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">— Certified YNAB Coach</span>
     </span>
-    <div class="flex items-center gap-6 md:gap-10">
+    <div class="flex items-center gap-6 md:gap-8">
       <a href="#about"    class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
       <a href="#packages" class="text-white/60 hover:text-white text-xs uppercase tracking-widest transition-colors hidden md:block">Packages</a>
-      <a href="#contact"  class="bg-banana-cream text-shadow-grey font-bold text-xs uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-green transition-colors">Contact</a>
+      <a href="#contact"  class="bg-sunflower-gold text-shadow-grey font-bold text-xs uppercase tracking-widest px-5 py-2 hover:bg-vibrant-coral hover:text-white transition-colors">Contact</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="grain min-h-screen bg-shadow-grey flex flex-col items-center justify-center pt-20 px-6">
-    <div class="mb-10">
-      <span class="border border-white/20 text-white/50 text-xs uppercase tracking-widest px-5 py-2 rounded-full">
-        Certified YNAB Coach
-      </span>
-    </div>
-    <div class="flex flex-col md:flex-row gap-3 w-full max-w-4xl">
-      <div class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-10 md:p-14 flex items-center justify-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center leading-tight">
-          Get better<br/>with money
-        </h1>
+  <!-- Hero: full-screen two-column split like the reference -->
+  <section class="grain flex flex-col md:flex-row bg-shadow-grey" style="height: 100vh; padding-top: 64px;">
+
+    <!-- LEFT: dark grain, two text boxes pinned to bottom -->
+    <div class="flex flex-col flex-1 md:w-3/5 p-6 md:p-10">
+      <div class="flex-1"></div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="flex-1 rounded-xl border border-white/10 bg-white/5 p-8 md:p-10 flex items-end">
+          <h1 class="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight">
+            Get better<br/>with money
+          </h1>
+        </div>
+        <div class="flex-1 rounded-xl bg-sunflower-gold p-8 md:p-10 flex items-end">
+          <h2 class="text-3xl md:text-4xl xl:text-5xl font-bold text-shadow-grey leading-tight">
+            and live the<br/>life you want
+          </h2>
+        </div>
       </div>
-      <div class="flex-1 bg-banana-cream rounded-2xl p-10 md:p-14 flex items-center justify-center">
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-shadow-grey text-center leading-tight">
-          and live the<br/>life you want
-        </h2>
-      </div>
     </div>
-    <div class="mt-16 flex flex-col items-center gap-3 text-white/30">
-      <span class="text-xs uppercase tracking-widest">Scroll</span>
-      <div class="w-px h-10 bg-white/20"></div>
+
+    <!-- RIGHT: stacked coloured service boxes -->
+    <div class="flex flex-row md:flex-col md:w-2/5" style="min-height: 200px;">
+
+      <a href="#packages" class="flex-1 bg-vibrant-coral flex items-start justify-between p-6 md:p-8 hover:opacity-90 transition-opacity">
+        <h3 class="text-white font-bold text-lg md:text-xl uppercase leading-tight">YNAB<br/>Setup</h3>
+        <span class="text-white text-2xl md:text-3xl font-bold leading-none ml-4">+</span>
+      </a>
+
+      <a href="#packages" class="flex-1 bg-powder-blue flex items-start justify-between p-6 md:p-8 hover:opacity-90 transition-opacity">
+        <h3 class="text-shadow-grey font-bold text-lg md:text-xl uppercase leading-tight">1:1<br/>Coaching</h3>
+        <span class="text-shadow-grey text-2xl md:text-3xl font-bold leading-none ml-4">+</span>
+      </a>
+
+      <a href="#packages" class="flex-1 bg-sunflower-gold flex items-start justify-between p-6 md:p-8 hover:opacity-90 transition-opacity">
+        <h3 class="text-shadow-grey font-bold text-lg md:text-xl uppercase leading-tight">Couples<br/>Budgeting</h3>
+        <span class="text-shadow-grey text-2xl md:text-3xl font-bold leading-none ml-4">+</span>
+      </a>
+
+      <a href="#packages" class="flex-1 bg-violet-twilight flex items-start justify-between p-6 md:p-8 hover:opacity-90 transition-opacity">
+        <h3 class="text-white font-bold text-lg md:text-xl uppercase leading-tight">Pick<br/>My Brain</h3>
+        <span class="text-white text-2xl md:text-3xl font-bold leading-none ml-4">+</span>
+      </a>
+
+      <!-- Bottom two boxes — like "Events | Services" in the reference -->
+      <div class="flex" style="flex: 0 0 56px;">
+        <a href="#packages" class="flex-1 bg-shadow-grey border-t border-white/10 text-white flex items-center justify-center font-bold uppercase tracking-widest text-xs hover:bg-sunflower-gold hover:text-shadow-grey transition-colors">
+          Packages
+        </a>
+        <a href="#contact" class="flex-1 bg-white/10 border-t border-l border-white/10 text-white flex items-center justify-center font-bold uppercase tracking-widest text-xs hover:bg-powder-blue hover:text-shadow-grey transition-colors">
+          Free Call
+        </a>
+      </div>
+
     </div>
   </section>
 
   <!-- Pain points -->
   <section class="bg-white px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold uppercase mb-4">Does any of this<br/>sound familiar?</h2>
-      <p class="text-shadow-grey/50 text-lg mb-14 max-w-xl">If you answered yes to even one of these, you're in the right place.</p>
+      <h2 class="text-4xl md:text-5xl font-bold uppercase mb-3">Does any of this<br/>sound familiar?</h2>
+      <p class="text-shadow-grey/40 text-lg mb-14 max-w-xl">If you said yes to even one of these, you're in the right place.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-sky-surge transition-colors">
-          <p class="font-bold text-lg mb-1">Making money but not sure where it goes</p>
-          <p class="text-shadow-grey/50 text-sm">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-vibrant-coral transition-colors">
+          <p class="font-bold text-lg mb-2">Making money but not sure where it goes</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
         </div>
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-yellow-green transition-colors">
-          <p class="font-bold text-lg mb-1">Blindsided by one-off expenses</p>
-          <p class="text-shadow-grey/50 text-sm">Car registration. A wedding gift. A flight home. Every "surprise" sends you into a spiral.</p>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-powder-blue transition-colors">
+          <p class="font-bold text-lg mb-2">Blindsided by one-off expenses</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">Car registration. A wedding gift. A flight home. Every "surprise" sends you into a spiral.</p>
         </div>
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-banana-cream transition-colors">
-          <p class="font-bold text-lg mb-1">Spending money before you really have it</p>
-          <p class="text-shadow-grey/50 text-sm">You're swiping the card and hoping it works out. Spoiler: it's stressful.</p>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-sunflower-gold transition-colors">
+          <p class="font-bold text-lg mb-2">Spending money before you really have it</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">You're swiping the card and hoping it works out. Spoiler: it's stressful.</p>
         </div>
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-tomato-jam transition-colors">
-          <p class="font-bold text-lg mb-1">Tried YNAB but couldn't figure it out</p>
-          <p class="text-shadow-grey/50 text-sm">You downloaded the app, poked around, and gave up. YNAB can feel overwhelming alone.</p>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-violet-twilight transition-colors">
+          <p class="font-bold text-lg mb-2">Tried YNAB but couldn't figure it out</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">You downloaded the app, poked around, and gave up. YNAB can feel overwhelming alone.</p>
         </div>
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-sky-surge transition-colors">
-          <p class="font-bold text-lg mb-1">Struggling to get on the same page as your partner</p>
-          <p class="text-shadow-grey/50 text-sm">Money talks turn into money fights. You want a plan you both actually believe in.</p>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-vibrant-coral transition-colors">
+          <p class="font-bold text-lg mb-2">Struggling to get on the same page as your partner</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">Money talks turn into money fights. You want a plan you both actually believe in.</p>
         </div>
-        <div class="border-2 border-shadow-grey/10 rounded-xl p-7 hover:border-yellow-green transition-colors">
-          <p class="font-bold text-lg mb-1">Big goals, no clear path</p>
-          <p class="text-shadow-grey/50 text-sm">Travel. A house. Paying off debt. You know what you want — you just don't know how to get there.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Colorblock strip -->
-  <section>
-    <div class="grid grid-cols-2 md:grid-cols-4">
-      <div class="bg-tomato-jam px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
-        <div class="flex justify-between items-start">
-          <h3 class="text-white font-bold text-xl uppercase leading-tight">YNAB<br/>Setup</h3>
-          <span class="text-white text-2xl leading-none font-bold">+</span>
-        </div>
-      </div>
-      <div class="bg-sky-surge px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
-        <div class="flex justify-between items-start">
-          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">1:1<br/>Coaching</h3>
-          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
-        </div>
-      </div>
-      <div class="bg-yellow-green px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
-        <div class="flex justify-between items-start">
-          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">Couples<br/>Budgeting</h3>
-          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
-        </div>
-      </div>
-      <div class="bg-banana-cream px-8 py-12 min-h-44 flex flex-col justify-between hover:opacity-90 transition-opacity">
-        <div class="flex justify-between items-start">
-          <h3 class="text-shadow-grey font-bold text-xl uppercase leading-tight">Pick My<br/>Brain</h3>
-          <span class="text-shadow-grey text-2xl leading-none font-bold">+</span>
+        <div class="border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-powder-blue transition-colors">
+          <p class="font-bold text-lg mb-2">Big goals with no clear path</p>
+          <p class="text-shadow-grey/50 text-sm leading-relaxed">Travel. A house. Paying off debt. You know what you want — you just don't know how to get there.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="bg-shadow-grey px-6 md:px-12 py-24">
+  <section id="about" class="grain bg-shadow-grey px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
       <div>
         <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-8">Hi, I'm<br/>Lauren</h2>
-        <p class="text-white/70 text-lg leading-relaxed mb-6">
+        <p class="text-white/70 text-lg leading-relaxed mb-5">
           I'm a Certified YNAB Coach on a mission to help people stop stressing about money and start spending with intention — so you can actually build the life you want.
         </p>
-        <p class="text-white/50 text-base leading-relaxed mb-8">
-          I work with college students, young professionals, and couples who are tired of wondering where their money went and ready to make a real plan. No shame. No judgment. Just a practical system that actually works.
+        <p class="text-white/50 text-base leading-relaxed mb-10">
+          I work with college students, young professionals, and couples who are tired of wondering where their money went and ready to make a real plan. No shame. No judgment. Just a system that works.
         </p>
-        <a href="#contact" class="inline-block bg-banana-cream text-shadow-grey font-bold uppercase tracking-widest px-8 py-4 hover:bg-yellow-green transition-colors text-sm">
+        <a href="#contact" class="inline-block bg-sunflower-gold text-shadow-grey font-bold uppercase tracking-widest px-8 py-4 hover:bg-vibrant-coral hover:text-white transition-colors text-sm">
           Let's Work Together
         </a>
       </div>
-      <div class="bg-sky-surge rounded-2xl aspect-square w-full max-w-sm mx-auto flex items-center justify-center">
-        <p class="text-shadow-grey/40 text-sm uppercase tracking-widest">[Photo coming soon]</p>
+      <div class="bg-powder-blue rounded-2xl aspect-square w-full max-w-sm mx-auto flex items-center justify-center">
+        <p class="text-shadow-grey/30 text-sm uppercase tracking-widest">[Photo coming soon]</p>
       </div>
     </div>
   </section>
 
-  <!-- Stats bar -->
-  <section class="bg-banana-cream px-6 md:px-12 py-12">
+  <!-- Stats -->
+  <section class="bg-sunflower-gold px-6 md:px-12 py-14">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div>
         <p class="text-5xl font-bold text-shadow-grey">$600</p>
-        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">avg. saved in first month</p>
+        <p class="text-shadow-grey/60 text-xs uppercase tracking-widest mt-2">avg. saved in first month</p>
       </div>
       <div>
         <p class="text-5xl font-bold text-shadow-grey">$6,000</p>
-        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">avg. saved in first year</p>
+        <p class="text-shadow-grey/60 text-xs uppercase tracking-widest mt-2">avg. saved in first year</p>
       </div>
       <div>
         <p class="text-5xl font-bold text-shadow-grey">34</p>
-        <p class="text-shadow-grey/60 text-sm uppercase tracking-widest mt-2">day free YNAB trial included</p>
+        <p class="text-shadow-grey/60 text-xs uppercase tracking-widest mt-2">day free YNAB trial included</p>
       </div>
     </div>
-    <p class="text-center text-shadow-grey/40 text-xs mt-8">Based on YNAB's reported average user outcomes.</p>
+    <p class="text-center text-shadow-grey/30 text-xs mt-8">Based on YNAB's reported average user outcomes.</p>
   </section>
 
   <!-- Packages -->
   <section id="packages" class="bg-white px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-4">Packages</h2>
-      <p class="text-shadow-grey/50 text-lg mb-14 max-w-xl">Every package starts with a free 30-minute intro call — no commitment, no pressure. Just a chance to see if we're a good fit.</p>
-
+      <h2 class="text-5xl md:text-6xl font-bold uppercase mb-3">Packages</h2>
+      <p class="text-shadow-grey/40 text-lg mb-14 max-w-xl">Every package starts with a free 30-minute intro call — no commitment, no pressure.</p>
       <div class="grid md:grid-cols-3 gap-4">
 
-        <!-- Full Support -->
         <div class="bg-shadow-grey rounded-2xl p-8 flex flex-col">
-          <h3 class="text-banana-cream font-bold text-xl uppercase tracking-wide mb-1">The Full Support</h3>
-          <p class="text-white/40 text-xs uppercase tracking-widest mb-6">3 months · 12 hours of 1:1 coaching</p>
-          <p class="text-white/70 text-sm leading-relaxed mb-8 flex-1">
-            Need someone to walk you through every single step? This is full-service, hands-on coaching for beginners who want to go from "what's a budget?" to completely in control. We'll set everything up together and build real confidence along the way.
+          <h3 class="text-sunflower-gold font-bold text-xl uppercase tracking-wide mb-1">The Full Support</h3>
+          <p class="text-white/30 text-xs uppercase tracking-widest mb-6">3 months · 12 hours</p>
+          <p class="text-white/60 text-sm leading-relaxed flex-1 mb-8">
+            Full-service, hands-on coaching for beginners who want to go from "what's a budget?" to completely in control. We set everything up together and build real confidence along the way.
           </p>
           <div class="border-t border-white/10 pt-6">
             <p class="text-white font-bold text-2xl">[Price TBD]</p>
           </div>
         </div>
 
-        <!-- Jump Start -->
-        <div class="bg-sky-surge rounded-2xl p-8 flex flex-col">
+        <div class="bg-powder-blue rounded-2xl p-8 flex flex-col">
           <div class="flex justify-between items-start mb-1">
             <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide">The Jump Start</h3>
-            <span class="bg-shadow-grey text-banana-cream text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Popular</span>
+            <span class="bg-shadow-grey text-sunflower-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">Popular</span>
           </div>
-          <p class="text-shadow-grey/50 text-xs uppercase tracking-widest mb-6">3 months · 6 hours of 1:1 coaching</p>
-          <p class="text-shadow-grey/80 text-sm leading-relaxed mb-8 flex-1">
-            Already a self-starter but need help getting the ball rolling? This package gives you expert guidance and accountability without the hand-holding — perfect if you want to learn YNAB and run with it, but still have someone to call when you get stuck.
+          <p class="text-shadow-grey/40 text-xs uppercase tracking-widest mb-6">3 months · 6 hours</p>
+          <p class="text-shadow-grey/70 text-sm leading-relaxed flex-1 mb-8">
+            Expert guidance and accountability without the hand-holding. Perfect if you want to learn YNAB and run with it, but still have someone to call when you get stuck.
           </p>
           <div class="border-t border-shadow-grey/20 pt-6">
             <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
           </div>
         </div>
 
-        <!-- Pick My Brain -->
         <div class="border-2 border-shadow-grey/10 rounded-2xl p-8 flex flex-col">
           <h3 class="text-shadow-grey font-bold text-xl uppercase tracking-wide mb-1">Pick My Brain</h3>
-          <p class="text-shadow-grey/40 text-xs uppercase tracking-widest mb-6">Hourly · Pay as you go</p>
-          <p class="text-shadow-grey/70 text-sm leading-relaxed mb-8 flex-1">
-            Already using YNAB but need a little boost? Book one-off sessions to troubleshoot, fine-tune, or level up your setup. Each session includes up to 3 email answers before or after the call.
+          <p class="text-shadow-grey/30 text-xs uppercase tracking-widest mb-6">Hourly · Pay as you go</p>
+          <p class="text-shadow-grey/60 text-sm leading-relaxed flex-1 mb-8">
+            Already using YNAB but need a little boost? Book one-off sessions for troubleshooting, fine-tuning, or levelling up. Includes up to 3 email answers per session.
           </p>
           <div class="border-t border-shadow-grey/10 pt-6">
             <p class="text-shadow-grey font-bold text-2xl">[Price TBD]</p>
@@ -243,49 +240,49 @@
   </section>
 
   <!-- What's included -->
-  <section class="bg-yellow-green px-6 md:px-12 py-20">
+  <section class="bg-violet-twilight px-6 md:px-12 py-20">
     <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-bold uppercase text-shadow-grey mb-10">All packages include</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h2 class="text-4xl font-bold uppercase text-white mb-10">All packages include</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">Personalized YNAB setup tailored to your life and goals</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">Personalized YNAB setup tailored to your life and goals</p>
         </div>
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">1-on-1 video or phone calls, from anywhere</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">1-on-1 video or phone calls, from anywhere</p>
         </div>
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">34-day free YNAB trial (more than enough to get started)</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">34-day free YNAB trial — more than enough to get started</p>
         </div>
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">Email support between sessions</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">Email support between sessions</p>
         </div>
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">A completely judgment-free, confidential space</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">A completely judgment-free, confidential space</p>
         </div>
         <div class="flex items-start gap-4">
-          <span class="text-shadow-grey font-bold text-lg mt-0.5">→</span>
-          <p class="text-shadow-grey font-medium">Support for couples budgeting together</p>
+          <span class="text-sunflower-gold font-bold text-lg mt-0.5 shrink-0">→</span>
+          <p class="text-white/80 font-medium">Support for couples budgeting together</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Free session CTA -->
-  <section class="bg-tomato-jam px-6 md:px-12 py-24">
+  <section class="bg-vibrant-coral px-6 md:px-12 py-24">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-5xl md:text-6xl font-bold uppercase text-white mb-6">
         Start with a free<br/>30-minute call
       </h2>
       <p class="text-white/70 text-lg mb-12 leading-relaxed">
-        No commitment. No pitch. Just a chance to meet, talk about where you're at with money, and see if working together makes sense. If it's not a fit, no hard feelings.
+        No commitment. No pitch. Just a chance to meet, talk about where you're at with money, and see if working together makes sense.
       </p>
       <a href="mailto:laurenynabcoach@gmail.com"
-         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-banana-cream hover:text-shadow-grey transition-colors">
+         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-sunflower-gold hover:text-shadow-grey transition-colors">
         Book Your Free Call
       </a>
     </div>
@@ -295,9 +292,9 @@
   <section id="contact" class="bg-white px-6 md:px-12 py-24">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-5xl md:text-6xl font-bold uppercase mb-6">Get in touch</h2>
-      <p class="text-shadow-grey/50 text-lg mb-10">Have a question before booking? Send me an email — I'd love to hear from you.</p>
+      <p class="text-shadow-grey/40 text-lg mb-10">Have a question before booking? Send me an email.</p>
       <a href="mailto:laurenynabcoach@gmail.com"
-         class="inline-flex items-center gap-3 bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 hover:bg-sky-surge hover:text-shadow-grey transition-colors text-sm">
+         class="inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-powder-blue hover:text-shadow-grey transition-colors">
         laurenynabcoach@gmail.com
       </a>
     </div>
