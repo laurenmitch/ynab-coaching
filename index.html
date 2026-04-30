@@ -71,7 +71,7 @@
 
     /* Layer 1 — dark grain background */
     #hl-bg {
-      background-image: url('herobackground.png');
+      background-image: url('hero_background.png');
       /* Slightly oversize so parallax movement never shows a gap */
       inset: -6%;
       width: 112%;
@@ -80,19 +80,23 @@
     }
 
     /* Layer 2 — polaroid / folder collage
-       cover fills the whole frame — big, dramatic, naturally cropped. */
+       top: 28vw tracks the text arc's proportional height so the
+       collage starts just below the letters at every screen size.
+       On mobile this means big, dramatic, edge-to-edge photos. */
     #hl-img {
+      top: 28vw;     /* overrides hero-layer inset: 0 */
+      height: auto;  /* overrides hero-layer height: 100% */
       background-image: url('heroimage.png');
       background-size: cover;
-      background-position: center 65%;
+      background-position: center 30%;
       z-index: 2;
     }
 
     /* Layer 3 — curved typography (transparent PNG)
-       100% auto so text never clips horizontally at any viewport width.
-       Anchored top-left to match the image's original composition. */
+       100% auto = full viewport width, no horizontal clipping.
+       Works on mobile and wide screens alike. */
     #hl-txt {
-      background-image: url('herotext.png');
+      background-image: url('heroText_2.png');
       background-size: 100% auto;
       background-position: left top;
       z-index: 3;
