@@ -62,6 +62,14 @@
       #hero { height: 110vw; }
     }
 
+    @media (min-width: 768px) {
+      /* Shift text up by ~6vw to remove the blank top margin
+         baked into the PNG, putting words near the top of the hero */
+      #hl-txt { background-position: left -6vw; }
+      /* Pull collage up so more photos are visible below the text */
+      #hl-img { top: 20vw; }
+    }
+
     /* Shared layer base */
     .hero-layer {
       position: absolute;
