@@ -74,7 +74,33 @@
     }
 
     @media (max-width: 767px) {
-      #hero { height: 110vw; }
+      #hero {
+        position: relative;
+        overflow: hidden;
+        height: 110vw;
+        min-height: 500px;
+        max-height: 620px;
+      }
+
+      #hl-img {
+        top: 0;
+        height: 100%;
+        background-image: url('heroimage.png');
+        background-size: 185% auto;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      #hl-txt svg {
+        position: absolute;
+        top: 8vw;
+        left: 6vw;
+        width: 88%;
+        height: auto;
+      }
     }
 
     @media (min-width: 768px) {
