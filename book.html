@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Book a Free Call · Lauren Mitchell YNAB Coach</title>
+  <link rel="icon" href="3.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'shadow-grey':     'rgb(var(--c-primary)   / <alpha-value>)',
+            'sunflower-gold':  'rgb(var(--c-accent)    / <alpha-value>)',
+            'powder-blue':     'rgb(var(--c-hero)      / <alpha-value>)',
+            'vibrant-coral':   'rgb(var(--c-accent)    / <alpha-value>)',
+            'violet-twilight': 'rgb(var(--c-secondary) / <alpha-value>)',
+            'butter-stick':    'rgb(var(--c-bg)        / <alpha-value>)',
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --c-primary:    43 29 14;
+      --c-accent:     235 87 41;
+      --c-hero:       147 176 236;
+      --c-secondary:  206 213 100;
+      --c-bg:         250 240 230;
+    }
+    html { scroll-behavior: smooth; }
+
+    /* Make the Calendly widget fill its container */
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 700px;
+    }
+  </style>
+</head>
+<body class="bg-butter-stick text-shadow-grey font-sans">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-violet-twilight px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="/" class="text-shadow-grey font-bold text-sm uppercase tracking-widest">
+      Lauren Mitchell *
+      <span class="text-shadow-grey/60 font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">Certified YNAB Coach</span>
+    </a>
+    <a href="/" class="text-shadow-grey/60 hover:text-shadow-grey text-xs uppercase tracking-widest transition-colors">← Back to site</a>
+  </nav>
+
+  <!-- Header -->
+  <div class="pt-16">
+    <div class="bg-vibrant-coral px-6 md:px-12 py-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+        Free Introduction Call
+      </h1>
+      <p class="text-white/70 text-base uppercase tracking-widest mb-4">A no-pressure 30 minute chat</p>
+      <p class="text-white/80 text-lg max-w-xl mx-auto leading-relaxed">
+        Let's connect and see if this feels like a good fit. No pressure to commit to coaching, just a space to talk through your goals with YNAB.
+      </p>
+    </div>
+  </div>
+
+  <!-- Calendly embed -->
+  <div class="bg-powder-blue px-4 py-12">
+  <div class="max-w-4xl mx-auto">
+    <div class="calendly-inline-widget rounded-2xl overflow-hidden shadow-lg"
+         data-url="https://calendly.com/laurenynabcoach/30min?primary_color=eb5729&background_color=faf0e6&text_color=000000"
+         style="min-width:320px;height:700px;">
+    </div>
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-shadow-grey px-6 md:px-12 py-10">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-white/60 text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
+      <p class="text-white/50 text-xs leading-relaxed max-w-3xl">
+        Disclaimer: I am not a financial advisor and do not provide investment advice. I am a YNAB Certified Coach, trained to coach people on using YNAB software and the YNAB Method. I am not an employee of YNAB, and all opinions are my own. My views do not reflect the views of YNAB and its employees or affiliates.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Calendly script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+</body>
+</html>
