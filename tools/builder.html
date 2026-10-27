@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Theme builder</title>
+<style>
+  :root{
+    --bg:#15161a; --panel:#1c1e24; --line:#2c2f38; --txt:#e8e9ed;
+    --dim:#9196a3; --hi:#7ea7ff; --ok:#49c07d; --warn:#e8b84b; --bad:#f26b6b;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    display:flex; background:var(--bg); color:var(--txt);
+    font:13px/1.45 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+
+  /* ---------- left panel ---------- */
+  aside{
+    width:392px; flex:0 0 392px; height:100%; overflow-y:auto;
+    background:var(--panel); border-right:1px solid var(--line); padding:18px 16px 60px;
+  }
+  aside h1{font-size:15px;margin:0 0 2px}
+  aside .sub{color:var(--dim);font-size:12px;margin:0 0 18px}
+  section{border-top:1px solid var(--line);padding:16px 0 4px}
+  section:first-of-type{border-top:0;padding-top:0}
+  h2{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);margin:0 0 10px}
+
+  button{
+    font:inherit;background:#272a33;color:var(--txt);border:1px solid var(--line);
+    border-radius:7px;padding:6px 11px;cursor:pointer
+  }
+  button:hover{background:#31353f}
+  button.primary{background:var(--hi);border-color:var(--hi);color:#0d1016;font-weight:600}
+  .row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:9px}
+
+  /* palette chips */
+  #chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{position:relative;width:70px}
+  .chip .sw{height:34px;width:100%;display:block;padding:0;cursor:pointer;background:none;
+             border:1px solid rgba(255,255,255,.16);border-top:0;border-radius:0 0 7px 7px}
+  .chip .sw::-webkit-color-swatch-wrapper{padding:2px}
+  .chip .sw::-webkit-color-swatch{border:none;border-radius:5px}
+  .chip .grip{
+    height:15px;border-radius:6px 6px 0 0;background:#2f333d;color:#737b8c;
+    display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:3px;
+    cursor:grab;user-select:none
+  }
+  .chip .grip:active{cursor:grabbing}
+  .chip .grip:hover{background:#3a404d;color:#aab2c2}
+  .chip input{
+    width:100%;margin-top:4px;background:#101217;border:1px solid var(--line);color:var(--txt);
+    border-radius:5px;padding:3px 4px;font:11px ui-monospace,monospace;text-align:center
+  }
+  .chip .x{
+    position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;
+    background:#3a3f4b;border:1px solid var(--line);color:#cfd3dc;font-size:11px;line-height:1;
+    display:none;cursor:pointer;padding:0
+  }
+  .chip:hover .x{display:block}
+
+  textarea{
+    width:100%;background:#101217;border:1px solid var(--line);color:var(--txt);
+    border-radius:7px;padding:8px;font:12px ui-monospace,monospace;resize:vertical;margin-top:9px
+  }
+  #drop{
+    margin-top:9px;border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;
+    color:var(--dim);font-size:12px;cursor:pointer
+  }
+  #drop.over{border-color:var(--hi);color:var(--hi);background:#1a2130}
+
+  /* slots */
+  .slot{border:1px solid var(--line);border-radius:9px;padding:9px;margin-bottom:9px;background:#191b21}
+  .slot .top{display:flex;align-items:center;gap:9px}
+  .slot .name{font-weight:600;font-size:12.5px}
+  .slot .desc{color:var(--dim);font-size:11px;margin-top:1px}
+  .slot .pv{width:40px;height:40px;border-radius:6px;border:1px solid rgba(255,255,255,.16);flex:0 0 40px;
+            display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  select{
+    font:inherit;background:#101217;color:var(--txt);border:1px solid var(--line);
+    border-radius:6px;padding:4px 6px;max-width:150px
+  }
+  .meta{display:flex;align-items:center;gap:7px;margin-top:8px;flex-wrap:wrap}
+  .badge{font:11px ui-monospace,monospace;padding:2px 7px;border-radius:999px;border:1px solid}
+  .badge.ok{color:var(--ok);border-color:#255e41;background:#14281e}
+  .badge.warn{color:var(--warn);border-color:#60502073;background:#2a2415}
+  .badge.bad{color:var(--bad);border-color:#5e2626;background:#2a1616}
+  .mono{font:11px ui-monospace,monospace;color:var(--dim)}
+  input[type=color]{width:26px;height:22px;padding:0;border:1px solid var(--line);border-radius:4px;background:none;cursor:pointer}
+
+  /* drop targets */
+  .zone{outline:2px dashed transparent;outline-offset:1px;border-radius:5px;transition:outline-color .12s}
+  .zone.over{outline-color:var(--hi)}
+  .mock{border-radius:8px;border:1px solid var(--line);overflow:hidden;margin-bottom:9px}
+  .navmock{display:flex;align-items:center;gap:8px;padding:9px 10px;font-size:9.5px;letter-spacing:.08em}
+  .navmock .nm-logo{font-weight:700}
+  .navmock .nm-pill{padding:4px 9px;border-radius:3px;font-weight:700}
+  .navmock .sp{flex:1}
+  .heromock{height:96px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+  .heromock .ht{font-weight:700;font-size:16px;line-height:1.15;font-style:italic}
+  .elrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid #23262e}
+  .elrow .es{width:22px;height:22px;border-radius:5px;border:1px solid rgba(255,255,255,.18);flex:0 0 22px}
+  .elrow .el{flex:1;font-size:12px}
+  .elrow .er{font-size:10px;color:var(--dim);background:none;border:0;cursor:pointer;padding:2px 5px}
+  .elrow .er:hover{color:var(--txt)}
+  .hint{color:var(--dim);font-size:11.5px;margin:0 0 9px}
+  .shdr{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+  .shdr h2{margin:0;flex:1}
+  .sh{font-size:11px;padding:4px 9px;border-radius:6px;background:#2b303b;border:1px solid #3a4150}
+  .sh:hover{background:#363d4b;color:#fff}
+  #bar .big{background:#3b4254;border-color:#4a5366;font-weight:600}
+  #bar .big:hover{background:#49536a}
+  #bar button:disabled{opacity:.4;cursor:default}
+
+  /* click-to-pick popover */
+  .pop{
+    position:fixed;z-index:999;width:222px;background:#20232b;border:1px solid #3a3f4b;
+    border-radius:10px;padding:11px;box-shadow:0 16px 44px #000b
+  }
+  .pop h4{margin:0 0 8px;font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim)}
+  .pop .grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .pop .grid button{width:31px;height:31px;padding:0;border-radius:6px;border:1px solid rgba(255,255,255,.22);cursor:pointer}
+  .pop .grid button.sel{outline:2px solid var(--hi);outline-offset:2px}
+  .pop .act{display:flex;gap:6px;align-items:center}
+  .pop .act input[type=color]{width:31px;height:29px;flex:0 0 31px}
+  .pop .act button{flex:1;font-size:11.5px;padding:6px 7px}
+  .pop .rst{width:100%;margin-top:8px;font-size:11.5px}
+  .pick{cursor:pointer}
+  .pick:hover{outline:2px solid var(--hi);outline-offset:2px}
+
+  #hovers{display:flex;gap:7px}
+  #hovers div{flex:1;height:34px;border-radius:6px;border:1px solid rgba(255,255,255,.16)}
+  label.rng{display:flex;align-items:center;gap:9px;margin-top:10px;color:var(--dim);font-size:12px}
+  input[type=range]{flex:1}
+
+  pre{
+    background:#0d0f13;border:1px solid var(--line);border-radius:7px;padding:9px;
+    font:11px/1.5 ui-monospace,monospace;color:#b9c0cf;white-space:pre-wrap;word-break:break-all;
+    max-height:190px;overflow:auto;margin:9px 0 0
+  }
+
+  /* ---------- right stage ---------- */
+  main{flex:1;display:flex;flex-direction:column;min-width:0}
+  #bar{
+    display:flex;gap:6px;align-items:center;padding:9px 12px;
+    border-bottom:1px solid var(--line);background:var(--panel);flex-wrap:wrap
+  }
+  #bar .spacer{flex:1}
+  #bar button{padding:5px 9px;font-size:12px}
+  #bar button.on{background:var(--hi);border-color:var(--hi);color:#0d1016}
+  #stage{flex:1;overflow:auto;background:#0b0c0f;display:flex;justify-content:center;padding:14px}
+  iframe{width:100%;height:100%;border:0;background:#fff;border-radius:8px;box-shadow:0 10px 40px #0009}
+  iframe.mobile{width:390px;flex:0 0 390px}
+</style>
+</head>
+<body>
+
+<aside>
+  <h1>Theme builder</h1>
+  <p class="sub">Drop a palette in, decide what goes where, watch the real page change.</p>
+
+  <section>
+    <h2>Palette</h2>
+    <div id="chips"></div>
+    <div class="row">
+      <button id="add">+ Add colour</button>
+      <button id="reset">Reset to current</button>
+    </div>
+    <textarea id="paste" rows="2" placeholder="Paste hex codes — #EF945F #F4BF3D …"></textarea>
+    <div class="row"><button id="loadPaste">Load those hexes</button></div>
+    <div id="drop">Drop an image here to pull its colours</div>
+  </section>
+
+  <section>
+    <div class="shdr"><h2>Header bar</h2><button class="sh" id="shHeader">Shuffle</button></div>
+    <p class="hint">Click any part of the bar, or any square below, to change its colour.</p>
+    <div id="navMock"></div>
+    <div id="navRows"></div>
+  </section>
+
+  <section>
+    <div class="shdr"><h2>Hero</h2><button class="sh" id="shHero">Shuffle</button></div>
+    <p class="hint">Click the headline or the background behind it.</p>
+    <div id="heroMock"></div>
+    <div id="heroRows"></div>
+  </section>
+
+  <section>
+    <h2>Everything else</h2>
+    <p class="hint">Click a swatch, or use the menu beside it.</p>
+    <div id="slots"></div>
+  </section>
+
+  <section>
+    <h2>Card hovers</h2>
+    <div id="hovers"></div>
+    <label class="rng">Rotate <input type="range" id="hueRot" min="0" max="359" value="0"><span class="mono" id="rotVal">0°</span></label>
+  </section>
+
+  <section>
+    <h2>When you're happy</h2>
+    <div class="row">
+      <button class="primary" id="copy">Copy the line for Claude</button>
+    </div>
+    <pre id="cmd"></pre>
+  </section>
+</aside>
+
+<main>
+  <div id="bar">
+    <button data-sec="0">Hero</button>
+    <button data-sec="1">Cards</button>
+    <button data-sec="2">About</button>
+    <button data-sec="3">Quotes</button>
+    <button data-sec="4">Pricing</button>
+    <button data-sec="5">CTA</button>
+    <button data-sec="6">Footer</button>
+    <span class="spacer"></span>
+    <button id="shAll" class="big">Shuffle everything</button>
+    <button id="undo" disabled>Undo</button>
+    <button id="vpDesk" class="on">Desktop</button>
+    <button id="vpMob">Mobile</button>
+    <button id="reload">Reload</button>
+  </div>
+  <div id="stage"><iframe id="pv" src="/index.html"></iframe></div>
+</main>
+
+<script type="module">
+import { ROLES, ELEMENTS, buildTheme, resolveElements,
+         hex2rgb, rgb2hex, contrast, lum, deriveInk } from "./theme.js?v=4";
+
+const DEFAULT = {
+  palette: ["#EF945F","#F4BF3D","#B5D7BC","#DE5438","#362216"],
+  pinned:  { surface:"#FAF4E8", anchor:"#362216", feature:"#EF945F",
+             shout:"#DE5438", mid:"#F4BF3D", tint:"#B5D7BC" },
+  inkOverride: {}, hueRot: 0, elements: {},
+};
+const KEY = "bwl-theme-builder";
+let S = load();
+
+function load(){
+  try {
+    const v = JSON.parse(localStorage.getItem(KEY));
+    if (v && Array.isArray(v.palette)) {
+      v.palette = v.palette.filter(h => /^#[0-9a-f]{6}$/i.test(h)).map(h => h.toUpperCase());
+      for (const k of Object.keys(v.pinned || {}))
+        if (v.pinned[k] && !/^#[0-9a-f]{6}$/i.test(v.pinned[k])) delete v.pinned[k];
+      v.elements = v.elements || {};
+      for (const k of Object.keys(v.elements))
+        if (!/^#[0-9a-f]{6}$/i.test(v.elements[k])) delete v.elements[k];
+      if (v.palette.length) return v;
+    }
+  } catch {}
+  return structuredClone(DEFAULT);
+}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+
+/* ---------- compute ---------- */
+function theme(){
+  const pinned = {}, ink = {};
+  for (const [r,v] of Object.entries(S.pinned))      if (v) pinned[r] = hex2rgb(v);
+  for (const [r,v] of Object.entries(S.inkOverride)) if (v) ink[r]    = hex2rgb(v);
+  return buildTheme({ palette: S.palette.map(hex2rgb), pinned, inkOverride: ink, hueRot: S.hueRot });
+}
+
+/* ---------- preview ---------- */
+const pv = document.getElementById("pv");
+function paint(t){
+  const d = pv.contentDocument; if (!d || !d.documentElement) return;
+  const root = d.documentElement;
+  for (const [k,v] of Object.entries(t.vars)) root.style.setProperty(k, v);
+  // an element that has not been set keeps falling back to its slot
+  for (const e of ELEMENTS){
+    const v = S.elements[e.key];
+    if (v) root.style.setProperty("--" + e.key, hex2rgb(v).join(" "));
+    else   root.style.removeProperty("--" + e.key);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Shuffle.
+
+   A roll is only worth anything if you can still read the result,
+   so every pick is drawn from the colours that actually clear the
+   contrast bar for that spot. When no palette colour clears it we
+   derive one from the background rather than rolling something
+   unreadable. Text that sits at reduced opacity is judged on what
+   the reader ends up seeing, not on the raw swatch.
+---------------------------------------------------------------- */
+const rand = a => a[Math.floor(Math.random() * a.length)];
+const shown = (fg, bg, a) => a >= 1 ? fg : fg.map((v, i) => v * a + bg[i] * (1 - a));
+
+function pickFor(bg, need, alpha = 1){
+  const ok = S.palette.filter(h => contrast(shown(hex2rgb(h), bg, alpha), bg) >= need);
+  return ok.length ? rand(ok) : null;
+}
+// the most contrast anything can reach over this background at this opacity
+const extremes = (bg, alpha) => [[0,0,0], [255,255,255]]
+  .map(c => ({ c, r: contrast(shown(c, bg, alpha), bg) }))
+  .sort((a, b) => b.r - a.r);
+
+function inkFor(bg, need, alpha = 1){
+  for (const target of [need, need * 1.3, need * 1.8, 12, 18, 21]){
+    const c = deriveInk(bg, target).ink;
+    if (contrast(shown(c, bg, alpha), bg) >= need) return rgb2hex(c);
+  }
+  return rgb2hex(extremes(bg, alpha)[0].c);   // nothing tonal works; take the limit
+}
+const choose = (bg, need, alpha = 1) => pickFor(bg, need, alpha) || inkFor(bg, need, alpha);
+
+/* Can anything at all stay readable on this bar? The subtitle and links
+   render at 75%, and over a mid-dark colour like tomato even pure black
+   composites to about 4.35:1 -- so some backgrounds simply cannot carry
+   muted nav text, and the shuffle should not offer them. You can still
+   set one by hand; the badge will tell you what you are getting. */
+function barCanCarryText(hex){
+  return extremes(hex2rgb(hex), .75)[0].r >= 4.5;
+}
+
+function shuffleHeader(){
+  const usable = S.palette.filter(barCanCarryText);
+  const bgHex = rand(usable.length ? usable : S.palette), bg = hex2rgb(bgHex);
+  S.elements["nav-bg"]   = bgHex;
+  S.elements["nav-logo"] = choose(bg, 4.5);
+  S.elements["nav-sub"]  = choose(bg, 4.5, .75);
+  S.elements["nav-link"] = choose(bg, 4.5, .75);
+  const pillHex = choose(bg, 3);               // the pill only has to be seen
+  S.elements["pill-bg"]   = pillHex;
+  S.elements["pill-text"] = choose(hex2rgb(pillHex), 4.5);
+}
+
+function shuffleHero(){
+  const bgHex = rand(S.palette), bg = hex2rgb(bgHex);
+  S.elements["hero-bg"] = bgHex;
+  // display type only needs 3:1, but prefer something crisper when the
+  // palette can manage it
+  S.elements["hero-type"] = pickFor(bg, 4.5) || pickFor(bg, 3) || inkFor(bg, 4.5);
+}
+
+function shuffleAll(){
+  // deal the palette across the colour slots without repeating while we can
+  const deck = [...S.palette].sort(() => Math.random() - .5);
+  ["tint", "mid", "feature", "shout", "anchor"].forEach((r, i) => {
+    S.pinned[r] = deck[i % deck.length];
+  });
+  // a page needs something to sit on, so usually hand the darkest to the anchor
+  if (Math.random() < .7){
+    S.pinned.anchor = [...S.palette].sort((a, b) => lum(hex2rgb(a)) - lum(hex2rgb(b)))[0];
+  }
+  S.inkOverride = {};
+  S.hueRot = Math.floor(Math.random() * 360);
+  shuffleHeader();
+  shuffleHero();
+}
+
+/* one level of regret is not enough; keep a short stack */
+let history = [];
+function remember(){ history.push(JSON.stringify(S)); if (history.length > 40) history.shift(); }
+function undo(){
+  const prev = history.pop();
+  if (!prev) return;
+  S = JSON.parse(prev);
+  render();
+}
+function doShuffle(fn, focus){
+  remember(); fn(); render();
+  scrollPreview(focus);
+  document.getElementById("undo").disabled = !history.length;
+}
+
+/* ---------------------------------------------------------------
+   Click any swatch to choose a colour: the palette, a custom value,
+   or the screen eyedropper where the browser offers one.
+---------------------------------------------------------------- */
+let openPop = null;
+const outside = e => { if (openPop && !openPop.contains(e.target)) closePop(); };
+const onEsc   = e => { if (e.key === "Escape") closePop(); };
+function closePop(){
+  if (!openPop) return;
+  openPop.remove(); openPop = null;
+  document.removeEventListener("mousedown", outside, true);
+  document.removeEventListener("keydown", onEsc, true);
+}
+function openPicker(anchor, { current, onPick, onReset, resetLabel }){
+  closePop();
+  const pop = document.createElement("div"); pop.className = "pop";
+
+  const h = document.createElement("h4"); h.textContent = "Palette"; pop.appendChild(h);
+  const grid = document.createElement("div"); grid.className = "grid";
+  S.palette.forEach(hex => {
+    const b = document.createElement("button");
+    b.style.background = hex; b.title = hex;
+    if (current && hex.toUpperCase() === current.toUpperCase()) b.classList.add("sel");
+    b.onclick = ev => { if (!ev.isTrusted) return; onPick(hex); closePop(); render(); };
+    grid.appendChild(b);
+  });
+  pop.appendChild(grid);
+
+  const act = document.createElement("div"); act.className = "act";
+  const ci = document.createElement("input");
+  ci.type = "color"; ci.value = norm(current || "#888888"); ci.title = "any colour";
+  ci.oninput  = e => { if (!e.isTrusted) return; onPick(e.target.value.toUpperCase()); paint(theme()); };
+  ci.onchange = e => { if (!e.isTrusted) return; onPick(e.target.value.toUpperCase()); closePop(); render(); };
+  act.appendChild(ci);
+
+  if (window.EyeDropper){
+    const ed = document.createElement("button"); ed.textContent = "Pick from screen";
+    ed.onclick = async ev => {
+      if (!ev.isTrusted) return;
+      try {
+        const r = await new EyeDropper().open();
+        onPick(r.sRGBHex.toUpperCase()); closePop(); render();
+      } catch { /* cancelled */ }
+    };
+    act.appendChild(ed);
+  } else {
+    const s = document.createElement("span");
+    s.className = "mono"; s.textContent = "any colour →"; s.style.flex = "1";
+    act.appendChild(s);
+  }
+  pop.appendChild(act);
+
+  if (onReset){
+    const r = document.createElement("button");
+    r.className = "rst"; r.textContent = resetLabel || "Reset";
+    r.onclick = ev => { if (!ev.isTrusted) return; onReset(); closePop(); render(); };
+    pop.appendChild(r);
+  }
+
+  document.body.appendChild(pop);
+  const rc = anchor.getBoundingClientRect();
+  let left = rc.left, top = rc.bottom + 6;
+  if (left + 222 > innerWidth - 8) left = innerWidth - 230;
+  if (top + pop.offsetHeight > innerHeight - 8) top = Math.max(8, rc.top - pop.offsetHeight - 6);
+  pop.style.left = left + "px"; pop.style.top = top + "px";
+  openPop = pop;
+  setTimeout(() => {
+    document.addEventListener("mousedown", outside, true);
+    document.addEventListener("keydown", onEsc, true);
+  }, 0);
+}
+
+/* Which part of the page each swatch actually paints, so the preview can
+   jump there. Without this you can change something that is scrolled off
+   screen and it looks like nothing happened. */
+const FOCUS = {
+  "nav-bg":"top", "nav-logo":"top", "nav-sub":"top", "nav-link":"top",
+  "pill-bg":"top", "pill-text":"top", "hero-bg":"top", "hero-type":"top",
+  surface:1, tint:3, mid:2, feature:"top", shout:5, anchor:"top", accent:1,
+};
+function scrollPreview(where){
+  const w = pv.contentWindow, d = pv.contentDocument;
+  if (!w || !d || where == null) return;
+  if (where === "top") { w.scrollTo({ top:0, behavior:"smooth" }); return; }
+  const el = [...d.querySelectorAll("section, footer")][where];
+  if (el) w.scrollTo({ top: Math.max(0, el.offsetTop - 64), behavior:"smooth" });
+}
+
+/* make a swatch both clickable and droppable */
+function pickable(el, { current, onPick, onReset, resetLabel, focus }){
+  el.classList.add("pick");
+  const wrap = fn => h => { fn(h); scrollPreview(focus); };
+  el.addEventListener("click", ev => {
+    if (!ev.isTrusted) return;
+    ev.stopPropagation();
+    openPicker(el, {
+      current,
+      onPick: wrap(onPick),
+      onReset: onReset ? () => { onReset(); scrollPreview(focus); } : null,
+      resetLabel,
+    });
+  });
+  dropZone(el, wrap(onPick));
+}
+
+/* any element can receive a dragged swatch */
+function dropZone(el, apply){
+  el.classList.add("zone");
+  el.addEventListener("dragover", e => {
+    e.preventDefault(); e.stopPropagation();
+    e.dataTransfer.dropEffect = "copy"; el.classList.add("over");
+  });
+  el.addEventListener("dragleave", e => { e.stopPropagation(); el.classList.remove("over"); });
+  el.addEventListener("drop", e => {
+    e.preventDefault(); e.stopPropagation(); el.classList.remove("over");
+    if (!e.isTrusted) return;
+    const hex = clean(e.dataTransfer.getData("text/plain"));
+    if (hex) { apply(hex); render(); }
+  });
+}
+pv.addEventListener("load", () => paint(theme()));
+
+/* ---------- palette chips ---------- */
+function drawChips(){
+  const box = document.getElementById("chips");
+  box.innerHTML = "";
+  S.palette.forEach((hex, i) => {
+    const c = document.createElement("div"); c.className = "chip";
+    const grip = document.createElement("div");
+    grip.className = "grip"; grip.textContent = "• • •"; grip.draggable = true;
+    grip.title = "drag onto any swatch (or just click the swatch instead)";
+    grip.ondragstart = e => {
+      e.dataTransfer.setData("text/plain", S.palette[i]);
+      e.dataTransfer.effectAllowed = "copy";
+    };
+    const sw = document.createElement("input");
+    sw.type = "color"; sw.className = "sw"; sw.value = norm(hex);
+    // live-preview while dragging, full rebuild only once they let go, so the
+    // picker never has the DOM pulled out from under it mid-drag
+    sw.oninput  = e => { if (!e.isTrusted) return; S.palette[i] = e.target.value.toUpperCase(); paint(theme()); };
+    sw.onchange = e => { if (!e.isTrusted) return; S.palette[i] = e.target.value.toUpperCase(); render(); };
+    const tx = document.createElement("input"); tx.value = hex;
+    tx.onchange = e => { const v = clean(e.target.value); if (v) { S.palette[i] = v; render(); } else render(); };
+    const x = document.createElement("button"); x.className = "x"; x.textContent = "×";
+    x.onclick = () => { S.palette.splice(i,1); render(); };
+    c.append(grip, sw, tx, x); box.appendChild(c);
+  });
+}
+const norm  = h => { h = String(h).trim(); return /^#[0-9a-f]{6}$/i.test(h) ? h : "#000000"; };
+const clean = v => { v = String(v).trim(); if (!v.startsWith("#")) v = "#" + v;
+                     return /^#[0-9a-f]{6}$/i.test(v) ? v.toUpperCase() : null; };
+
+/* ---------- slot rows ---------- */
+function drawSlots(t){
+  const box = document.getElementById("slots"); box.innerHTML = "";
+  for (const [role, desc] of ROLES){
+    const row = t.rows.find(r => r.role === role);
+    const bgHex = rgb2hex(row.bg), inkHex = row.ink ? rgb2hex(row.ink) : null;
+
+    const el = document.createElement("div"); el.className = "slot";
+    const top = document.createElement("div"); top.className = "top";
+
+    const pvw = document.createElement("div"); pvw.className = "pv";
+    pvw.style.background = bgHex;
+    pickable(pvw, {
+      current: bgHex,
+      onPick: h => { S.pinned[role] = h; },
+      onReset: S.pinned[role] ? () => { S.pinned[role] = null; } : null,
+      resetLabel: "Back to auto",
+      focus: FOCUS[role],
+    });
+    if (inkHex){ pvw.style.color = inkHex; pvw.textContent = "Aa"; }
+
+    const nm = document.createElement("div"); nm.style.flex = "1";
+    nm.innerHTML = `<div class="name">${role}</div><div class="desc">${desc}</div>`;
+
+    const sel = document.createElement("select");
+    const auto = document.createElement("option");
+    auto.value = ""; auto.textContent = "auto"; sel.appendChild(auto);
+    for (const h of S.palette){
+      const o = document.createElement("option"); o.value = h; o.textContent = h; sel.appendChild(o);
+    }
+    if (S.pinned[role] && !S.palette.includes(S.pinned[role])){
+      const o = document.createElement("option");
+      o.value = S.pinned[role]; o.textContent = S.pinned[role] + " (off-palette)"; sel.appendChild(o);
+    }
+    sel.value = S.pinned[role] || "";
+    sel.onchange = e => { S.pinned[role] = e.target.value || null; render(); scrollPreview(FOCUS[role]); };
+
+    top.append(pvw, nm, sel); el.appendChild(top);
+
+    const meta = document.createElement("div"); meta.className = "meta";
+    if (inkHex){
+      const need = 4.5;
+      const cls = row.ratio >= need ? "ok" : row.ratio >= 3 ? "warn" : "bad";
+      const tag = row.ratio >= need ? "AA" : row.ratio >= 3 ? "large text only" : "fails";
+      meta.innerHTML = `<span class="badge ${cls}">${row.ratio.toFixed(2)}:1 ${tag}</span>
+                        <span class="mono">bg ${bgHex} · ink ${inkHex}</span>`;
+      const ov = document.createElement("input"); ov.type = "color"; ov.value = inkHex;
+      ov.title = "override the ink";
+      ov.oninput  = e => { if (!e.isTrusted) return; S.inkOverride[role] = e.target.value.toUpperCase(); paint(theme()); };
+      ov.onchange = e => { if (!e.isTrusted) return; S.inkOverride[role] = e.target.value.toUpperCase(); render(); };
+      const rs = document.createElement("button"); rs.textContent = "auto ink"; rs.style.padding = "2px 7px";
+      rs.onclick = () => { delete S.inkOverride[role]; render(); };
+      meta.append(ov, rs);
+    } else {
+      const cls = row.ratio >= 4.5 ? "ok" : "warn";
+      meta.innerHTML = `<span class="badge ${cls}">${row.ratio.toFixed(2)}:1 on surface</span>
+                        <span class="mono">${bgHex}</span>`;
+    }
+    el.appendChild(meta);
+    box.appendChild(el);
+  }
+}
+
+function drawElements(t){
+  const els = resolveElements(t, S.elements);
+  const get = k => rgb2hex(els.find(e => e.key === k).colour);
+  const bind = (el, key) => {
+    const e = els.find(x => x.key === key);
+    pickable(el, {
+      current: rgb2hex(e.colour),
+      onPick: h => { S.elements[key] = h; },
+      onReset: e.set ? () => { delete S.elements[key]; } : null,
+      resetLabel: "Back to the " + e.fallback + " slot",
+      focus: FOCUS[key],
+    });
+    el.title = e.label + " — click to change";
+  };
+
+  /* --- the bar, drawn in its own colours --- */
+  const nm = document.getElementById("navMock"); nm.innerHTML = "";
+  const bar = document.createElement("div");
+  bar.className = "mock navmock"; bar.style.background = get("nav-bg");
+  bind(bar, "nav-bg");
+
+  const logo = document.createElement("span");
+  logo.className = "nm-logo"; logo.textContent = "LAUREN MITCHELL *";
+  logo.style.color = get("nav-logo");
+  bind(logo, "nav-logo");
+
+  const sub = document.createElement("span");
+  sub.textContent = "Certified YNAB Coach";
+  sub.style.color = get("nav-sub"); sub.style.opacity = .75;
+  bind(sub, "nav-sub");
+
+  const sp = document.createElement("span"); sp.className = "sp";
+
+  const lnk = document.createElement("span");
+  lnk.textContent = "ABOUT  PRICING";
+  lnk.style.color = get("nav-link"); lnk.style.opacity = .75;
+  bind(lnk, "nav-link");
+
+  const pill = document.createElement("span");
+  pill.className = "nm-pill"; pill.style.background = get("pill-bg");
+  bind(pill, "pill-bg");
+  const pillTx = document.createElement("span");
+  pillTx.textContent = "CONTACT"; pillTx.style.color = get("pill-text");
+  bind(pillTx, "pill-text");
+  pill.appendChild(pillTx);
+
+  bar.append(logo, sub, sp, lnk, pill); nm.appendChild(bar);
+
+  /* --- the hero --- */
+  const hm = document.getElementById("heroMock"); hm.innerHTML = "";
+  const hero = document.createElement("div");
+  hero.className = "mock heromock"; hero.style.background = get("hero-bg");
+  bind(hero, "hero-bg");
+  const ht = document.createElement("div");
+  ht.className = "ht"; ht.innerHTML = "Get intentional<br>with your money";
+  ht.style.color = get("hero-type");
+  bind(ht, "hero-type");
+  hero.appendChild(ht); hm.appendChild(hero);
+
+  /* --- one row per piece, with its real contrast --- */
+  for (const [groupName, mount] of [["Header bar", "navRows"], ["Hero", "heroRows"]]) {
+    const box = document.getElementById(mount); box.innerHTML = "";
+    for (const e of els.filter(x => x.group === groupName)) {
+      const row = document.createElement("div"); row.className = "elrow";
+      const sw = document.createElement("div"); sw.className = "es";
+      sw.style.background = rgb2hex(e.colour);
+      pickable(sw, {
+        current: rgb2hex(e.colour),
+        onPick: h => { S.elements[e.key] = h; },
+        onReset: e.set ? () => { delete S.elements[e.key]; } : null,
+        resetLabel: "Back to the " + e.fallback + " slot",
+        focus: FOCUS[e.key],
+      });
+
+      const lab = document.createElement("div"); lab.className = "el";
+      lab.textContent = e.label;
+
+      row.append(sw, lab);
+      if (e.ratio != null) {
+        const cls = e.ratio >= e.need ? "ok" : e.ratio >= e.need * 0.8 ? "warn" : "bad";
+        const b = document.createElement("span");
+        b.className = "badge " + cls;
+        b.textContent = e.ratio.toFixed(2) + ":1";
+        b.title = "needs " + e.need + ":1" + (e.alpha < 1 ? ` (shown at ${e.alpha * 100}%)` : "");
+        row.appendChild(b);
+      }
+      const hexTag = document.createElement("span");
+      hexTag.className = "mono"; hexTag.textContent = rgb2hex(e.colour);
+      row.appendChild(hexTag);
+
+      if (e.set) {
+        const rs = document.createElement("button");
+        rs.className = "er"; rs.textContent = "reset"; rs.title = "back to the " + e.fallback + " slot";
+        rs.onclick = () => { delete S.elements[e.key]; render(); };
+        row.appendChild(rs);
+      }
+      box.appendChild(row);
+    }
+  }
+}
+
+function drawHovers(t){
+  const box = document.getElementById("hovers"); box.innerHTML = "";
+  t.hovers.forEach(c => {
+    const d = document.createElement("div");
+    d.style.background = rgb2hex(c); d.title = rgb2hex(c);
+    box.appendChild(d);
+  });
+}
+
+function drawCmd(t){
+  const pal = S.palette.map(h => `"${h}"`).join(" ");
+  const pins = ROLES.map(([r]) => S.pinned[r] ? `--slot ${r}=${S.pinned[r]}` : null).filter(Boolean);
+  const inks = Object.entries(S.inkOverride).filter(([,v]) => v).map(([r,v]) => `--ink ${r}=${v}`);
+  const vars = ELEMENTS.filter(e => S.elements[e.key]).map(e => `--var ${e.key}=${S.elements[e.key]}`);
+  const rot  = S.hueRot ? `  # hover hues rotated ${S.hueRot}°` : "";
+  document.getElementById("cmd").textContent =
+    `python3 tools/palette.py ${pal} \\\n  ${[...pins, ...inks, ...vars].join(" \\\n  ")} \\\n  --title "my palette" --write${rot}`;
+}
+
+function render(){
+  const t = theme();
+  drawChips(); drawElements(t); drawSlots(t); drawHovers(t); drawCmd(t); paint(t); save();
+}
+
+/* ---------- controls ---------- */
+document.getElementById("shHeader").onclick = ev => { if (ev.isTrusted) doShuffle(shuffleHeader, "top"); };
+document.getElementById("shHero").onclick   = ev => { if (ev.isTrusted) doShuffle(shuffleHero,   "top"); };
+document.getElementById("shAll").onclick    = ev => { if (ev.isTrusted) doShuffle(shuffleAll,    "top"); };
+document.getElementById("undo").onclick     = ev => {
+  if (!ev.isTrusted) return;
+  undo();
+  document.getElementById("undo").disabled = !history.length;
+};
+
+document.getElementById("add").onclick = () => { S.palette.push("#888888"); render(); };
+document.getElementById("reset").onclick = () => { remember(); S = structuredClone(DEFAULT); render(); };
+document.getElementById("loadPaste").onclick = () => {
+  const found = (document.getElementById("paste").value.match(/#?[0-9a-f]{6}\b/gi) || [])
+    .map(clean).filter(Boolean);
+  if (!found.length) return alert("No hex codes found in there.");
+  S.palette = [...new Set(found)];
+  S.pinned = {}; S.inkOverride = {}; S.elements = {};
+  render();
+};
+const rot = document.getElementById("hueRot");
+rot.value = S.hueRot;
+rot.oninput = e => { S.hueRot = +e.target.value; document.getElementById("rotVal").textContent = e.target.value + "°"; render(); };
+document.getElementById("rotVal").textContent = S.hueRot + "°";
+
+document.getElementById("copy").onclick = async () => {
+  await navigator.clipboard.writeText(document.getElementById("cmd").textContent);
+  const b = document.getElementById("copy"); const o = b.textContent;
+  b.textContent = "Copied — paste it to Claude"; setTimeout(() => b.textContent = o, 1800);
+};
+
+/* section jumps + viewport */
+const SEC = [0, 1, 2, 3, 4, 5, 6];
+document.querySelectorAll("#bar [data-sec]").forEach(b => {
+  b.onclick = () => {
+    const w = pv.contentWindow, d = pv.contentDocument;
+    const secs = [...d.querySelectorAll("section, footer")];
+    const i = +b.dataset.sec;
+    const el = secs[i]; if (el) w.scrollTo({ top: el.offsetTop - 64, behavior: "smooth" });
+  };
+});
+const deskB = document.getElementById("vpDesk"), mobB = document.getElementById("vpMob");
+deskB.onclick = () => { pv.classList.remove("mobile"); deskB.classList.add("on"); mobB.classList.remove("on"); };
+mobB.onclick  = () => { pv.classList.add("mobile");   mobB.classList.add("on"); deskB.classList.remove("on"); };
+document.getElementById("reload").onclick = () => pv.contentWindow.location.reload();
+
+/* drop an image, pull colours out of it */
+const drop = document.getElementById("drop");
+["dragenter","dragover"].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add("over"); }));
+["dragleave","drop"].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", ev => { const f = ev.dataTransfer.files[0]; if (f) extract(f); });
+drop.addEventListener("click", () => {
+  const i = document.createElement("input"); i.type = "file"; i.accept = "image/*";
+  i.onchange = e => e.target.files[0] && extract(e.target.files[0]); i.click();
+});
+function extract(file){
+  const img = new Image();
+  img.onload = () => {
+    const N = 110, cv = document.createElement("canvas");
+    cv.width = N; cv.height = Math.max(1, Math.round(N * img.height / img.width));
+    const cx = cv.getContext("2d", { willReadFrequently: true });
+    cx.drawImage(img, 0, 0, cv.width, cv.height);
+    const px = cx.getImageData(0, 0, cv.width, cv.height).data;
+    const bins = new Map();
+    for (let i = 0; i < px.length; i += 4){
+      if (px[i+3] < 200) continue;
+      const k = [px[i],px[i+1],px[i+2]].map(v => Math.round(v/24)*24).join(",");
+      const b = bins.get(k) || { n:0, r:0, g:0, b:0 };
+      b.n++; b.r += px[i]; b.g += px[i+1]; b.b += px[i+2]; bins.set(k, b);
+    }
+    const sorted = [...bins.values()].sort((a,b) => b.n - a.n)
+      .map(b => [b.r/b.n, b.g/b.n, b.b/b.n]);
+    const out = [];
+    for (const c of sorted){
+      if (out.length >= 6) break;
+      if (out.every(o => Math.hypot(o[0]-c[0], o[1]-c[1], o[2]-c[2]) > 58)) out.push(c);
+    }
+    S.palette = out.map(rgb2hex);
+    S.pinned = {}; S.inkOverride = {}; S.elements = {};
+    render();
+    URL.revokeObjectURL(img.src);
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+render();
+</script>
+</body>
+</html>

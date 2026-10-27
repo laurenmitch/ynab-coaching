@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lauren Mitchell Certified YNAB Coach</title>
-  <link rel="icon" href="3.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="3.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            /* All colours resolve from the CSS variables in :root below.
-               To retheme the site, only edit the :root block — nothing here. */
-            'shadow-grey':     'rgb(var(--c-primary)   / <alpha-value>)',
-            'sunflower-gold':  'rgb(var(--c-accent)    / <alpha-value>)',
-            'powder-blue':     'rgb(var(--c-hero)      / <alpha-value>)',
-            'vibrant-coral':   'rgb(var(--c-accent)    / <alpha-value>)',
-            'violet-twilight': 'rgb(var(--c-secondary) / <alpha-value>)',
-            'butter-stick':    'rgb(var(--c-bg)        / <alpha-value>)',
+            /* The markup never names a colour, only a role. Each role is a
+               background plus the ink that belongs on it, so bg-mid always
+               pairs with text-mid-ink and the pair is known to be legible.
+               Swap palettes with tools/palette.py; no markup changes. */
+            'surface':     'rgb(var(--surface)     / <alpha-value>)',
+            'surface-ink': 'rgb(var(--surface-ink) / <alpha-value>)',
+            'tint':        'rgb(var(--tint)        / <alpha-value>)',
+            'tint-ink':    'rgb(var(--tint-ink)    / <alpha-value>)',
+            'mid':         'rgb(var(--mid)         / <alpha-value>)',
+            'mid-ink':     'rgb(var(--mid-ink)     / <alpha-value>)',
+            'feature':     'rgb(var(--feature)     / <alpha-value>)',
+            'feature-ink': 'rgb(var(--feature-ink) / <alpha-value>)',
+            'shout':       'rgb(var(--shout)       / <alpha-value>)',
+            'shout-ink':   'rgb(var(--shout-ink)   / <alpha-value>)',
+            'anchor':      'rgb(var(--anchor)      / <alpha-value>)',
+            'anchor-ink':  'rgb(var(--anchor-ink)  / <alpha-value>)',
+            'accent':      'rgb(var(--accent)      / <alpha-value>)',
+            /* Per-element overrides for the nav bar and hero. Each falls back to
+               its slot, so they only diverge once you actually set one. */
+            'nav-bg':      'rgb(var(--nav-bg,    var(--anchor))     / <alpha-value>)',
+            'nav-logo':    'rgb(var(--nav-logo,  var(--anchor-ink)) / <alpha-value>)',
+            'nav-sub':     'rgb(var(--nav-sub,   var(--anchor-ink)) / <alpha-value>)',
+            'nav-link':    'rgb(var(--nav-link,  var(--anchor-ink)) / <alpha-value>)',
+            'pill-bg':     'rgb(var(--pill-bg,   var(--shout))      / <alpha-value>)',
+            'pill-text':   'rgb(var(--pill-text, var(--shout-ink))  / <alpha-value>)',
+            'hero-bg':     'rgb(var(--hero-bg,   var(--feature))    / <alpha-value>)',
+            'hero-type':   'rgb(var(--hero-type, var(--anchor))     / <alpha-value>)',
+            'hover-1':    'rgb(var(--hover-1)    / <alpha-value>)',
+            'hover-2':    'rgb(var(--hover-2)    / <alpha-value>)',
+            'hover-3':    'rgb(var(--hover-3)    / <alpha-value>)',
+            'hover-4':    'rgb(var(--hover-4)    / <alpha-value>)',
+            'hover-5':    'rgb(var(--hover-5)    / <alpha-value>)',
+            'hover-6':    'rgb(var(--hover-6)    / <alpha-value>)',
           },
           fontFamily: {
             sans: ['Space Grotesk', 'sans-serif'],
@@ -32,15 +57,55 @@
   </script>
   <style>
     /* ══════════════════════════════════════════════════
-       PALETTE — edit only these 5 lines to retheme the
-       entire site. Values are R G B (space-separated).
+       COLOUR SLOTS — ordered light to dark
+
+         surface   the page itself, most of the reading
+         tint      a light band              (testimonials)
+         mid       a mid-tone band           (about)
+         feature   the hero
+         shout     the one loud band         (booking CTA)
+         anchor    nav, footer, buttons
+         accent    small highlights on light surfaces
+
+       Every slot is a background plus its ink: the same hue
+       pushed just far enough in lightness to stay legible.
+       Never black, never white — that pairing is what keeps
+       a saturated palette from reading as jarring.
+
+       To drop in a new palette, do not edit this by hand:
+         python3 tools/palette.py "#hex" "#hex" ... --write
     ══════════════════════════════════════════════════ */
     :root {
-      --c-primary:    43 29 14;      /* #2B1D0E  nav, footer, dark text */
-      --c-accent:     235 87 41;     /* #EB5729  buttons, highlights    */
-      --c-hero:       147 176 236;   /* #93B0EC  hero background        */
-      --c-secondary:  206 213 100;   /* #CED564  about section          */
-      --c-bg:         250 240 230;   /* #FAF0E6  page section bg        */
+      /* PALETTE:START */
+      /* Late Luck — retro warm */
+      --surface:   250 244 232;   /* #FAF4E8 */
+      --surface-ink: 67  59  43;   /* #433B2B  10.10:1  derived */
+
+      --tint:      181 215 188;   /* #B5D7BC */
+      --tint-ink:   37  67  43;   /* #25432B   7.04:1  derived */
+
+      --mid:       244 191  61;   /* #F4BF3D */
+      --mid-ink:    72  52   4;   /* #483404   7.01:1  derived */
+
+      --feature:   239 148  95;   /* #EF945F */
+      --feature-ink: 53  25   8;   /* #351908   7.02:1  derived */
+
+      --shout:     222  84  56;   /* #DE5438 */
+      --shout-ink:  51  13   5;   /* #330D05   4.52:1  derived (below target) */
+
+      --anchor:     54  34  22;   /* #362216 */
+      --anchor-ink:199 172 155;   /* #C7AC9B   7.01:1  derived */
+
+      --accent:    166  54  32;   /* #A63620 */
+
+      /* card hover accents - bold, and no two alike */
+      --hover-1:   169 121   4;   /* #A97904 */
+      --hover-2:    46 149   4;   /* #2E9504 */
+      --hover-3:     4 147 105;   /* #049369 */
+      --hover-4:    69 121 250;   /* #4579FA */
+      --hover-5:   196  64 250;   /* #C440FA */
+      --hover-6:   249  36  98;   /* #F92462 */
+      /* PALETTE:END */
     }
 
     html { scroll-behavior: smooth; }
@@ -64,7 +129,7 @@
     .grain > * { position: relative; z-index: 2; }
 
     /* ═══════════════════════════════════════════════
-       HERO — three independent PNG layers
+       HERO — three independent layers
     ═══════════════════════════════════════════════ */
 
     #hero {
@@ -94,7 +159,7 @@
 
     /* Layer 1 — solid colour background */
     #hl-bg {
-      background-color: rgb(var(--c-hero));
+      background-color: rgb(var(--hero-bg, var(--feature)));
       z-index: 1;
     }
 
@@ -111,7 +176,7 @@
       mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
     }
 
-    /* Layer 3 — curved typography (inline SVG, color-themeable) */
+    /* Layer 3 — curved typography (inline SVG, colour-themeable) */
     #hl-txt {
       z-index: 3;
     }
@@ -122,15 +187,19 @@
       width: 100%;
       height: auto;
     }
-    /* Map the two SVG fill colors to palette variables */
-    #hl-txt [fill="#eb5729"] { fill: rgb(var(--c-accent)) !important; }
-    #hl-txt [fill="#ffd200"] { fill: rgb(var(--c-accent-2, var(--c-accent))) !important; }
+    /* The artwork ships two fill colours. On a mid-tone background only dark
+       inks have contrast, and every dark reads the same at display size, so a
+       two-tone split looks like a rendering fault rather than a choice. Both
+       layers take the anchor instead -- which is also how the reference brand
+       works: one colour per background. */
+    #hl-txt [fill="#eb5729"],
+    #hl-txt [fill="#ffd200"] { fill: rgb(var(--hero-type, var(--anchor))) !important; }
 
-    /* Scroll-out dark veil */
+    /* Scroll-out veil */
     #hl-fade {
       position: absolute;
       inset: 0;
-      background: rgb(var(--c-hero));
+      background: rgb(var(--hero-bg, var(--feature)));
       opacity: 0;
       pointer-events: none;
       z-index: 4;
@@ -190,7 +259,7 @@
     }
     .pain-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgb(var(--c-primary) / 0.09);
+      box-shadow: 0 12px 32px rgb(var(--anchor) / 0.10);
     }
 
     /* ── Mobile hero overrides (after base styles so cascade wins) ─── */
@@ -213,7 +282,7 @@
       }
 
       #hl-txt {
-        background-image: url('hero_text_narrow.png');
+        background-image: url('hero_text_narrow_2026.png');
         background-size: contain;
         background-position: left top;
         background-repeat: no-repeat;
@@ -233,18 +302,18 @@
     }
   </style>
 </head>
-<body class="bg-butter-stick text-shadow-grey font-sans">
+<body class="bg-surface text-surface-ink font-sans">
 
   <!-- ── Nav ────────────────────────────────────────── -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-violet-twilight px-6 md:px-10 h-16 flex items-center justify-between">
-    <span class="text-shadow-grey font-bold text-sm uppercase tracking-widest">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-nav-bg px-6 md:px-10 h-16 flex items-center justify-between">
+    <span class="text-nav-logo font-bold text-sm uppercase tracking-widest">
       Lauren Mitchell *
-      <span class="text-shadow-grey/60 font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">Certified YNAB Coach</span>
+      <span class="text-nav-sub/75 font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">Certified YNAB Coach</span>
     </span>
     <div class="flex items-center gap-6 md:gap-8">
-      <a href="#about"    class="text-shadow-grey/60 hover:text-shadow-grey text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
-      <a href="#packages" class="text-shadow-grey/60 hover:text-shadow-grey text-xs uppercase tracking-widest transition-colors hidden md:block">Pricing</a>
-      <a href="#contact"  class="bg-sunflower-gold text-white font-bold text-xs uppercase tracking-widest px-5 py-2 hover:bg-shadow-grey hover:text-butter-stick transition-colors">Contact</a>
+      <a href="#about" class="text-nav-link/75 hover:text-nav-link text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
+      <a href="#packages" class="text-nav-link/75 hover:text-nav-link text-xs uppercase tracking-widest transition-colors hidden md:block">Pricing</a>
+      <a href="#contact" class="bg-pill-bg text-pill-text font-bold text-xs uppercase tracking-widest px-5 py-2 hover:bg-feature hover:text-feature-ink transition-colors">Contact</a>
     </div>
   </nav>
 
@@ -269,40 +338,40 @@
   </section>
 
   <!-- ── Pain points ────────────────────────────────── -->
-  <section class="bg-butter-stick px-6 md:px-12 py-24">
+  <section class="bg-surface px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
       <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase mb-3">Sound Familiar?</h2>
-      <p class="reveal d1 text-shadow-grey/40 text-lg mb-14 max-w-xl">You're in the right place.</p>
+      <p class="reveal d1 text-accent text-lg mb-14 max-w-xl">You're in the right place.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
-        <div class="pain-card reveal d1 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-vibrant-coral">
+        <div class="pain-card reveal d1 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-1">
           <p class="font-bold text-lg mb-2">Making money but not sure where it goes</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
         </div>
 
-        <div class="pain-card reveal d2 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-powder-blue">
+        <div class="pain-card reveal d2 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-2">
           <p class="font-bold text-lg mb-2">Blindsided by one-off expenses</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">Car registration. A wedding gift. A flight home. Every "surprise" resets your savings.</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">Car registration. A wedding gift. A flight home. Every "surprise" resets your savings.</p>
         </div>
 
-        <div class="pain-card reveal d3 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-sunflower-gold">
+        <div class="pain-card reveal d3 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-3">
           <p class="font-bold text-lg mb-2">Spending money before you really have it</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">You're swiping and hoping it works out. Paying off the card is always a game of catch-up.</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">You're swiping and hoping it works out. Paying off the card is always a game of catch-up.</p>
         </div>
 
-        <div class="pain-card reveal d4 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-violet-twilight">
+        <div class="pain-card reveal d4 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-4">
           <p class="font-bold text-lg mb-2">Tried YNAB but couldn't figure it out</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">You downloaded the app, poked around, and gave up. (I started and stopped twice before it stuck!)</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">You downloaded the app, poked around, and gave up. (I started and stopped twice before it stuck!)</p>
         </div>
 
-        <div class="pain-card reveal d5 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-vibrant-coral">
+        <div class="pain-card reveal d5 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-5">
           <p class="font-bold text-lg mb-2">Struggling to get on the same page as your partner</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">Money talks turn into money fights. You want a plan you both actually believe in.</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">Money talks turn into money fights. You want a plan you both actually believe in.</p>
         </div>
 
-        <div class="pain-card reveal d6 border-2 border-shadow-grey/8 rounded-xl p-7 hover:border-powder-blue">
+        <div class="pain-card reveal d6 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-6">
           <p class="font-bold text-lg mb-2">Big goals with no clear path</p>
-          <p class="text-shadow-grey/50 text-sm leading-relaxed">Long-term travel. A house. Paying off debt. You know what you want. You just don't know how you're going to get there.</p>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">Long-term travel. A house. Paying off debt. You know what you want. You just don't know how you're going to get there.</p>
         </div>
 
       </div>
@@ -310,43 +379,43 @@
   </section>
 
   <!-- ── About ──────────────────────────────────────── -->
-  <section id="about" class="grain bg-violet-twilight px-6 md:px-12 py-24">
+  <section id="about" class="grain bg-mid px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
       <div class="reveal-left">
-        <h2 class="text-4xl md:text-5xl font-bold uppercase text-shadow-grey mb-8">Hi, I'm<br/>Lauren</h2>
-        <p class="text-shadow-grey/70 text-lg leading-relaxed mb-5">
+        <h2 class="text-4xl md:text-5xl font-bold uppercase text-mid-ink mb-8">Hi, I'm<br>Lauren</h2>
+        <p class="text-mid-ink/85 text-lg leading-relaxed mb-5">
           I'm a Certified YNAB Coach helping you break up with your old money patterns and build a system that actually sticks.
         </p>
-        <p class="text-shadow-grey/60 text-base leading-relaxed mb-10">
-          We’ll look beyond the numbers, because money habits are shaped early. Hidden fears, expectations, and beliefs often drive how we spend. In our work together, we’ll explore those patterns and connect them to practical budgeting decisions inside YNAB, using the YNAB Method.<br/><br/>If you want structure and accountability, I’ll absolutely give you homework.
+        <p class="text-mid-ink/85 text-base leading-relaxed mb-10">
+          We’ll look beyond the numbers, because money habits are shaped early. Hidden fears, expectations, and beliefs often drive how we spend. In our work together, we’ll explore those patterns and connect them to practical budgeting decisions inside YNAB, using the YNAB Method.<br><br>If you want structure and accountability, I’ll absolutely give you homework.
         </p>
-        <a href="#contact" class="inline-block bg-sunflower-gold text-white font-bold uppercase tracking-widest px-8 py-4 hover:bg-shadow-grey hover:text-butter-stick transition-colors text-sm">
+        <a href="#contact" class="inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-8 py-4 hover:bg-shout hover:text-shout-ink transition-colors text-sm">
           Let's Work Together
         </a>
       </div>
       <div class="reveal-right relative max-w-sm mx-auto w-full">
         <div class="rounded-2xl aspect-square w-full overflow-hidden">
-          <img src="headshot1.png" alt="Lauren Mitchell" class="w-full h-full object-cover" />
+          <img src="headshot1.png" alt="Lauren Mitchell" class="w-full h-full object-cover">
         </div>
-        <img src="2021_YNAB.png" alt="YNAB Certified Coach" class="absolute bottom-4 right-4 w-24 md:w-28" />
+        <img src="2021_YNAB.png" alt="YNAB Certified Coach" class="absolute bottom-4 right-4 w-24 md:w-28">
       </div>
     </div>
   </section>
 
   <!-- ── Testimonials ─────────────────────────────── -->
-  <section class="grain bg-powder-blue px-6 md:px-12 py-24">
+  <section class="grain bg-tint px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-shadow-grey mb-12">What clients are saying...</h2>
+      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-tint-ink mb-12">What clients are saying...</h2>
       <div class="grid md:grid-cols-2 gap-6">
 
-        <div class="reveal d1 bg-butter-stick rounded-2xl p-8 flex flex-col gap-4 border-2 border-powder-blue ring-2 ring-white ring-offset-2 ring-offset-powder-blue">
-          <p class="text-shadow-grey/80 text-base leading-relaxed italic">"What stands out about Lauren is how <strong>she focuses on where you're going, not where you've been</strong>, and guides you there with confidence.<br><br>She brings the perfect mix of kindness and expertise and makes managing money feel approachable and actually doable."</p>
-          <p class="text-shadow-grey font-bold text-sm">Liam <span class="font-normal text-shadow-grey/50">— Salt Lake City</span></p>
+        <div class="reveal d1 bg-surface rounded-2xl p-8 flex flex-col gap-4">
+          <p class="text-surface-ink/85 text-base leading-relaxed italic">"What stands out about Lauren is how <strong class="text-surface-ink">she focuses on where you're going, not where you've been</strong>, and guides you there with confidence.<br><br>She brings the perfect mix of kindness and expertise and makes managing money feel approachable and actually doable."</p>
+          <p class="text-surface-ink font-bold text-sm">Liam <span class="font-normal text-accent">— Salt Lake City</span></p>
         </div>
 
-        <div class="reveal d2 bg-butter-stick rounded-2xl p-8 flex flex-col gap-4 border-2 border-powder-blue ring-2 ring-white ring-offset-2 ring-offset-powder-blue">
-          <p class="text-shadow-grey/80 text-base leading-relaxed italic">"Lauren has such a grounded and <strong>empowering</strong> approach to money.<br><br>Her advice is practical, realistic, and sustainable, which makes it easy to stay accountable. She creates a totally <strong>safe, shame-free space</strong>."</p>
-          <p class="text-shadow-grey font-bold text-sm">Kaycee <span class="font-normal text-shadow-grey/50">— San Francisco</span></p>
+        <div class="reveal d2 bg-surface rounded-2xl p-8 flex flex-col gap-4">
+          <p class="text-surface-ink/85 text-base leading-relaxed italic">"Lauren has such a grounded and <strong class="text-surface-ink">empowering</strong> approach to money.<br><br>Her advice is practical, realistic, and sustainable, which makes it easy to stay accountable. She creates a totally <strong class="text-surface-ink">safe, shame-free space</strong>."</p>
+          <p class="text-surface-ink font-bold text-sm">Kaycee <span class="font-normal text-accent">— San Francisco</span></p>
         </div>
 
       </div>
@@ -354,39 +423,39 @@
   </section>
 
   <!-- ── Rates ───────────────────────────────────── -->
-  <section id="packages" class="bg-butter-stick px-6 md:px-12 py-24">
+  <section id="packages" class="bg-surface px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
 
       <!-- Rate + intro call -->
       <div class="reveal-left flex flex-col md:flex-row md:items-end gap-4 md:gap-10 mb-6">
         <h2 class="text-4xl md:text-5xl font-bold uppercase">Pricing</h2>
       </div>
-      <p class="reveal d1 text-shadow-grey/60 text-lg mb-2 max-w-lg">I charge a flat hourly rate of $80/hour.</p>
-      <p class="reveal d2 text-shadow-grey/60 text-lg mb-16 max-w-lg">All new clients start with a free 30-minute intro call.</p>
+      <p class="reveal d1 text-surface-ink/75 text-lg mb-2 max-w-lg">I charge a flat hourly rate of <strong class="text-accent">$80/hour</strong>.</p>
+      <p class="reveal d2 text-surface-ink/75 text-lg mb-16 max-w-lg">All new clients start with a free 30-minute intro call.</p>
 
       <!-- Session types -->
       <div class="grid md:grid-cols-3 gap-4">
 
-        <div class="reveal d1 bg-shadow-grey rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-white/40 mb-3">New to YNAB</p>
-          <h3 class="font-bold text-xl text-sunflower-gold mb-3">Getting Started</h3>
-          <p class="text-white/60 text-sm leading-relaxed">
+        <div class="reveal d1 bg-anchor rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-anchor-ink/75 mb-3">New to YNAB</p>
+          <h3 class="font-bold text-xl text-feature mb-3">Getting Started</h3>
+          <p class="text-anchor-ink/85 text-sm leading-relaxed">
             I'll get you set up from scratch, walk you through the method, and make sure it actually sticks. Most new clients need 2–3 sessions to feel confident on their own.
           </p>
         </div>
 
-        <div class="reveal d2 bg-powder-blue rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-shadow-grey/40 mb-3">Ongoing</p>
-          <h3 class="font-bold text-xl text-shadow-grey mb-3">Regular Check-ins</h3>
-          <p class="text-shadow-grey/70 text-sm leading-relaxed">
+        <div class="reveal d2 bg-tint rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-tint-ink mb-3">Ongoing</p>
+          <h3 class="font-bold text-xl text-tint-ink mb-3">Regular Check-ins</h3>
+          <p class="text-tint-ink/85 text-sm leading-relaxed">
             Life changes, and so does your budget. We'll work through whatever's not clicking, adjust as things shift, and keep the momentum going. You pick the cadence.
           </p>
         </div>
 
-        <div class="reveal d3 border-2 border-shadow-grey/10 rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-shadow-grey/30 mb-3">One-off</p>
-          <h3 class="font-bold text-xl text-shadow-grey mb-3">Pick My Brain</h3>
-          <p class="text-shadow-grey/60 text-sm leading-relaxed">
+        <div class="reveal d3 border-2 border-mid rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-accent mb-3">One-off</p>
+          <h3 class="font-bold text-xl text-surface-ink mb-3">Pick My Brain</h3>
+          <p class="text-surface-ink/75 text-sm leading-relaxed">
             Already using YNAB but something's not working? Book a single session to troubleshoot, fine-tune, or get unstuck. No ongoing commitment needed. Old clients welcome.
           </p>
         </div>
@@ -396,37 +465,35 @@
   </section>
 
   <!-- ── Free session CTA ───────────────────────────── -->
-  <section class="bg-vibrant-coral px-6 md:px-12 py-24">
+  <section class="bg-shout px-6 md:px-12 py-24">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-white mb-6">
-        Start with a free<br/>30-minute call
+      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-surface mb-6">
+        Start with a free<br>30-minute call
       </h2>
-      <p class="reveal d1 text-white/80 text-lg mb-12 leading-relaxed">
+      <p class="reveal d1 text-surface text-xl font-bold mb-12 leading-relaxed">
         Let’s connect and see if this feels like a good fit. No pressure, just a space to talk through your goals with YNAB.
       </p>
-      <a href="/book"
-         class="reveal d2 inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-sunflower-gold hover:text-shadow-grey transition-colors">
+      <a href="/book" class="reveal d2 inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-surface hover:text-surface-ink transition-colors">
         Book Your Free Call
       </a>
     </div>
   </section>
 
   <!-- ── Contact ────────────────────────────────────── -->
-  <section id="contact" class="bg-butter-stick px-6 md:px-12 py-24">
+  <section id="contact" class="bg-surface px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
       <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase shrink-0">Get in touch</h2>
-      <a href="mailto:laurenynabcoach@gmail.com"
-         class="reveal-right inline-block bg-shadow-grey text-white font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-powder-blue hover:text-shadow-grey transition-colors whitespace-nowrap">
+      <a href="mailto:laurenynabcoach@gmail.com" class="reveal-right inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-shout hover:text-shout-ink transition-colors whitespace-nowrap">
         laurenynabcoach@gmail.com
       </a>
     </div>
   </section>
 
   <!-- ── Footer ─────────────────────────────────────── -->
-  <footer class="bg-shadow-grey px-6 md:px-12 py-10">
+  <footer class="bg-anchor px-6 md:px-12 py-10">
     <div class="max-w-5xl mx-auto">
-      <p class="text-white/60 text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
-      <p class="text-white/50 text-xs leading-relaxed max-w-3xl">
+      <p class="text-anchor-ink/80 text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
+      <p class="text-anchor-ink/80 text-xs leading-relaxed max-w-3xl">
         Disclaimer: I am not a financial advisor and do not provide investment advice. I am a YNAB Certified Coach, trained to coach people on using YNAB software and the YNAB Method. I am not an employee of YNAB, and all opinions are my own. My views do not reflect the views of YNAB and its employees or affiliates.
       </p>
     </div>
@@ -526,5 +593,6 @@
     });
   </script>
 
-</body>
-</html>
+
+
+</body></html>
