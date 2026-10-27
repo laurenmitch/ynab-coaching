@@ -134,25 +134,16 @@ def derive_ink(bg, target=TARGET, floor=FLOOR):
 
 
 def hover_set(surface, palette, n=HOVERS, min_cr=HOVER_MIN, rot=0.0):
-    """n bold, maximally distinct hover colours.
+    """n card-hover colours drawn from the palette itself.
 
-    Hues are spaced evenly round the wheel so no two cards ever repeat, and
-    the wheel is rotated to start on the palette's most colourful hue so the
-    set still belongs to the brand. Each is pushed to full saturation and
-    darkened only as far as it must be to stay visible against the page."""
-    base = max(palette, key=chroma)
-    h0 = (hls(base)[0] + rot / 360.0) % 1.0
-    out = []
-    for i in range(n):
-        h = (h0 + i / n) % 1.0
-        pick = None
-        for L in [x / 200 for x in range(132, 39, -1)]:   # 0.66 -> 0.20
-            cand = from_hls(h, L, 0.95)
-            if contrast(cand, surface) >= min_cr:
-                pick = cand
-                break
-        out.append(pick or from_hls(h, 0.35, 0.95))
-    return out
+    Neon hues off the colour wheel were legible but looked nothing like
+    the brand, so this keeps to the palette and only falls back to a
+    derived colour when nothing in it separates from the page."""
+    usable = [c for c in palette if contrast(c, surface) >= min_cr]
+    if not usable:
+        usable = [derive_ink(surface, 4.5)[0]]
+    start = int(rot / 360.0 * len(usable)) if usable else 0
+    return [usable[(start + i) % len(usable)] for i in range(n)]
 
 
 def assign(colours, pinned):
@@ -296,6 +287,8 @@ def main():
     ap.add_argument("--var", action="append", default=[], metavar="name=#hex",
                     help="per-element override, e.g. --var hero-bg=#DE5438")
     ap.add_argument("--title", default="palette")
+    ap.add_argument("--hover", action="append", default=[], metavar="#hex",
+                    help="set the card-hover colours; give one to use it for all")
     ap.add_argument("--hue-rot", type=float, default=0.0,
                     help="rotate the card-hover hues, as the builder's slider does")
     ap.add_argument("--write", action="store_true")
@@ -324,7 +317,11 @@ def main():
     palette = [hex2rgb(c) for c in a.colours]
     slots = assign(palette, pinned)
     rows = build(slots, ink_over)
-    hovers = hover_set(slots["surface"], palette, rot=a.hue_rot)
+    if a.hover:
+        chosen = [hex2rgb(h) for h in a.hover]
+        hovers = [chosen[i % len(chosen)] for i in range(HOVERS)]
+    else:
+        hovers = hover_set(slots["surface"], palette, rot=a.hue_rot)
 
     print(f"{'slot':9s} {'background':10s} {'ink':10s} contrast  how")
     print("-" * 54)

@@ -90,21 +90,12 @@ export function deriveInk(bg, target = TARGET, floor = FLOOR) {
    the wheel so no two cards repeat, rotated onto the palette's most
    colourful hue so the set still belongs to the brand. */
 export function hoverSet(surface, palette, rot = 0, n = HOVERS, minCr = HOVER_MIN) {
-  const base = palette.length
-    ? palette.reduce((a, b) => chroma(b) > chroma(a) ? b : a)
-    : [200, 120, 60];
-  const h0 = (rgb2hls(base)[0] + rot / 360 + 1) % 1;
-  const out = [];
-  for (let i = 0; i < n; i++) {
-    const h = (h0 + i / n) % 1;
-    let pick = null;
-    for (let x = 132; x >= 40; x--) {
-      const c = hls2rgb(h, x / 200, 0.95);
-      if (contrast(c, surface) >= minCr) { pick = c; break; }
-    }
-    out.push(pick || hls2rgb(h, 0.35, 0.95));
-  }
-  return out;
+  // Drawn from the palette, not the colour wheel: neon hues were legible
+  // but looked nothing like the brand.
+  let usable = palette.filter(c => contrast(c, surface) >= minCr);
+  if (!usable.length) usable = [deriveInk(surface, 4.5).ink];
+  const start = Math.floor((rot / 360) * usable.length);
+  return Array.from({ length: n }, (_, i) => usable[(start + i) % usable.length]);
 }
 
 /* Sort by lightness, drop each colour into the slot it fits. Mirrors the

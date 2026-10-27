@@ -134,12 +134,12 @@
       --accent:    150  63   5;   /* #963F05 */
 
       /* card hover accents - bold, and no two alike */
-      --hover-1:    95  86 251;   /* #5F56FB */
-      --hover-2:   224   6 212;   /* #E006D4 */
-      --hover-3:   249  24  11;   /* #F9180B */
-      --hover-4:   125 132   3;   /* #7D8403 */
-      --hover-5:     4 147  12;   /* #04930C */
-      --hover-6:     4 139 147;   /* #048B93 */
+      --hover-1:   211  86   1;   /* #D35601 */
+      --hover-2:   211  86   1;   /* #D35601 */
+      --hover-3:   211  86   1;   /* #D35601 */
+      --hover-4:   211  86   1;   /* #D35601 */
+      --hover-5:   211  86   1;   /* #D35601 */
+      --hover-6:   211  86   1;   /* #D35601 */
 
       /* Header bar */
       --nav-bg:    255 237 192;   /* #FFEDC0 */
@@ -248,6 +248,15 @@
     </div>
   </div>
 
+
+  <!-- Wave between the banner and the block below: the box is the banner
+       colour, the path the lower colour, so they meet on a curve. -->
+  <div class="bg-book-banner-bg" aria-hidden="true">
+    <svg class="block w-full h-10 md:h-20" viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="fill-book-bg"
+            d="M0,30 C100,2 200,58 300,30 C400,2 500,58 600,30 C700,2 800,58 900,30 C1000,2 1100,58 1200,30 L1200,60 L0,60 Z"/>
+    </svg>
+  </div>
   <!-- Email to book -->
   <div class="bg-book-bg px-6 py-20">
     <div class="max-w-2xl mx-auto text-center">
