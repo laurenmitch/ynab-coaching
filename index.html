@@ -34,56 +34,65 @@
             /* Every part of the page, section by section. Each falls back to
                a slot, but the generator writes a resolved value for all of
                them, derived from the background each one sits on. */
-            'nav-bg':             'rgb(var(--nav-bg, var(--anchor)) / <alpha-value>)',
-            'nav-logo':           'rgb(var(--nav-logo, var(--surface-ink)) / <alpha-value>)',
-            'nav-sub':            'rgb(var(--nav-sub, var(--surface-ink)) / <alpha-value>)',
-            'nav-link':           'rgb(var(--nav-link, var(--surface-ink)) / <alpha-value>)',
-            'pill-bg':            'rgb(var(--pill-bg, var(--shout)) / <alpha-value>)',
-            'pill-text':          'rgb(var(--pill-text, var(--surface-ink)) / <alpha-value>)',
-            'hero-bg':            'rgb(var(--hero-bg, var(--feature)) / <alpha-value>)',
-            'hero-type':          'rgb(var(--hero-type, var(--surface-ink)) / <alpha-value>)',
-            'cards-bg':           'rgb(var(--cards-bg, var(--surface)) / <alpha-value>)',
-            'cards-head':         'rgb(var(--cards-head, var(--surface-ink)) / <alpha-value>)',
-            'cards-lede':         'rgb(var(--cards-lede, var(--surface-ink)) / <alpha-value>)',
-            'card-bg':            'rgb(var(--card-bg, var(--surface)) / <alpha-value>)',
-            'card-border':        'rgb(var(--card-border, var(--surface)) / <alpha-value>)',
-            'card-title':         'rgb(var(--card-title, var(--surface-ink)) / <alpha-value>)',
-            'card-body':          'rgb(var(--card-body, var(--surface-ink)) / <alpha-value>)',
-            'about-bg':           'rgb(var(--about-bg, var(--mid)) / <alpha-value>)',
-            'about-head':         'rgb(var(--about-head, var(--surface-ink)) / <alpha-value>)',
-            'about-body':         'rgb(var(--about-body, var(--surface-ink)) / <alpha-value>)',
-            'about-btn':          'rgb(var(--about-btn, var(--anchor)) / <alpha-value>)',
-            'about-btn-ink':      'rgb(var(--about-btn-ink, var(--surface-ink)) / <alpha-value>)',
-            'quotes-bg':          'rgb(var(--quotes-bg, var(--tint)) / <alpha-value>)',
-            'quotes-head':        'rgb(var(--quotes-head, var(--surface-ink)) / <alpha-value>)',
-            'quote-bg':           'rgb(var(--quote-bg, var(--surface)) / <alpha-value>)',
-            'quote-text':         'rgb(var(--quote-text, var(--surface-ink)) / <alpha-value>)',
-            'quote-name':         'rgb(var(--quote-name, var(--surface-ink)) / <alpha-value>)',
-            'price-bg':           'rgb(var(--price-bg, var(--surface)) / <alpha-value>)',
-            'price-head':         'rgb(var(--price-head, var(--surface-ink)) / <alpha-value>)',
-            'price-body':         'rgb(var(--price-body, var(--surface-ink)) / <alpha-value>)',
-            'price-accent':       'rgb(var(--price-accent, var(--surface-ink)) / <alpha-value>)',
-            'p1-bg':              'rgb(var(--p1-bg, var(--anchor)) / <alpha-value>)',
-            'p1-title':           'rgb(var(--p1-title, var(--surface-ink)) / <alpha-value>)',
-            'p1-body':            'rgb(var(--p1-body, var(--surface-ink)) / <alpha-value>)',
-            'p2-bg':              'rgb(var(--p2-bg, var(--tint)) / <alpha-value>)',
-            'p2-title':           'rgb(var(--p2-title, var(--surface-ink)) / <alpha-value>)',
-            'p2-body':            'rgb(var(--p2-body, var(--surface-ink)) / <alpha-value>)',
-            'p3-bg':              'rgb(var(--p3-bg, var(--surface)) / <alpha-value>)',
-            'p3-title':           'rgb(var(--p3-title, var(--surface-ink)) / <alpha-value>)',
-            'p3-body':            'rgb(var(--p3-body, var(--surface-ink)) / <alpha-value>)',
-            'cta-bg':             'rgb(var(--cta-bg, var(--shout)) / <alpha-value>)',
-            'cta-head':           'rgb(var(--cta-head, var(--surface-ink)) / <alpha-value>)',
-            'cta-body':           'rgb(var(--cta-body, var(--surface-ink)) / <alpha-value>)',
-            'cta-btn':            'rgb(var(--cta-btn, var(--anchor)) / <alpha-value>)',
-            'cta-btn-ink':        'rgb(var(--cta-btn-ink, var(--surface-ink)) / <alpha-value>)',
-            'contact-bg':         'rgb(var(--contact-bg, var(--surface)) / <alpha-value>)',
-            'contact-head':       'rgb(var(--contact-head, var(--surface-ink)) / <alpha-value>)',
-            'contact-btn':        'rgb(var(--contact-btn, var(--anchor)) / <alpha-value>)',
-            'contact-btn-ink':    'rgb(var(--contact-btn-ink, var(--surface-ink)) / <alpha-value>)',
-            'foot-bg':            'rgb(var(--foot-bg, var(--anchor)) / <alpha-value>)',
-            'foot-text':          'rgb(var(--foot-text, var(--surface-ink)) / <alpha-value>)',
-            'foot-fine':          'rgb(var(--foot-fine, var(--surface-ink)) / <alpha-value>)',
+            'nav-bg':               'rgb(var(--nav-bg, var(--anchor)) / <alpha-value>)',
+            'nav-logo':             'rgb(var(--nav-logo, var(--surface-ink)) / <alpha-value>)',
+            'nav-sub':              'rgb(var(--nav-sub, var(--surface-ink)) / <alpha-value>)',
+            'nav-link':             'rgb(var(--nav-link, var(--surface-ink)) / <alpha-value>)',
+            'pill-bg':              'rgb(var(--pill-bg, var(--shout)) / <alpha-value>)',
+            'pill-text':            'rgb(var(--pill-text, var(--surface-ink)) / <alpha-value>)',
+            'hero-bg':              'rgb(var(--hero-bg, var(--feature)) / <alpha-value>)',
+            'hero-type':            'rgb(var(--hero-type, var(--surface-ink)) / <alpha-value>)',
+            'cards-bg':             'rgb(var(--cards-bg, var(--surface)) / <alpha-value>)',
+            'cards-head':           'rgb(var(--cards-head, var(--surface-ink)) / <alpha-value>)',
+            'cards-lede':           'rgb(var(--cards-lede, var(--surface-ink)) / <alpha-value>)',
+            'card-bg':              'rgb(var(--card-bg, var(--surface)) / <alpha-value>)',
+            'card-border':          'rgb(var(--card-border, var(--surface)) / <alpha-value>)',
+            'card-title':           'rgb(var(--card-title, var(--surface-ink)) / <alpha-value>)',
+            'card-body':            'rgb(var(--card-body, var(--surface-ink)) / <alpha-value>)',
+            'about-bg':             'rgb(var(--about-bg, var(--mid)) / <alpha-value>)',
+            'about-head':           'rgb(var(--about-head, var(--surface-ink)) / <alpha-value>)',
+            'about-body':           'rgb(var(--about-body, var(--surface-ink)) / <alpha-value>)',
+            'about-btn':            'rgb(var(--about-btn, var(--anchor)) / <alpha-value>)',
+            'about-btn-ink':        'rgb(var(--about-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'quotes-bg':            'rgb(var(--quotes-bg, var(--tint)) / <alpha-value>)',
+            'quotes-head':          'rgb(var(--quotes-head, var(--surface-ink)) / <alpha-value>)',
+            'quote-bg':             'rgb(var(--quote-bg, var(--surface)) / <alpha-value>)',
+            'quote-text':           'rgb(var(--quote-text, var(--surface-ink)) / <alpha-value>)',
+            'quote-name':           'rgb(var(--quote-name, var(--surface-ink)) / <alpha-value>)',
+            'price-bg':             'rgb(var(--price-bg, var(--surface)) / <alpha-value>)',
+            'price-head':           'rgb(var(--price-head, var(--surface-ink)) / <alpha-value>)',
+            'price-body':           'rgb(var(--price-body, var(--surface-ink)) / <alpha-value>)',
+            'price-accent':         'rgb(var(--price-accent, var(--surface-ink)) / <alpha-value>)',
+            'p1-bg':                'rgb(var(--p1-bg, var(--anchor)) / <alpha-value>)',
+            'p1-title':             'rgb(var(--p1-title, var(--surface-ink)) / <alpha-value>)',
+            'p1-body':              'rgb(var(--p1-body, var(--surface-ink)) / <alpha-value>)',
+            'p2-bg':                'rgb(var(--p2-bg, var(--tint)) / <alpha-value>)',
+            'p2-title':             'rgb(var(--p2-title, var(--surface-ink)) / <alpha-value>)',
+            'p2-body':              'rgb(var(--p2-body, var(--surface-ink)) / <alpha-value>)',
+            'p3-bg':                'rgb(var(--p3-bg, var(--surface)) / <alpha-value>)',
+            'p3-title':             'rgb(var(--p3-title, var(--surface-ink)) / <alpha-value>)',
+            'p3-body':              'rgb(var(--p3-body, var(--surface-ink)) / <alpha-value>)',
+            'cta-bg':               'rgb(var(--cta-bg, var(--shout)) / <alpha-value>)',
+            'cta-head':             'rgb(var(--cta-head, var(--surface-ink)) / <alpha-value>)',
+            'cta-body':             'rgb(var(--cta-body, var(--surface-ink)) / <alpha-value>)',
+            'cta-btn':              'rgb(var(--cta-btn, var(--anchor)) / <alpha-value>)',
+            'cta-btn-ink':          'rgb(var(--cta-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'contact-bg':           'rgb(var(--contact-bg, var(--surface)) / <alpha-value>)',
+            'contact-head':         'rgb(var(--contact-head, var(--surface-ink)) / <alpha-value>)',
+            'contact-btn':          'rgb(var(--contact-btn, var(--anchor)) / <alpha-value>)',
+            'contact-btn-ink':      'rgb(var(--contact-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'foot-bg':              'rgb(var(--foot-bg, var(--anchor)) / <alpha-value>)',
+            'foot-text':            'rgb(var(--foot-text, var(--surface-ink)) / <alpha-value>)',
+            'foot-fine':            'rgb(var(--foot-fine, var(--surface-ink)) / <alpha-value>)',
+            'book-banner-bg':       'rgb(var(--book-banner-bg, var(--tint)) / <alpha-value>)',
+            'book-banner-head':     'rgb(var(--book-banner-head, var(--surface-ink)) / <alpha-value>)',
+            'book-banner-sub':      'rgb(var(--book-banner-sub, var(--surface-ink)) / <alpha-value>)',
+            'book-banner-body':     'rgb(var(--book-banner-body, var(--surface-ink)) / <alpha-value>)',
+            'book-bg':              'rgb(var(--book-bg, var(--surface)) / <alpha-value>)',
+            'book-body':            'rgb(var(--book-body, var(--surface-ink)) / <alpha-value>)',
+            'book-note':            'rgb(var(--book-note, var(--surface-ink)) / <alpha-value>)',
+            'book-btn':             'rgb(var(--book-btn, var(--anchor)) / <alpha-value>)',
+            'book-btn-ink':         'rgb(var(--book-btn-ink, var(--surface-ink)) / <alpha-value>)',
             'hover-1':    'rgb(var(--hover-1)    / <alpha-value>)',
             'hover-2':    'rgb(var(--hover-2)    / <alpha-value>)',
             'hover-3':    'rgb(var(--hover-3)    / <alpha-value>)',
@@ -216,6 +225,17 @@
       --foot-bg:   250 245 239;   /* #FAF5EF */
       --foot-text:  36  21  14;   /* #24150E */
       --foot-fine:  36  21  14;   /* #24150E */
+
+      /* Booking page */
+      --book-banner-bg:191 216 220;   /* #BFD8DC */
+      --book-banner-head: 36  21  14;   /* #24150E */
+      --book-banner-sub: 78  52  39;   /* #4E3427 */
+      --book-banner-body: 36  21  14;   /* #24150E */
+      --book-bg:   255 237 192;   /* #FFEDC0 */
+      --book-body:  36  21  14;   /* #24150E */
+      --book-note:  78  52  39;   /* #4E3427 */
+      --book-btn:   36  21  14;   /* #24150E */
+      --book-btn-ink:255 237 192;   /* #FFEDC0 */
       /* PALETTE:END */
     }
 
@@ -594,9 +614,14 @@
   <section id="contact" class="bg-contact-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
       <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase text-contact-head shrink-0">Get in touch</h2>
-      <a href="mailto:laurenynabcoach@gmail.com" class="reveal-right inline-block bg-contact-btn text-contact-btn-ink font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-cta-bg hover:text-cta-head transition-colors whitespace-nowrap">
-        laurenynabcoach@gmail.com
-      </a>
+      <div class="reveal-right">
+        <a href="mailto:laurenynabcoach@gmail.com"
+           data-copy="laurenynabcoach@gmail.com"
+           class="inline-block bg-contact-btn text-contact-btn-ink font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-cta-bg hover:text-cta-head transition-colors whitespace-nowrap">
+          laurenynabcoach@gmail.com
+        </a>
+        <p id="copied" class="text-contact-head text-sm mt-3 font-bold" hidden></p>
+      </div>
     </div>
   </section>
 
@@ -693,6 +718,45 @@
       /* Fallback for old browsers */
       revealEls.forEach(function (el) { el.classList.add('in'); });
     }
+  })();
+
+
+  /* A mailto: fails silently on any device with no mail app registered,
+     which would leave the only contact route on the page doing nothing.
+     So clicking an address also copies it and always says so.
+     execCommand is deprecated but synchronous, which makes it far more
+     reliable under a click than the promise-based clipboard API. */
+  (function () {
+    function copy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      if (navigator.clipboard) {
+        try { navigator.clipboard.writeText(text); } catch (e) {}
+      }
+      return ok;
+    }
+    document.querySelectorAll('[data-copy]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var addr = el.getAttribute('data-copy');
+        var ok = copy(addr);
+        var note = document.getElementById('copied');
+        if (!note) return;
+        note.textContent = ok
+          ? 'Copied ' + addr + ' \u2014 paste it into your email.'
+          : 'Email me at ' + addr;
+        note.hidden = false;
+        clearTimeout(note._t);
+        note._t = setTimeout(function () { note.hidden = true; }, 8000);
+      });
+    });
   })();
 
   /* ── Inject hero text SVG inline so CSS can control fill colours ── */

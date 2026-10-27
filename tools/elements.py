@@ -1,5 +1,4 @@
 # GENERATED from tools/theme.js -- do not edit by hand.
-# Regenerate: node tools/gen-elements.mjs
 ELEMENTS = [
     {"key":"nav-bg","group":"Header bar","label":"Bar background","kind":"bg","slot":"anchor","on":None,"need":4.5,"soft":False},
     {"key":"nav-logo","group":"Header bar","label":"Name","kind":"text","slot":None,"on":"nav-bg","need":4.5,"soft":False},
@@ -51,4 +50,13 @@ ELEMENTS = [
     {"key":"foot-bg","group":"Footer","label":"Background","kind":"bg","slot":"anchor","on":None,"need":4.5,"soft":False},
     {"key":"foot-text","group":"Footer","label":"Copyright","kind":"text","slot":None,"on":"foot-bg","need":4.5,"soft":True},
     {"key":"foot-fine","group":"Footer","label":"Disclaimer","kind":"text","slot":None,"on":"foot-bg","need":4.5,"soft":True},
+    {"key":"book-banner-bg","group":"Booking page","label":"Banner background","kind":"bg","slot":"tint","on":None,"need":4.5,"soft":False},
+    {"key":"book-banner-head","group":"Booking page","label":"Banner heading","kind":"text","slot":None,"on":"book-banner-bg","need":3,"soft":False},
+    {"key":"book-banner-sub","group":"Booking page","label":"Banner subtitle","kind":"text","slot":None,"on":"book-banner-bg","need":4.5,"soft":True},
+    {"key":"book-banner-body","group":"Booking page","label":"Banner text","kind":"text","slot":None,"on":"book-banner-bg","need":4.5,"soft":False},
+    {"key":"book-bg","group":"Booking page","label":"Lower background","kind":"bg","slot":"surface","on":None,"need":4.5,"soft":False},
+    {"key":"book-body","group":"Booking page","label":"Lower text","kind":"text","slot":None,"on":"book-bg","need":4.5,"soft":False},
+    {"key":"book-note","group":"Booking page","label":"Reply note","kind":"text","slot":None,"on":"book-bg","need":4.5,"soft":True},
+    {"key":"book-btn","group":"Booking page","label":"Button fill","kind":"bg","slot":"anchor","on":"book-bg","need":3,"soft":False},
+    {"key":"book-btn-ink","group":"Booking page","label":"Button text","kind":"text","slot":None,"on":"book-btn","need":4.5,"soft":False},
 ]

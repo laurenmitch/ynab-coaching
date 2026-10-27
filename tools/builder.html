@@ -205,6 +205,8 @@
     <button data-sec="4">Pricing</button>
     <button data-sec="5">CTA</button>
     <button data-sec="6">Footer</button>
+    <button id="pgHome" class="on">Home</button>
+    <button id="pgBook">Booking</button>
     <span class="spacer"></span>
     <button id="shAll" class="big">Shuffle everything</button>
     <button id="undo" disabled>Undo</button>
@@ -217,14 +219,14 @@
 
 <script type="module">
 import { ROLES, ELEMENTS, buildTheme, resolveElements,
-         hex2rgb, rgb2hex, contrast, lum, deriveInk, GROUPS } from "./theme.js?v=5";
+         hex2rgb, rgb2hex, contrast, lum, deriveInk, GROUPS, GROUP_PAGE } from "./theme.js?v=6";
 
 const DEFAULT = {
   palette: ["#E0C25B","#F6EDDB","#272708","#C6A8BA","#B44764","#E4AB00"],
   pinned: {}, inkOverride: {}, hueRot: 0, elements: {},
 };
 const KEY = "bwl-theme-builder";
-let S = load();
+let S = structuredClone(DEFAULT);
 
 function load(){
   try {
@@ -236,7 +238,7 @@ function load(){
       v.elements = v.elements || {};
       for (const k of Object.keys(v.elements))
         if (!/^#[0-9a-f]{6}$/i.test(v.elements[k])) delete v.elements[k];
-      if (v.palette.length) return v;
+      if (v.palette.length) { v.__fromStorage = true; return v; }
     }
   } catch {}
   return structuredClone(DEFAULT);
@@ -344,9 +346,9 @@ function undo(){
   S = JSON.parse(prev);
   render();
 }
-function doShuffle(fn, focus){
+function doShuffle(fn, focus, page){
   remember(); fn(); render();
-  scrollPreview(focus);
+  scrollPreview(focus, page);
   document.getElementById("undo").disabled = !history.length;
 }
 
@@ -427,14 +429,24 @@ function openPicker(anchor, { current, onPick, onReset, resetLabel }){
    screen and it looks like nothing happened. */
 const FOCUS = {
   "Header bar":"top", "Hero":"top", "Cards":1, "About":2,
-  "Quotes":3, "Pricing":4, "CTA":5, "Contact":6, "Footer":7,
+  "Quotes":3, "Pricing":4, "CTA":5, "Contact":6, "Footer":7, "Booking page":"top",
   surface:1, tint:3, mid:2, feature:"top", shout:5, anchor:"top", accent:1,
 };
 const focusOf = key => {
   const e = ELEMENTS.find(x => x.key === key);
   return e ? FOCUS[e.group] : FOCUS[key];
 };
-function scrollPreview(where){
+let curPage = "index";
+function showPage(page){
+  if (curPage === page) return false;
+  curPage = page;
+  pv.src = page === "book" ? "/book.html" : "/index.html";
+  document.getElementById("pgHome").classList.toggle("on", page === "index");
+  document.getElementById("pgBook").classList.toggle("on", page === "book");
+  return true;                                  // caller should not also scroll
+}
+function scrollPreview(where, page){
+  if (page && showPage(page)) return;           // a page change is the move
   const w = pv.contentWindow, d = pv.contentDocument;
   if (!w || !d || where == null) return;
   if (where === "top") { w.scrollTo({ top:0, behavior:"smooth" }); return; }
@@ -443,16 +455,16 @@ function scrollPreview(where){
 }
 
 /* make a swatch both clickable and droppable */
-function pickable(el, { current, onPick, onReset, resetLabel, focus }){
+function pickable(el, { current, onPick, onReset, resetLabel, focus, page }){
   el.classList.add("pick");
-  const wrap = fn => h => { fn(h); scrollPreview(focus); };
+  const wrap = fn => h => { fn(h); scrollPreview(focus, page); };
   el.addEventListener("click", ev => {
     if (!ev.isTrusted) return;
     ev.stopPropagation();
     openPicker(el, {
       current,
       onPick: wrap(onPick),
-      onReset: onReset ? () => { onReset(); scrollPreview(focus); } : null,
+      onReset: onReset ? () => { onReset(); scrollPreview(focus, page); } : null,
       resetLabel,
     });
   });
@@ -581,7 +593,7 @@ function drawElements(t){
     const h2 = document.createElement("h2"); h2.textContent = group;
     const sh = document.createElement("button");
     sh.className = "sh"; sh.textContent = "Shuffle";
-    sh.onclick = ev => { if (ev.isTrusted) doShuffle(() => shuffleGroup(group), FOCUS[group]); };
+    sh.onclick = ev => { if (ev.isTrusted) doShuffle(() => shuffleGroup(group), FOCUS[group], GROUP_PAGE[group]); };
     hdr.append(h2, sh); sec.appendChild(hdr);
 
     if (group === "Header bar") sec.appendChild(navMock(get));
@@ -597,6 +609,7 @@ function drawElements(t){
         onReset: e.set ? () => { delete S.elements[e.key]; } : null,
         resetLabel: "Back to derived",
         focus: FOCUS[group],
+        page: GROUP_PAGE[group],
       });
       const lab = document.createElement("div"); lab.className = "el"; lab.textContent = e.label;
       row.append(sw, lab);
@@ -678,6 +691,8 @@ function render(){
 }
 
 /* ---------- controls ---------- */
+document.getElementById("pgHome").onclick = ev => { if (ev.isTrusted) { showPage("index"); pv.addEventListener("load", () => paint(theme()), {once:true}); } };
+document.getElementById("pgBook").onclick = ev => { if (ev.isTrusted) { showPage("book");  pv.addEventListener("load", () => paint(theme()), {once:true}); } };
 document.getElementById("shAll").onclick    = ev => { if (ev.isTrusted) doShuffle(shuffleAll,    "top"); };
 document.getElementById("undo").onclick     = ev => {
   if (!ev.isTrusted) return;
@@ -686,7 +701,12 @@ document.getElementById("undo").onclick     = ev => {
 };
 
 document.getElementById("add").onclick = () => { S.palette.push("#888888"); render(); };
-document.getElementById("reset").onclick = () => { remember(); S = structuredClone(DEFAULT); render(); };
+document.getElementById("reset").onclick = async ev => {
+  if (!ev.isTrusted) return;
+  remember();
+  S = (await fromFile()) || structuredClone(DEFAULT);
+  render();
+};
 document.getElementById("loadPaste").onclick = () => {
   const found = (document.getElementById("paste").value.match(/#?[0-9a-f]{6}\b/gi) || [])
     .map(clean).filter(Boolean);
@@ -760,6 +780,22 @@ function extract(file){
   img.src = URL.createObjectURL(file);
 }
 
+/* Prefer the snapshot of what is actually on the page over the built-in
+   default, so opening the builder never repaints the site with something
+   other than what is deployed. */
+async function fromFile(){
+  try {
+    const r = await fetch("./current-theme.json", { cache: "no-store" });
+    if (!r.ok) return null;
+    const j = await r.json();
+    if (!Array.isArray(j.palette) || !j.palette.length) return null;
+    return { palette: j.palette, pinned: j.pinned || {}, inkOverride: j.inkOverride || {},
+             elements: j.elements || {}, hueRot: j.hueRot || 0 };
+  } catch { return null; }
+}
+
+const stored = load();
+S = stored.__fromStorage ? stored : (await fromFile()) || stored;
 render();
 </script>
 </body>

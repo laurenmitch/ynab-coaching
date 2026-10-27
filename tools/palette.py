@@ -372,6 +372,18 @@ def main():
                 continue
             p.write_text(new)
             print(f"wrote {name}")
+        # a snapshot of what is now on the page, so the builder opens
+        # showing the live theme instead of a hard-coded default
+        import json
+        (root / "tools" / "current-theme.json").write_text(json.dumps({
+            "title": a.title,
+            "palette": [rgb2hex(c) for c in palette],
+            "pinned": {k: rgb2hex(v) for k, v in pinned.items()},
+            "inkOverride": {k: rgb2hex(v) for k, v in ink_over.items()},
+            "elements": {k: rgb2hex(elems[k]) for k in by_hand},
+            "hueRot": a.hue_rot,
+        }, indent=2) + "\n")
+        print("wrote tools/current-theme.json")
     else:
         print(block)
 

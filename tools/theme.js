@@ -254,9 +254,22 @@ export const ELEMENTS = [
   { key:"foot-bg",   group:"Footer", label:"Background", kind:"bg",   slot:"anchor" },
   { key:"foot-text", group:"Footer", label:"Copyright",  kind:"text", on:"foot-bg", need:4.5, soft:true },
   { key:"foot-fine", group:"Footer", label:"Disclaimer", kind:"text", on:"foot-bg", need:4.5, soft:true },
+  { key:"book-banner-bg",   group:"Booking page", label:"Banner background", kind:"bg",   slot:"tint" },
+  { key:"book-banner-head", group:"Booking page", label:"Banner heading",    kind:"text", on:"book-banner-bg", need:3, display:true },
+  { key:"book-banner-sub",  group:"Booking page", label:"Banner subtitle",   kind:"text", on:"book-banner-bg", need:4.5, soft:true },
+  { key:"book-banner-body", group:"Booking page", label:"Banner text",       kind:"text", on:"book-banner-bg", need:4.5 },
+  { key:"book-bg",          group:"Booking page", label:"Lower background",  kind:"bg",   slot:"surface" },
+  { key:"book-body",        group:"Booking page", label:"Lower text",        kind:"text", on:"book-bg", need:4.5 },
+  { key:"book-note",        group:"Booking page", label:"Reply note",        kind:"text", on:"book-bg", need:4.5, soft:true },
+  { key:"book-btn",         group:"Booking page", label:"Button fill",       kind:"bg",   on:"book-bg", need:3, slot:"anchor" },
+  { key:"book-btn-ink",     group:"Booking page", label:"Button text",       kind:"text", on:"book-btn", need:4.5 },
 ];
 
 export const GROUPS = [...new Set(ELEMENTS.map(e => e.group))];
+
+/* Which page each group belongs to, so the preview can follow you. */
+export const GROUP_PAGE = Object.fromEntries(
+  GROUPS.map(g => [g, g === "Booking page" ? "book" : "index"]));
 
 /* Effective colour of every element plus the contrast a reader gets.
    Resolved in declaration order, so anything sitting ON another element
