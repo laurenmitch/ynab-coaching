@@ -31,16 +31,59 @@
             'anchor':      'rgb(var(--anchor)      / <alpha-value>)',
             'anchor-ink':  'rgb(var(--anchor-ink)  / <alpha-value>)',
             'accent':      'rgb(var(--accent)      / <alpha-value>)',
-            /* Per-element overrides for the nav bar and hero. Each falls back to
-               its slot, so they only diverge once you actually set one. */
-            'nav-bg':      'rgb(var(--nav-bg,    var(--anchor))     / <alpha-value>)',
-            'nav-logo':    'rgb(var(--nav-logo,  var(--anchor-ink)) / <alpha-value>)',
-            'nav-sub':     'rgb(var(--nav-sub,   var(--anchor-ink)) / <alpha-value>)',
-            'nav-link':    'rgb(var(--nav-link,  var(--anchor-ink)) / <alpha-value>)',
-            'pill-bg':     'rgb(var(--pill-bg,   var(--shout))      / <alpha-value>)',
-            'pill-text':   'rgb(var(--pill-text, var(--shout-ink))  / <alpha-value>)',
-            'hero-bg':     'rgb(var(--hero-bg,   var(--feature))    / <alpha-value>)',
-            'hero-type':   'rgb(var(--hero-type, var(--anchor))     / <alpha-value>)',
+            /* Every part of the page, section by section. Each falls back to
+               a slot, but the generator writes a resolved value for all of
+               them, derived from the background each one sits on. */
+            'nav-bg':             'rgb(var(--nav-bg, var(--anchor)) / <alpha-value>)',
+            'nav-logo':           'rgb(var(--nav-logo, var(--surface-ink)) / <alpha-value>)',
+            'nav-sub':            'rgb(var(--nav-sub, var(--surface-ink)) / <alpha-value>)',
+            'nav-link':           'rgb(var(--nav-link, var(--surface-ink)) / <alpha-value>)',
+            'pill-bg':            'rgb(var(--pill-bg, var(--shout)) / <alpha-value>)',
+            'pill-text':          'rgb(var(--pill-text, var(--surface-ink)) / <alpha-value>)',
+            'hero-bg':            'rgb(var(--hero-bg, var(--feature)) / <alpha-value>)',
+            'hero-type':          'rgb(var(--hero-type, var(--surface-ink)) / <alpha-value>)',
+            'cards-bg':           'rgb(var(--cards-bg, var(--surface)) / <alpha-value>)',
+            'cards-head':         'rgb(var(--cards-head, var(--surface-ink)) / <alpha-value>)',
+            'cards-lede':         'rgb(var(--cards-lede, var(--surface-ink)) / <alpha-value>)',
+            'card-bg':            'rgb(var(--card-bg, var(--surface)) / <alpha-value>)',
+            'card-border':        'rgb(var(--card-border, var(--surface)) / <alpha-value>)',
+            'card-title':         'rgb(var(--card-title, var(--surface-ink)) / <alpha-value>)',
+            'card-body':          'rgb(var(--card-body, var(--surface-ink)) / <alpha-value>)',
+            'about-bg':           'rgb(var(--about-bg, var(--mid)) / <alpha-value>)',
+            'about-head':         'rgb(var(--about-head, var(--surface-ink)) / <alpha-value>)',
+            'about-body':         'rgb(var(--about-body, var(--surface-ink)) / <alpha-value>)',
+            'about-btn':          'rgb(var(--about-btn, var(--anchor)) / <alpha-value>)',
+            'about-btn-ink':      'rgb(var(--about-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'quotes-bg':          'rgb(var(--quotes-bg, var(--tint)) / <alpha-value>)',
+            'quotes-head':        'rgb(var(--quotes-head, var(--surface-ink)) / <alpha-value>)',
+            'quote-bg':           'rgb(var(--quote-bg, var(--surface)) / <alpha-value>)',
+            'quote-text':         'rgb(var(--quote-text, var(--surface-ink)) / <alpha-value>)',
+            'quote-name':         'rgb(var(--quote-name, var(--surface-ink)) / <alpha-value>)',
+            'price-bg':           'rgb(var(--price-bg, var(--surface)) / <alpha-value>)',
+            'price-head':         'rgb(var(--price-head, var(--surface-ink)) / <alpha-value>)',
+            'price-body':         'rgb(var(--price-body, var(--surface-ink)) / <alpha-value>)',
+            'price-accent':       'rgb(var(--price-accent, var(--surface-ink)) / <alpha-value>)',
+            'p1-bg':              'rgb(var(--p1-bg, var(--anchor)) / <alpha-value>)',
+            'p1-title':           'rgb(var(--p1-title, var(--surface-ink)) / <alpha-value>)',
+            'p1-body':            'rgb(var(--p1-body, var(--surface-ink)) / <alpha-value>)',
+            'p2-bg':              'rgb(var(--p2-bg, var(--tint)) / <alpha-value>)',
+            'p2-title':           'rgb(var(--p2-title, var(--surface-ink)) / <alpha-value>)',
+            'p2-body':            'rgb(var(--p2-body, var(--surface-ink)) / <alpha-value>)',
+            'p3-bg':              'rgb(var(--p3-bg, var(--surface)) / <alpha-value>)',
+            'p3-title':           'rgb(var(--p3-title, var(--surface-ink)) / <alpha-value>)',
+            'p3-body':            'rgb(var(--p3-body, var(--surface-ink)) / <alpha-value>)',
+            'cta-bg':             'rgb(var(--cta-bg, var(--shout)) / <alpha-value>)',
+            'cta-head':           'rgb(var(--cta-head, var(--surface-ink)) / <alpha-value>)',
+            'cta-body':           'rgb(var(--cta-body, var(--surface-ink)) / <alpha-value>)',
+            'cta-btn':            'rgb(var(--cta-btn, var(--anchor)) / <alpha-value>)',
+            'cta-btn-ink':        'rgb(var(--cta-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'contact-bg':         'rgb(var(--contact-bg, var(--surface)) / <alpha-value>)',
+            'contact-head':       'rgb(var(--contact-head, var(--surface-ink)) / <alpha-value>)',
+            'contact-btn':        'rgb(var(--contact-btn, var(--anchor)) / <alpha-value>)',
+            'contact-btn-ink':    'rgb(var(--contact-btn-ink, var(--surface-ink)) / <alpha-value>)',
+            'foot-bg':            'rgb(var(--foot-bg, var(--anchor)) / <alpha-value>)',
+            'foot-text':          'rgb(var(--foot-text, var(--surface-ink)) / <alpha-value>)',
+            'foot-fine':          'rgb(var(--foot-fine, var(--surface-ink)) / <alpha-value>)',
             'hover-1':    'rgb(var(--hover-1)    / <alpha-value>)',
             'hover-2':    'rgb(var(--hover-2)    / <alpha-value>)',
             'hover-3':    'rgb(var(--hover-3)    / <alpha-value>)',
@@ -77,34 +120,102 @@
     ══════════════════════════════════════════════════ */
     :root {
       /* PALETTE:START */
-      /* Late Luck — retro warm */
-      --surface:   250 244 232;   /* #FAF4E8 */
-      --surface-ink: 67  59  43;   /* #433B2B  10.10:1  derived */
+      /* working palette */
+      --surface:   240 237 239;   /* #F0EDEF */
+      --surface-ink: 70  51  62;   /* #46333E  10.02:1  derived */
 
-      --tint:      181 215 188;   /* #B5D7BC */
-      --tint-ink:   37  67  43;   /* #25432B   7.04:1  derived */
+      --tint:      246 237 219;   /* #F6EDDB */
+      --tint-ink:   90  78  53;   /* #5A4E35   7.04:1  derived */
 
-      --mid:       244 191  61;   /* #F4BF3D */
-      --mid-ink:    72  52   4;   /* #483404   7.01:1  derived */
+      --mid:       198 168 186;   /* #C6A8BA */
+      --mid-ink:    54  31  44;   /* #361F2C   7.02:1  derived */
 
-      --feature:   239 148  95;   /* #EF945F */
-      --feature-ink: 53  25   8;   /* #351908   7.02:1  derived */
+      --feature:   224 194  91;   /* #E0C25B */
+      --feature-ink: 64  52  11;   /* #40340B   7.03:1  derived */
 
-      --shout:     222  84  56;   /* #DE5438 */
-      --shout-ink:  51  13   5;   /* #330D05   4.52:1  derived (below target) */
+      --shout:     228 171   0;   /* #E4AB00 */
+      --shout-ink:  52  39   0;   /* #342700   7.03:1  derived */
 
-      --anchor:     54  34  22;   /* #362216 */
-      --anchor-ink:199 172 155;   /* #C7AC9B   7.01:1  derived */
+      --anchor:     39  39   8;   /* #272708 */
+      --anchor-ink:179 179 121;   /* #B3B379   7.02:1  derived */
 
-      --accent:    166  54  32;   /* #A63620 */
+      --accent:    112  85   3;   /* #705503 */
 
       /* card hover accents - bold, and no two alike */
-      --hover-1:   169 121   4;   /* #A97904 */
-      --hover-2:    46 149   4;   /* #2E9504 */
-      --hover-3:     4 147 105;   /* #049369 */
-      --hover-4:    69 121 250;   /* #4579FA */
-      --hover-5:   196  64 250;   /* #C440FA */
-      --hover-6:   249  36  98;   /* #F92462 */
+      --hover-1:   157 118   4;   /* #9D7604 */
+      --hover-2:    39 144   4;   /* #279004 */
+      --hover-3:     4 142 107;   /* #048E6B */
+      --hover-4:    71 116 250;   /* #4774FA */
+      --hover-5:   198  44 250;   /* #C62CFA */
+      --hover-6:   249  11  71;   /* #F90B47 */
+
+      /* Header bar */
+      --nav-bg:     39  39   8;   /* #272708 */
+      --nav-logo:  179 179 121;   /* #B3B379 */
+      --nav-sub:   163 163  92;   /* #A3A35C */
+      --nav-link:  163 163  92;   /* #A3A35C */
+      --pill-bg:   228 171   0;   /* #E4AB00 */
+      --pill-text:  52  39   0;   /* #342700 */
+
+      /* Hero */
+      --hero-bg:   224 194  91;   /* #E0C25B */
+      --hero-type:  64  52  11;   /* #40340B */
+
+      /* Cards */
+      --cards-bg:  240 237 239;   /* #F0EDEF */
+      --cards-head: 98  71  87;   /* #624757 */
+      --cards-lede: 98  71  87;   /* #624757 */
+      --card-bg:   240 237 239;   /* #F0EDEF */
+      --card-border:148 107 132;   /* #946B84 */
+      --card-title: 98  71  87;   /* #624757 */
+      --card-body: 129  93 114;   /* #815D72 */
+
+      /* About */
+      --about-bg:  198 168 186;   /* #C6A8BA */
+      --about-head: 54  31  44;   /* #361F2C */
+      --about-body: 90  51  75;   /* #5A334B */
+      --about-btn:  39  39   8;   /* #272708 */
+      --about-btn-ink:179 179 121;   /* #B3B379 */
+
+      /* Quotes */
+      --quotes-bg: 246 237 219;   /* #F6EDDB */
+      --quotes-head: 90  78  53;   /* #5A4E35 */
+      --quote-bg:  240 237 239;   /* #F0EDEF */
+      --quote-text: 98  71  87;   /* #624757 */
+      --quote-name:129  93 114;   /* #815D72 */
+
+      /* Pricing */
+      --price-bg:  240 237 239;   /* #F0EDEF */
+      --price-head: 98  71  87;   /* #624757 */
+      --price-body:129  93 114;   /* #815D72 */
+      --price-accent: 98  71  87;   /* #624757 */
+      --p1-bg:      39  39   8;   /* #272708 */
+      --p1-title:  179 179 121;   /* #B3B379 */
+      --p1-body:   163 163  92;   /* #A3A35C */
+      --p2-bg:     246 237 219;   /* #F6EDDB */
+      --p2-title:   90  78  53;   /* #5A4E35 */
+      --p2-body:   118 102  69;   /* #766645 */
+      --p3-bg:     240 237 239;   /* #F0EDEF */
+      --p3-title:   98  71  87;   /* #624757 */
+      --p3-body:   129  93 114;   /* #815D72 */
+
+      /* CTA */
+      --cta-bg:    228 171   0;   /* #E4AB00 */
+      --cta-head:   52  39   0;   /* #342700 */
+      --cta-body:   52  39   0;   /* #342700 */
+      --cta-btn:    39  39   8;   /* #272708 */
+      --cta-btn-ink:179 179 121;   /* #B3B379 */
+
+      /* Contact */
+      --contact-bg:240 237 239;   /* #F0EDEF */
+      --contact-head: 98  71  87;   /* #624757 */
+      --contact-btn: 39  39   8;   /* #272708 */
+      --contact-btn-ink:179 179 121;   /* #B3B379 */
+
+      /* Footer */
+      --foot-bg:    39  39   8;   /* #272708 */
+      --foot-text: 163 163  92;   /* #A3A35C */
+      --foot-fine: 163 163  92;   /* #A3A35C */
       /* PALETTE:END */
     }
 
@@ -308,11 +419,11 @@
   <nav class="fixed top-0 left-0 right-0 z-50 bg-nav-bg px-6 md:px-10 h-16 flex items-center justify-between">
     <span class="text-nav-logo font-bold text-sm uppercase tracking-widest">
       Lauren Mitchell *
-      <span class="text-nav-sub/75 font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">Certified YNAB Coach</span>
+      <span class="text-nav-sub font-normal text-xs normal-case tracking-normal ml-2 hidden sm:inline">Certified YNAB Coach</span>
     </span>
     <div class="flex items-center gap-6 md:gap-8">
-      <a href="#about" class="text-nav-link/75 hover:text-nav-link text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
-      <a href="#packages" class="text-nav-link/75 hover:text-nav-link text-xs uppercase tracking-widest transition-colors hidden md:block">Pricing</a>
+      <a href="#about" class="text-nav-link hover:text-nav-logo text-xs uppercase tracking-widest transition-colors hidden md:block">About Me</a>
+      <a href="#packages" class="text-nav-link hover:text-nav-logo text-xs uppercase tracking-widest transition-colors hidden md:block">Pricing</a>
       <a href="#contact" class="bg-pill-bg text-pill-text font-bold text-xs uppercase tracking-widest px-5 py-2 hover:bg-feature hover:text-feature-ink transition-colors">Contact</a>
     </div>
   </nav>
@@ -338,40 +449,40 @@
   </section>
 
   <!-- ── Pain points ────────────────────────────────── -->
-  <section class="bg-surface px-6 md:px-12 py-24">
+  <section class="bg-cards-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-      <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase mb-3">Sound Familiar?</h2>
-      <p class="reveal d1 text-accent text-lg mb-14 max-w-xl">You're in the right place.</p>
+      <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase text-cards-head mb-3">Sound Familiar?</h2>
+      <p class="reveal d1 text-cards-lede text-lg mb-14 max-w-xl">You're in the right place.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
-        <div class="pain-card reveal d1 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-1">
-          <p class="font-bold text-lg mb-2">Making money but not sure where it goes</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
+        <div class="pain-card reveal d1 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-1">
+          <p class="font-bold text-lg mb-2 text-card-title">Making money but not sure where it goes</p>
+          <p class="text-card-body text-sm leading-relaxed">Your paycheck disappears before the month is over and you genuinely can't explain it.</p>
         </div>
 
-        <div class="pain-card reveal d2 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-2">
-          <p class="font-bold text-lg mb-2">Blindsided by one-off expenses</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">Car registration. A wedding gift. A flight home. Every "surprise" resets your savings.</p>
+        <div class="pain-card reveal d2 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-2">
+          <p class="font-bold text-lg mb-2 text-card-title">Blindsided by one-off expenses</p>
+          <p class="text-card-body text-sm leading-relaxed">Car registration. A wedding gift. A flight home. Every "surprise" resets your savings.</p>
         </div>
 
-        <div class="pain-card reveal d3 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-3">
-          <p class="font-bold text-lg mb-2">Spending money before you really have it</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">You're swiping and hoping it works out. Paying off the card is always a game of catch-up.</p>
+        <div class="pain-card reveal d3 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-3">
+          <p class="font-bold text-lg mb-2 text-card-title">Spending money before you really have it</p>
+          <p class="text-card-body text-sm leading-relaxed">You're swiping and hoping it works out. Paying off the card is always a game of catch-up.</p>
         </div>
 
-        <div class="pain-card reveal d4 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-4">
-          <p class="font-bold text-lg mb-2">Tried YNAB but couldn't figure it out</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">You downloaded the app, poked around, and gave up. (I started and stopped twice before it stuck!)</p>
+        <div class="pain-card reveal d4 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-4">
+          <p class="font-bold text-lg mb-2 text-card-title">Tried YNAB but couldn't figure it out</p>
+          <p class="text-card-body text-sm leading-relaxed">You downloaded the app, poked around, and gave up. (I started and stopped twice before it stuck!)</p>
         </div>
 
-        <div class="pain-card reveal d5 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-5">
-          <p class="font-bold text-lg mb-2">Struggling to get on the same page as your partner</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">Money talks turn into money fights. You want a plan you both actually believe in.</p>
+        <div class="pain-card reveal d5 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-5">
+          <p class="font-bold text-lg mb-2 text-card-title">Struggling to get on the same page as your partner</p>
+          <p class="text-card-body text-sm leading-relaxed">Money talks turn into money fights. You want a plan you both actually believe in.</p>
         </div>
 
-        <div class="pain-card reveal d6 border-2 border-mid/60 rounded-xl p-7 hover:border-hover-6">
-          <p class="font-bold text-lg mb-2">Big goals with no clear path</p>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">Long-term travel. A house. Paying off debt. You know what you want. You just don't know how you're going to get there.</p>
+        <div class="pain-card reveal d6 border-2 border-card-border bg-card-bg rounded-xl p-7 hover:border-hover-6">
+          <p class="font-bold text-lg mb-2 text-card-title">Big goals with no clear path</p>
+          <p class="text-card-body text-sm leading-relaxed">Long-term travel. A house. Paying off debt. You know what you want. You just don't know how you're going to get there.</p>
         </div>
 
       </div>
@@ -379,17 +490,17 @@
   </section>
 
   <!-- ── About ──────────────────────────────────────── -->
-  <section id="about" class="grain bg-mid px-6 md:px-12 py-24">
+  <section id="about" class="grain bg-about-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
       <div class="reveal-left">
-        <h2 class="text-4xl md:text-5xl font-bold uppercase text-mid-ink mb-8">Hi, I'm<br>Lauren</h2>
-        <p class="text-mid-ink/85 text-lg leading-relaxed mb-5">
+        <h2 class="text-4xl md:text-5xl font-bold uppercase text-about-head mb-8">Hi, I'm<br>Lauren</h2>
+        <p class="text-about-body text-lg leading-relaxed mb-5">
           I'm a Certified YNAB Coach helping you break up with your old money patterns and build a system that actually sticks.
         </p>
-        <p class="text-mid-ink/85 text-base leading-relaxed mb-10">
+        <p class="text-about-body text-base leading-relaxed mb-10">
           We’ll look beyond the numbers, because money habits are shaped early. Hidden fears, expectations, and beliefs often drive how we spend. In our work together, we’ll explore those patterns and connect them to practical budgeting decisions inside YNAB, using the YNAB Method.<br><br>If you want structure and accountability, I’ll absolutely give you homework.
         </p>
-        <a href="#contact" class="inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-8 py-4 hover:bg-shout hover:text-shout-ink transition-colors text-sm">
+        <a href="#contact" class="inline-block bg-about-btn text-about-btn-ink font-bold uppercase tracking-widest px-8 py-4 hover:bg-cta-btn hover:text-cta-btn-ink transition-colors text-sm">
           Let's Work Together
         </a>
       </div>
@@ -403,19 +514,19 @@
   </section>
 
   <!-- ── Testimonials ─────────────────────────────── -->
-  <section class="grain bg-tint px-6 md:px-12 py-24">
+  <section class="grain bg-quotes-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-tint-ink mb-12">What clients are saying...</h2>
+      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-quotes-head mb-12">What clients are saying...</h2>
       <div class="grid md:grid-cols-2 gap-6">
 
-        <div class="reveal d1 bg-surface rounded-2xl p-8 flex flex-col gap-4">
-          <p class="text-surface-ink/85 text-base leading-relaxed italic">"What stands out about Lauren is how <strong class="text-surface-ink">she focuses on where you're going, not where you've been</strong>, and guides you there with confidence.<br><br>She brings the perfect mix of kindness and expertise and makes managing money feel approachable and actually doable."</p>
-          <p class="text-surface-ink font-bold text-sm">Liam <span class="font-normal text-accent">— Salt Lake City</span></p>
+        <div class="reveal d1 bg-quote-bg rounded-2xl p-8 flex flex-col gap-4">
+          <p class="text-quote-text text-base leading-relaxed italic">"What stands out about Lauren is how <strong class="text-quote-text">she focuses on where you're going, not where you've been</strong>, and guides you there with confidence.<br><br>She brings the perfect mix of kindness and expertise and makes managing money feel approachable and actually doable."</p>
+          <p class="text-quote-name font-bold text-sm">Liam <span class="font-normal text-quote-name">— Salt Lake City</span></p>
         </div>
 
-        <div class="reveal d2 bg-surface rounded-2xl p-8 flex flex-col gap-4">
-          <p class="text-surface-ink/85 text-base leading-relaxed italic">"Lauren has such a grounded and <strong class="text-surface-ink">empowering</strong> approach to money.<br><br>Her advice is practical, realistic, and sustainable, which makes it easy to stay accountable. She creates a totally <strong class="text-surface-ink">safe, shame-free space</strong>."</p>
-          <p class="text-surface-ink font-bold text-sm">Kaycee <span class="font-normal text-accent">— San Francisco</span></p>
+        <div class="reveal d2 bg-quote-bg rounded-2xl p-8 flex flex-col gap-4">
+          <p class="text-quote-text text-base leading-relaxed italic">"Lauren has such a grounded and <strong class="text-quote-text">empowering</strong> approach to money.<br><br>Her advice is practical, realistic, and sustainable, which makes it easy to stay accountable. She creates a totally <strong class="text-quote-text">safe, shame-free space</strong>."</p>
+          <p class="text-quote-name font-bold text-sm">Kaycee <span class="font-normal text-quote-name">— San Francisco</span></p>
         </div>
 
       </div>
@@ -423,39 +534,39 @@
   </section>
 
   <!-- ── Rates ───────────────────────────────────── -->
-  <section id="packages" class="bg-surface px-6 md:px-12 py-24">
+  <section id="packages" class="bg-price-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
 
       <!-- Rate + intro call -->
       <div class="reveal-left flex flex-col md:flex-row md:items-end gap-4 md:gap-10 mb-6">
-        <h2 class="text-4xl md:text-5xl font-bold uppercase">Pricing</h2>
+        <h2 class="text-4xl md:text-5xl font-bold uppercase text-price-head">Pricing</h2>
       </div>
-      <p class="reveal d1 text-surface-ink/75 text-lg mb-2 max-w-lg">I charge a flat hourly rate of <strong class="text-accent">$80/hour</strong>.</p>
-      <p class="reveal d2 text-surface-ink/75 text-lg mb-16 max-w-lg">All new clients start with a free 30-minute intro call.</p>
+      <p class="reveal d1 text-price-body text-lg mb-2 max-w-lg">I charge a flat hourly rate of <strong class="text-price-accent">$80/hour</strong>.</p>
+      <p class="reveal d2 text-price-body text-lg mb-16 max-w-lg">All new clients start with a free 30-minute intro call.</p>
 
       <!-- Session types -->
       <div class="grid md:grid-cols-3 gap-4">
 
-        <div class="reveal d1 bg-anchor rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-anchor-ink/75 mb-3">New to YNAB</p>
-          <h3 class="font-bold text-xl text-feature mb-3">Getting Started</h3>
-          <p class="text-anchor-ink/85 text-sm leading-relaxed">
+        <div class="reveal d1 bg-p1-bg rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-p1-body mb-3">New to YNAB</p>
+          <h3 class="font-bold text-xl text-p1-title mb-3">Getting Started</h3>
+          <p class="text-p1-body text-sm leading-relaxed">
             I'll get you set up from scratch, walk you through the method, and make sure it actually sticks. Most new clients need 2–3 sessions to feel confident on their own.
           </p>
         </div>
 
-        <div class="reveal d2 bg-tint rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-tint-ink mb-3">Ongoing</p>
-          <h3 class="font-bold text-xl text-tint-ink mb-3">Regular Check-ins</h3>
-          <p class="text-tint-ink/85 text-sm leading-relaxed">
+        <div class="reveal d2 bg-p2-bg rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-p2-body mb-3">Ongoing</p>
+          <h3 class="font-bold text-xl text-p2-title mb-3">Regular Check-ins</h3>
+          <p class="text-p2-body text-sm leading-relaxed">
             Life changes, and so does your budget. We'll work through whatever's not clicking, adjust as things shift, and keep the momentum going. You pick the cadence.
           </p>
         </div>
 
-        <div class="reveal d3 border-2 border-mid rounded-2xl p-8 flex flex-col">
-          <p class="text-xs uppercase tracking-widest text-accent mb-3">One-off</p>
-          <h3 class="font-bold text-xl text-surface-ink mb-3">Pick My Brain</h3>
-          <p class="text-surface-ink/75 text-sm leading-relaxed">
+        <div class="reveal d3 border-2 border-card-border bg-p3-bg rounded-2xl p-8 flex flex-col">
+          <p class="text-xs uppercase tracking-widest text-p3-body mb-3">One-off</p>
+          <h3 class="font-bold text-xl text-p3-title mb-3">Pick My Brain</h3>
+          <p class="text-p3-body text-sm leading-relaxed">
             Already using YNAB but something's not working? Book a single session to troubleshoot, fine-tune, or get unstuck. No ongoing commitment needed. Old clients welcome.
           </p>
         </div>
@@ -465,35 +576,35 @@
   </section>
 
   <!-- ── Free session CTA ───────────────────────────── -->
-  <section class="bg-shout px-6 md:px-12 py-24">
+  <section class="bg-cta-bg px-6 md:px-12 py-24">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-surface mb-6">
+      <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-cta-head mb-6">
         Start with a free<br>30-minute call
       </h2>
-      <p class="reveal d1 text-surface text-xl font-bold mb-12 leading-relaxed">
+      <p class="reveal d1 text-cta-body text-xl font-bold mb-12 leading-relaxed">
         Let’s connect and see if this feels like a good fit. No pressure, just a space to talk through your goals with YNAB.
       </p>
-      <a href="/book" class="reveal d2 inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-surface hover:text-surface-ink transition-colors">
+      <a href="/book" class="reveal d2 inline-block bg-cta-btn text-cta-btn-ink font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-cta-head hover:text-cta-bg transition-colors">
         Book Your Free Call
       </a>
     </div>
   </section>
 
   <!-- ── Contact ────────────────────────────────────── -->
-  <section id="contact" class="bg-surface px-6 md:px-12 py-24">
+  <section id="contact" class="bg-contact-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-      <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase shrink-0">Get in touch</h2>
-      <a href="mailto:laurenynabcoach@gmail.com" class="reveal-right inline-block bg-anchor text-feature font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-shout hover:text-shout-ink transition-colors whitespace-nowrap">
+      <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase text-contact-head shrink-0">Get in touch</h2>
+      <a href="mailto:laurenynabcoach@gmail.com" class="reveal-right inline-block bg-contact-btn text-contact-btn-ink font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-cta-bg hover:text-cta-head transition-colors whitespace-nowrap">
         laurenynabcoach@gmail.com
       </a>
     </div>
   </section>
 
   <!-- ── Footer ─────────────────────────────────────── -->
-  <footer class="bg-anchor px-6 md:px-12 py-10">
+  <footer class="bg-foot-bg px-6 md:px-12 py-10">
     <div class="max-w-5xl mx-auto">
-      <p class="text-anchor-ink/80 text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
-      <p class="text-anchor-ink/80 text-xs leading-relaxed max-w-3xl">
+      <p class="text-foot-text text-xs uppercase tracking-widest mb-4">© 2026 Lauren Mitchell · Certified YNAB Coach</p>
+      <p class="text-foot-fine text-xs leading-relaxed max-w-3xl">
         Disclaimer: I am not a financial advisor and do not provide investment advice. I am a YNAB Certified Coach, trained to coach people on using YNAB software and the YNAB Method. I am not an employee of YNAB, and all opinions are my own. My views do not reflect the views of YNAB and its employees or affiliates.
       </p>
     </div>

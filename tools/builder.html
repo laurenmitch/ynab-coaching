@@ -173,19 +173,7 @@
     <div id="drop">Drop an image here to pull its colours</div>
   </section>
 
-  <section>
-    <div class="shdr"><h2>Header bar</h2><button class="sh" id="shHeader">Shuffle</button></div>
-    <p class="hint">Click any part of the bar, or any square below, to change its colour.</p>
-    <div id="navMock"></div>
-    <div id="navRows"></div>
-  </section>
-
-  <section>
-    <div class="shdr"><h2>Hero</h2><button class="sh" id="shHero">Shuffle</button></div>
-    <p class="hint">Click the headline or the background behind it.</p>
-    <div id="heroMock"></div>
-    <div id="heroRows"></div>
-  </section>
+  <div id="groups"></div>
 
   <section>
     <h2>Everything else</h2>
@@ -229,13 +217,11 @@
 
 <script type="module">
 import { ROLES, ELEMENTS, buildTheme, resolveElements,
-         hex2rgb, rgb2hex, contrast, lum, deriveInk } from "./theme.js?v=4";
+         hex2rgb, rgb2hex, contrast, lum, deriveInk, GROUPS } from "./theme.js?v=5";
 
 const DEFAULT = {
-  palette: ["#EF945F","#F4BF3D","#B5D7BC","#DE5438","#362216"],
-  pinned:  { surface:"#FAF4E8", anchor:"#362216", feature:"#EF945F",
-             shout:"#DE5438", mid:"#F4BF3D", tint:"#B5D7BC" },
-  inkOverride: {}, hueRot: 0, elements: {},
+  palette: ["#E0C25B","#F6EDDB","#272708","#C6A8BA","#B44764","#E4AB00"],
+  pinned: {}, inkOverride: {}, hueRot: 0, elements: {},
 };
 const KEY = "bwl-theme-builder";
 let S = load();
@@ -310,33 +296,28 @@ function inkFor(bg, need, alpha = 1){
 }
 const choose = (bg, need, alpha = 1) => pickFor(bg, need, alpha) || inkFor(bg, need, alpha);
 
-/* Can anything at all stay readable on this bar? The subtitle and links
-   render at 75%, and over a mid-dark colour like tomato even pure black
-   composites to about 4.35:1 -- so some backgrounds simply cannot carry
-   muted nav text, and the shuffle should not offer them. You can still
-   set one by hand; the badge will tell you what you are getting. */
-function barCanCarryText(hex){
-  return extremes(hex2rgb(hex), .75)[0].r >= 4.5;
-}
+function shuffleGroup(group){
+  // resolve once, then walk the group in declaration order so anything
+  // sitting ON something else already sees that thing's new colour
+  const eff = {};
+  resolveElements(theme(), S.elements).forEach(e => { eff[e.key] = e.colour; });
 
-function shuffleHeader(){
-  const usable = S.palette.filter(barCanCarryText);
-  const bgHex = rand(usable.length ? usable : S.palette), bg = hex2rgb(bgHex);
-  S.elements["nav-bg"]   = bgHex;
-  S.elements["nav-logo"] = choose(bg, 4.5);
-  S.elements["nav-sub"]  = choose(bg, 4.5, .75);
-  S.elements["nav-link"] = choose(bg, 4.5, .75);
-  const pillHex = choose(bg, 3);               // the pill only has to be seen
-  S.elements["pill-bg"]   = pillHex;
-  S.elements["pill-text"] = choose(hex2rgb(pillHex), 4.5);
-}
-
-function shuffleHero(){
-  const bgHex = rand(S.palette), bg = hex2rgb(bgHex);
-  S.elements["hero-bg"] = bgHex;
-  // display type only needs 3:1, but prefer something crisper when the
-  // palette can manage it
-  S.elements["hero-type"] = pickFor(bg, 4.5) || pickFor(bg, 3) || inkFor(bg, 4.5);
+  for (const e of ELEMENTS.filter(x => x.group === group)){
+    const parent = e.on ? eff[e.on] : null;
+    let hex;
+    if (e.kind === "bg"){
+      if (parent && e.need) hex = choose(parent, e.need);
+      else {
+        // a surface with nothing to prove still should not vanish into its parent
+        const pool = parent ? S.palette.filter(h => h !== rgb2hex(parent)) : S.palette;
+        hex = rand(pool.length ? pool : S.palette);
+      }
+    } else {
+      hex = choose(parent || [255, 255, 255], e.need ?? 4.5);
+    }
+    S.elements[e.key] = hex;
+    eff[e.key] = hex2rgb(hex);
+  }
 }
 
 function shuffleAll(){
@@ -351,8 +332,7 @@ function shuffleAll(){
   }
   S.inkOverride = {};
   S.hueRot = Math.floor(Math.random() * 360);
-  shuffleHeader();
-  shuffleHero();
+  for (const g of GROUPS) shuffleGroup(g);
 }
 
 /* one level of regret is not enough; keep a short stack */
@@ -446,9 +426,13 @@ function openPicker(anchor, { current, onPick, onReset, resetLabel }){
    jump there. Without this you can change something that is scrolled off
    screen and it looks like nothing happened. */
 const FOCUS = {
-  "nav-bg":"top", "nav-logo":"top", "nav-sub":"top", "nav-link":"top",
-  "pill-bg":"top", "pill-text":"top", "hero-bg":"top", "hero-type":"top",
+  "Header bar":"top", "Hero":"top", "Cards":1, "About":2,
+  "Quotes":3, "Pricing":4, "CTA":5, "Contact":6, "Footer":7,
   surface:1, tint:3, mid:2, feature:"top", shout:5, anchor:"top", accent:1,
+};
+const focusOf = key => {
+  const e = ELEMENTS.find(x => x.key === key);
+  return e ? FOCUS[e.group] : FOCUS[key];
 };
 function scrollPreview(where){
   const w = pv.contentWindow, d = pv.contentDocument;
@@ -588,66 +572,22 @@ function drawSlots(t){
 function drawElements(t){
   const els = resolveElements(t, S.elements);
   const get = k => rgb2hex(els.find(e => e.key === k).colour);
-  const bind = (el, key) => {
-    const e = els.find(x => x.key === key);
-    pickable(el, {
-      current: rgb2hex(e.colour),
-      onPick: h => { S.elements[key] = h; },
-      onReset: e.set ? () => { delete S.elements[key]; } : null,
-      resetLabel: "Back to the " + e.fallback + " slot",
-      focus: FOCUS[key],
-    });
-    el.title = e.label + " — click to change";
-  };
+  const box = document.getElementById("groups");
+  box.innerHTML = "";
 
-  /* --- the bar, drawn in its own colours --- */
-  const nm = document.getElementById("navMock"); nm.innerHTML = "";
-  const bar = document.createElement("div");
-  bar.className = "mock navmock"; bar.style.background = get("nav-bg");
-  bind(bar, "nav-bg");
+  for (const group of GROUPS){
+    const sec = document.createElement("section");
+    const hdr = document.createElement("div"); hdr.className = "shdr";
+    const h2 = document.createElement("h2"); h2.textContent = group;
+    const sh = document.createElement("button");
+    sh.className = "sh"; sh.textContent = "Shuffle";
+    sh.onclick = ev => { if (ev.isTrusted) doShuffle(() => shuffleGroup(group), FOCUS[group]); };
+    hdr.append(h2, sh); sec.appendChild(hdr);
 
-  const logo = document.createElement("span");
-  logo.className = "nm-logo"; logo.textContent = "LAUREN MITCHELL *";
-  logo.style.color = get("nav-logo");
-  bind(logo, "nav-logo");
+    if (group === "Header bar") sec.appendChild(navMock(get));
+    if (group === "Hero")       sec.appendChild(heroMock(get));
 
-  const sub = document.createElement("span");
-  sub.textContent = "Certified YNAB Coach";
-  sub.style.color = get("nav-sub"); sub.style.opacity = .75;
-  bind(sub, "nav-sub");
-
-  const sp = document.createElement("span"); sp.className = "sp";
-
-  const lnk = document.createElement("span");
-  lnk.textContent = "ABOUT  PRICING";
-  lnk.style.color = get("nav-link"); lnk.style.opacity = .75;
-  bind(lnk, "nav-link");
-
-  const pill = document.createElement("span");
-  pill.className = "nm-pill"; pill.style.background = get("pill-bg");
-  bind(pill, "pill-bg");
-  const pillTx = document.createElement("span");
-  pillTx.textContent = "CONTACT"; pillTx.style.color = get("pill-text");
-  bind(pillTx, "pill-text");
-  pill.appendChild(pillTx);
-
-  bar.append(logo, sub, sp, lnk, pill); nm.appendChild(bar);
-
-  /* --- the hero --- */
-  const hm = document.getElementById("heroMock"); hm.innerHTML = "";
-  const hero = document.createElement("div");
-  hero.className = "mock heromock"; hero.style.background = get("hero-bg");
-  bind(hero, "hero-bg");
-  const ht = document.createElement("div");
-  ht.className = "ht"; ht.innerHTML = "Get intentional<br>with your money";
-  ht.style.color = get("hero-type");
-  bind(ht, "hero-type");
-  hero.appendChild(ht); hm.appendChild(hero);
-
-  /* --- one row per piece, with its real contrast --- */
-  for (const [groupName, mount] of [["Header bar", "navRows"], ["Hero", "heroRows"]]) {
-    const box = document.getElementById(mount); box.innerHTML = "";
-    for (const e of els.filter(x => x.group === groupName)) {
+    for (const e of els.filter(x => x.group === group)){
       const row = document.createElement("div"); row.className = "elrow";
       const sw = document.createElement("div"); sw.className = "es";
       sw.style.background = rgb2hex(e.colour);
@@ -655,35 +595,62 @@ function drawElements(t){
         current: rgb2hex(e.colour),
         onPick: h => { S.elements[e.key] = h; },
         onReset: e.set ? () => { delete S.elements[e.key]; } : null,
-        resetLabel: "Back to the " + e.fallback + " slot",
-        focus: FOCUS[e.key],
+        resetLabel: "Back to derived",
+        focus: FOCUS[group],
       });
-
-      const lab = document.createElement("div"); lab.className = "el";
-      lab.textContent = e.label;
-
+      const lab = document.createElement("div"); lab.className = "el"; lab.textContent = e.label;
       row.append(sw, lab);
-      if (e.ratio != null) {
-        const cls = e.ratio >= e.need ? "ok" : e.ratio >= e.need * 0.8 ? "warn" : "bad";
+      if (e.ratio != null && e.need > 0){
+        const cls = e.ratio >= e.need ? "ok" : e.ratio >= e.need * .8 ? "warn" : "bad";
         const b = document.createElement("span");
         b.className = "badge " + cls;
         b.textContent = e.ratio.toFixed(2) + ":1";
-        b.title = "needs " + e.need + ":1" + (e.alpha < 1 ? ` (shown at ${e.alpha * 100}%)` : "");
+        b.title = "needs " + e.need + ":1 on " + e.on;
         row.appendChild(b);
       }
-      const hexTag = document.createElement("span");
-      hexTag.className = "mono"; hexTag.textContent = rgb2hex(e.colour);
-      row.appendChild(hexTag);
-
-      if (e.set) {
+      const hx = document.createElement("span");
+      hx.className = "mono"; hx.textContent = rgb2hex(e.colour);
+      row.appendChild(hx);
+      if (e.set){
         const rs = document.createElement("button");
-        rs.className = "er"; rs.textContent = "reset"; rs.title = "back to the " + e.fallback + " slot";
-        rs.onclick = () => { delete S.elements[e.key]; render(); };
+        rs.className = "er"; rs.textContent = "reset";
+        rs.onclick = ev => { if (!ev.isTrusted) return; delete S.elements[e.key]; render(); };
         row.appendChild(rs);
       }
-      box.appendChild(row);
+      sec.appendChild(row);
     }
+    box.appendChild(sec);
   }
+}
+
+/* little live replicas of the two pieces worth seeing in place */
+function navMock(get){
+  const bar = document.createElement("div");
+  bar.className = "mock navmock"; bar.style.background = get("nav-bg");
+  const mk = (cls, txt, key) => {
+    const s = document.createElement("span");
+    if (cls) s.className = cls;
+    s.textContent = txt; s.style.color = get(key);
+    return s;
+  };
+  const logo = mk("nm-logo", "LAUREN MITCHELL *", "nav-logo");
+  const sub  = mk(null, "Certified YNAB Coach", "nav-sub");
+  const sp   = document.createElement("span"); sp.className = "sp";
+  const lnk  = mk(null, "ABOUT  PRICING", "nav-link");
+  const pill = document.createElement("span");
+  pill.className = "nm-pill"; pill.style.background = get("pill-bg");
+  pill.appendChild(mk(null, "CONTACT", "pill-text"));
+  bar.append(logo, sub, sp, lnk, pill);
+  return bar;
+}
+function heroMock(get){
+  const hero = document.createElement("div");
+  hero.className = "mock heromock"; hero.style.background = get("hero-bg");
+  const ht = document.createElement("div");
+  ht.className = "ht"; ht.innerHTML = "Get intentional<br>with your money";
+  ht.style.color = get("hero-type");
+  hero.appendChild(ht);
+  return hero;
 }
 
 function drawHovers(t){
@@ -711,8 +678,6 @@ function render(){
 }
 
 /* ---------- controls ---------- */
-document.getElementById("shHeader").onclick = ev => { if (ev.isTrusted) doShuffle(shuffleHeader, "top"); };
-document.getElementById("shHero").onclick   = ev => { if (ev.isTrusted) doShuffle(shuffleHero,   "top"); };
 document.getElementById("shAll").onclick    = ev => { if (ev.isTrusted) doShuffle(shuffleAll,    "top"); };
 document.getElementById("undo").onclick     = ev => {
   if (!ev.isTrusted) return;
