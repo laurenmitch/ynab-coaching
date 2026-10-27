@@ -1,0 +1,31 @@
+# What GitHub Pages should NOT publish.
+#
+# Everything here stays in the repository — it just isn't served from
+# budgetwithlauren.com. Covers the build tooling, working notes, and the
+# source artwork that nothing on the site references.
+#
+# Anything the site DOES reference must stay out of this list:
+#   3.png  headshot1.png  2021_YNAB.png
+#   heroimage_improved.png  hero_text.svg  hero_text_narrow_2026.png
+
+exclude:
+  # build tooling and the theme builder
+  - tools
+
+  # working notes, not for visitors
+  - CLAUDE.md
+  - inspo.md
+
+  # source artwork the site no longer uses (~10 MB)
+  - ynab coach background.png
+  - ynab coach background_old.png
+  - heroimage.png
+  - hero_image_narrow.png
+  - hero_text_narrow.png
+
+  # housekeeping
+  - .DS_Store
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
