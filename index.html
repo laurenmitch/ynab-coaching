@@ -612,15 +612,25 @@
 
   <!-- ── Contact ────────────────────────────────────── -->
   <section id="contact" class="bg-contact-bg px-6 md:px-12 py-24">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+    <!-- Stacked and centred on a phone; side by side from md up. -->
+    <div class="max-w-5xl mx-auto flex flex-col items-center text-center gap-8 md:flex-row md:items-center md:justify-between md:text-left">
       <h2 class="reveal-left text-4xl md:text-5xl font-bold uppercase text-contact-head shrink-0">Get in touch</h2>
-      <div class="reveal-right">
+      <div class="reveal-right md:text-right">
         <a href="mailto:laurenynabcoach@gmail.com"
            data-copy="laurenynabcoach@gmail.com"
            class="inline-block bg-contact-btn text-contact-btn-ink font-bold uppercase tracking-widest px-8 py-5 text-sm hover:bg-cta-bg hover:text-cta-head transition-colors whitespace-nowrap">
-          laurenynabcoach@gmail.com
+          Email Me
         </a>
-        <p id="copied" class="text-contact-head text-sm mt-3 font-bold" hidden></p>
+        <!-- The slot is always reserved so the Gmail link never shifts when
+             the confirmation appears. -->
+        <div class="mt-4" style="min-height:1.5rem">
+          <p id="copied" class="text-contact-head text-sm font-bold" hidden></p>
+        </div>
+        <p class="text-contact-head text-sm">
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=laurenynabcoach%40gmail.com"
+             target="_blank" rel="noopener"
+             class="underline hover:text-contact-btn">Open it in Gmail</a>
+        </p>
       </div>
     </div>
   </section>
