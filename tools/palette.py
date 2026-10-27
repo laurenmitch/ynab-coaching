@@ -133,7 +133,7 @@ def derive_ink(bg, target=TARGET, floor=FLOOR):
     return (cand, r, "derived (below AA)") if r >= 3.0 else (None, r, "impossible")
 
 
-def hover_set(surface, palette, n=HOVERS, min_cr=HOVER_MIN):
+def hover_set(surface, palette, n=HOVERS, min_cr=HOVER_MIN, rot=0.0):
     """n bold, maximally distinct hover colours.
 
     Hues are spaced evenly round the wheel so no two cards ever repeat, and
@@ -141,7 +141,7 @@ def hover_set(surface, palette, n=HOVERS, min_cr=HOVER_MIN):
     set still belongs to the brand. Each is pushed to full saturation and
     darkened only as far as it must be to stay visible against the page."""
     base = max(palette, key=chroma)
-    h0 = hls(base)[0]
+    h0 = (hls(base)[0] + rot / 360.0) % 1.0
     out = []
     for i in range(n):
         h = (h0 + i / n) % 1.0
@@ -296,6 +296,8 @@ def main():
     ap.add_argument("--var", action="append", default=[], metavar="name=#hex",
                     help="per-element override, e.g. --var hero-bg=#DE5438")
     ap.add_argument("--title", default="palette")
+    ap.add_argument("--hue-rot", type=float, default=0.0,
+                    help="rotate the card-hover hues, as the builder's slider does")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args()
 
@@ -322,7 +324,7 @@ def main():
     palette = [hex2rgb(c) for c in a.colours]
     slots = assign(palette, pinned)
     rows = build(slots, ink_over)
-    hovers = hover_set(slots["surface"], palette)
+    hovers = hover_set(slots["surface"], palette, rot=a.hue_rot)
 
     print(f"{'slot':9s} {'background':10s} {'ink':10s} contrast  how")
     print("-" * 54)
