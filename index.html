@@ -77,11 +77,8 @@
             'p3-title':             'rgb(var(--p3-title, var(--surface-ink)) / <alpha-value>)',
             'p3-body':              'rgb(var(--p3-body, var(--surface-ink)) / <alpha-value>)',
             'p3-border':            'rgb(var(--p3-border, var(--surface)) / <alpha-value>)',
-            'perk-bg':              'rgb(var(--perk-bg, var(--tint)) / <alpha-value>)',
-            'perk-border':          'rgb(var(--perk-border, var(--anchor)) / <alpha-value>)',
             'perk-label':           'rgb(var(--perk-label, var(--surface-ink)) / <alpha-value>)',
             'perk-title':           'rgb(var(--perk-title, var(--surface-ink)) / <alpha-value>)',
-            'perk-body':            'rgb(var(--perk-body, var(--surface-ink)) / <alpha-value>)',
             'cta-bg':               'rgb(var(--cta-bg, var(--shout)) / <alpha-value>)',
             'cta-head':             'rgb(var(--cta-head, var(--surface-ink)) / <alpha-value>)',
             'cta-body':             'rgb(var(--cta-body, var(--surface-ink)) / <alpha-value>)',
@@ -222,11 +219,8 @@
       --p3-title:   78  52  39;   /* #4E3427 */
       --p3-body:    36  21  14;   /* #24150E */
       --p3-border: 211  86   1;   /* #D35601 */
-      --perk-bg:   191 216 220;   /* #BFD8DC */
-      --perk-border: 36  21  14;   /* #24150E */
       --perk-label: 78  52  39;   /* #4E3427 */
-      --perk-title: 36  21  14;   /* #24150E */
-      --perk-body:  36  21  14;   /* #24150E */
+      --perk-title:211  86   1;   /* #D35601 */
 
       /* CTA */
       --cta-bg:    189 177 101;   /* #BDB165 */
@@ -622,17 +616,13 @@
 
       </div>
 
-      <!-- The YNAB coach perk. Concrete, and it answers "why not try it". -->
-      <div class="reveal d4 mt-10 max-w-3xl mx-auto bg-perk-bg border-2 border-perk-border rounded-2xl px-7 py-9 md:px-10 text-center">
-        <p class="text-xs uppercase tracking-widest text-perk-label mb-3">Did you know?</p>
-        <p class="text-perk-title text-2xl md:text-3xl font-bold uppercase leading-tight mb-4">
-          Coaching comes with two free months of YNAB
-        </p>
-        <p class="text-perk-body text-base md:text-lg leading-relaxed">
-          Brand new or years in, paying monthly or annually, it applies either way.
-          So a good part of what you spend on coaching comes straight back to you.
-        </p>
-      </div>
+      <!-- The perk, as a found detail rather than a banner: same small-caps
+           treatment as the card labels, tucked to one side. -->
+      <p class="reveal d4 mt-12 max-w-md text-perk-label text-xs uppercase tracking-widest leading-loose">
+        <span class="text-perk-title font-bold">*</span>
+        Did you know? Coaching comes with two free months of YNAB. Any plan,
+        monthly or annual, whether you're brand new or years in.
+      </p>
     </div>
   </section>
 

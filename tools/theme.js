@@ -235,11 +235,8 @@ export const ELEMENTS = [
   { key:"p3-title", group:"Pricing", label:"Card 3 title", kind:"text", on:"p3-bg",    need:4.5 },
   { key:"p3-body",  group:"Pricing", label:"Card 3 text",  kind:"text", on:"p3-bg",    need:4.5, soft:true },
   { key:"p3-border", group:"Pricing", label:"Card 3 edge",  kind:"bg",   on:"p3-bg",  need:0, slot:"surface" },
-  { key:"perk-bg",     group:"Pricing", label:"Perk fill",    kind:"bg",   on:"price-bg", need:0, slot:"tint" },
-  { key:"perk-border", group:"Pricing", label:"Perk edge",    kind:"bg",   on:"perk-bg",  need:0, slot:"anchor" },
-  { key:"perk-label",  group:"Pricing", label:"Perk label",   kind:"text", on:"perk-bg",  need:4.5, soft:true },
-  { key:"perk-title",  group:"Pricing", label:"Perk headline",kind:"text", on:"perk-bg",  need:3, display:true },
-  { key:"perk-body",   group:"Pricing", label:"Perk text",    kind:"text", on:"perk-bg",  need:4.5 },
+  { key:"perk-label",  group:"Pricing", label:"Perk note",    kind:"text", on:"price-bg", need:4.5, soft:true },
+  { key:"perk-title",  group:"Pricing", label:"Perk asterisk",kind:"text", on:"price-bg", need:4.5 },
 
   { key:"cta-bg",     group:"CTA", label:"Background",  kind:"bg",   slot:"shout" },
   { key:"cta-head",   group:"CTA", label:"Heading",     kind:"text", on:"cta-bg",  need:3, display:true },
