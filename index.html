@@ -749,9 +749,7 @@
         var ok = copy(addr);
         var note = document.getElementById('copied');
         if (!note) return;
-        note.textContent = ok
-          ? 'Copied ' + addr + ' \u2014 paste it into your email.'
-          : 'Email me at ' + addr;
+        note.textContent = (ok ? 'Copied ' : 'Email me at ') + addr;
         note.hidden = false;
         clearTimeout(note._t);
         note._t = setTimeout(function () { note.hidden = true; }, 8000);

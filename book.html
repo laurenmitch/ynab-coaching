@@ -252,28 +252,27 @@
   <div class="bg-book-bg px-6 py-20">
     <div class="max-w-2xl mx-auto text-center">
       <p class="text-book-body text-lg leading-relaxed mb-2">
-        To set up your free call, just send me an email with a couple of times that work for you and I'll get back to you to confirm.
+        To set up your free call, just send me an email with a couple of times that work for you, and your timezone, and I'll get back to you to confirm.
       </p>
       <p class="text-book-note text-base mb-8">
         I'll reply within one business day.
       </p>
-      <a href="mailto:laurenynabcoach@gmail.com?subject=Booking%20a%20free%20intro%20call&body=Hi%20Lauren%2C%0A%0AI%27d%20love%20to%20set%20up%20a%20free%20introductory%20call.%20Here%20are%20a%20few%20times%20that%20work%20for%20me%3A%0A%0A-%20%0A-%20%0A-%20%0A%0AA%20little%20about%20my%20goals%20with%20YNAB%3A%0A%0A%0AThanks%21"
+      <a href="mailto:laurenynabcoach@gmail.com?subject=Booking%20a%20free%20intro%20call&body=Hi%20Lauren%2C%0A%0AI%27d%20love%20to%20set%20up%20a%20free%20introductory%20call.%20Here%20are%20a%20few%20times%20that%20work%20for%20me%2C%20and%20my%20timezone%3A%0A%0ATimezone%3A%20%0A%0A-%20%20%0A-%20%20%0A-%20%20%0A%0AA%20little%20about%20my%20goals%20with%20YNAB%3A%0A%0A%0AThanks%21"
          data-copy="laurenynabcoach@gmail.com"
          class="inline-block bg-book-btn text-book-btn-ink font-bold uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-book-banner-bg hover:text-book-banner-head transition-colors">
         Email Me to Book
       </a>
 
-      <!-- A mailto: does nothing on a device with no mail app registered, and
-           it fails silently. These give everyone else a way through. -->
-      <p class="text-book-body text-sm mt-6">
-        <a href="mailto:laurenynabcoach@gmail.com" data-copy="laurenynabcoach@gmail.com"
-           class="underline hover:text-book-btn">laurenynabcoach@gmail.com</a>
-      </p>
-      <p class="text-book-note text-sm mt-2">
-        No email app? <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=laurenynabcoach%40gmail.com&amp;su=Booking%20a%20free%20intro%20call&amp;body=Hi%20Lauren%2C%0A%0AI%27d%20love%20to%20set%20up%20a%20free%20introductory%20call.%20Here%20are%20a%20few%20times%20that%20work%20for%20me%3A%0A%0A-%20%0A-%20%0A-%20%0A%0AA%20little%20about%20my%20goals%20with%20YNAB%3A%0A%0A%0AThanks%21" target="_blank" rel="noopener"
+      <!-- A mailto: does nothing on a device with no mail app registered,
+           and it fails silently, so clicking also copies the address. The
+           wrapper reserves the line so nothing shifts when it appears. -->
+      <div class="mt-5" style="min-height:1.5rem">
+        <p id="copied" class="text-book-body text-sm font-bold" hidden></p>
+      </div>
+      <p class="text-book-note text-sm">
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=laurenynabcoach%40gmail.com&amp;su=Booking%20a%20free%20intro%20call&amp;body=Hi%20Lauren%2C%0A%0AI%27d%20love%20to%20set%20up%20a%20free%20introductory%20call.%20Here%20are%20a%20few%20times%20that%20work%20for%20me%2C%20and%20my%20timezone%3A%0A%0ATimezone%3A%20%0A%0A-%20%20%0A-%20%20%0A-%20%20%0A%0AA%20little%20about%20my%20goals%20with%20YNAB%3A%0A%0A%0AThanks%21" target="_blank" rel="noopener"
            class="underline hover:text-book-btn">Open it in Gmail</a>
       </p>
-      <p id="copied" class="text-book-body text-sm mt-4 font-bold" hidden></p>
     </div>
   </div>
 
@@ -319,9 +318,7 @@
         var ok = copy(addr);
         var note = document.getElementById('copied');
         if (!note) return;
-        note.textContent = ok
-          ? 'Copied ' + addr + ' \u2014 paste it into your email.'
-          : 'Email me at ' + addr;
+        note.textContent = (ok ? 'Copied ' : 'Email me at ') + addr;
         note.hidden = false;
         clearTimeout(note._t);
         note._t = setTimeout(function () { note.hidden = true; }, 8000);
