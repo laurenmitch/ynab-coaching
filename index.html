@@ -59,6 +59,8 @@
             'quote-bg':             'rgb(var(--quote-bg, var(--surface)) / <alpha-value>)',
             'quote-text':           'rgb(var(--quote-text, var(--surface-ink)) / <alpha-value>)',
             'quote-name':           'rgb(var(--quote-name, var(--surface-ink)) / <alpha-value>)',
+            'quote-edge':           'rgb(var(--quote-edge, var(--feature)) / <alpha-value>)',
+            'quote-edge2':          'rgb(var(--quote-edge2, var(--tint)) / <alpha-value>)',
             'price-bg':             'rgb(var(--price-bg, var(--surface)) / <alpha-value>)',
             'price-head':           'rgb(var(--price-head, var(--surface-ink)) / <alpha-value>)',
             'price-body':           'rgb(var(--price-body, var(--surface-ink)) / <alpha-value>)',
@@ -66,12 +68,15 @@
             'p1-bg':                'rgb(var(--p1-bg, var(--anchor)) / <alpha-value>)',
             'p1-title':             'rgb(var(--p1-title, var(--surface-ink)) / <alpha-value>)',
             'p1-body':              'rgb(var(--p1-body, var(--surface-ink)) / <alpha-value>)',
+            'p1-border':            'rgb(var(--p1-border, var(--surface)) / <alpha-value>)',
             'p2-bg':                'rgb(var(--p2-bg, var(--tint)) / <alpha-value>)',
             'p2-title':             'rgb(var(--p2-title, var(--surface-ink)) / <alpha-value>)',
             'p2-body':              'rgb(var(--p2-body, var(--surface-ink)) / <alpha-value>)',
+            'p2-border':            'rgb(var(--p2-border, var(--surface)) / <alpha-value>)',
             'p3-bg':                'rgb(var(--p3-bg, var(--surface)) / <alpha-value>)',
             'p3-title':             'rgb(var(--p3-title, var(--surface-ink)) / <alpha-value>)',
             'p3-body':              'rgb(var(--p3-body, var(--surface-ink)) / <alpha-value>)',
+            'p3-border':            'rgb(var(--p3-border, var(--surface)) / <alpha-value>)',
             'cta-bg':               'rgb(var(--cta-bg, var(--shout)) / <alpha-value>)',
             'cta-head':             'rgb(var(--cta-head, var(--surface-ink)) / <alpha-value>)',
             'cta-body':             'rgb(var(--cta-body, var(--surface-ink)) / <alpha-value>)',
@@ -151,12 +156,12 @@
       --accent:    150  63   5;   /* #963F05 */
 
       /* card hover accents - bold, and no two alike */
-      --hover-1:   211  86   1;   /* #D35601 */
-      --hover-2:   211  86   1;   /* #D35601 */
-      --hover-3:   211  86   1;   /* #D35601 */
-      --hover-4:   211  86   1;   /* #D35601 */
-      --hover-5:   211  86   1;   /* #D35601 */
-      --hover-6:   211  86   1;   /* #D35601 */
+      --hover-1:   191 216 220;   /* #BFD8DC */
+      --hover-2:   191 216 220;   /* #BFD8DC */
+      --hover-3:   191 216 220;   /* #BFD8DC */
+      --hover-4:   191 216 220;   /* #BFD8DC */
+      --hover-5:   191 216 220;   /* #BFD8DC */
+      --hover-6:   191 216 220;   /* #BFD8DC */
 
       /* Header bar */
       --nav-bg:    255 237 192;   /* #FFEDC0 */
@@ -192,6 +197,8 @@
       --quote-bg:  189 177 101;   /* #BDB165 */
       --quote-text: 36  21  14;   /* #24150E */
       --quote-name: 36  21  14;   /* #24150E */
+      --quote-edge:255 237 192;   /* #FFEDC0 */
+      --quote-edge2: 189 177 101;   /* #BDB165 */
 
       /* Pricing */
       --price-bg:  255 237 192;   /* #FFEDC0 */
@@ -201,12 +208,15 @@
       --p1-bg:      36  21  14;   /* #24150E */
       --p1-title:  255 237 192;   /* #FFEDC0 */
       --p1-body:   250 245 239;   /* #FAF5EF */
+      --p1-border: 191 216 220;   /* #BFD8DC */
       --p2-bg:     191 216 220;   /* #BFD8DC */
       --p2-title:   36  21  14;   /* #24150E */
       --p2-body:    36  21  14;   /* #24150E */
+      --p2-border: 250 245 239;   /* #FAF5EF */
       --p3-bg:     250 245 239;   /* #FAF5EF */
       --p3-title:   78  52  39;   /* #4E3427 */
       --p3-body:    36  21  14;   /* #24150E */
+      --p3-border: 211  86   1;   /* #D35601 */
 
       /* CTA */
       --cta-bg:    189 177 101;   /* #BDB165 */
@@ -512,10 +522,10 @@
 
   <!-- Wave between sections. The box is the colour above, the path the
        colour below, so the two meet on a curve instead of a hard edge. -->
-  <div class="bg-cards-bg" aria-hidden="true">
+  <div class="grain bg-about-bg" aria-hidden="true">
     <svg class="block w-full h-10 md:h-20" viewBox="0 0 1200 60" preserveAspectRatio="none">
-      <path class="fill-about-bg"
-            d="M0,30 C100,2 200,58 300,30 C400,2 500,58 600,30 C700,2 800,58 900,30 C1000,2 1100,58 1200,30 L1200,60 L0,60 Z"/>
+      <path class="fill-cards-bg"
+            d="M0,30 C100,2 200,58 300,30 C400,2 500,58 600,30 C700,2 800,58 900,30 C1000,2 1100,58 1200,30 L1200,0 L0,0 Z"/>
     </svg>
   </div>
   <!-- ── About ──────────────────────────────────────── -->
@@ -548,12 +558,12 @@
       <h2 class="reveal text-4xl md:text-5xl font-bold uppercase text-quotes-head mb-12">What clients are saying...</h2>
       <div class="grid md:grid-cols-2 gap-6">
 
-        <div class="reveal d1 bg-quote-bg rounded-2xl p-8 flex flex-col gap-4">
+        <div class="reveal d1 bg-quote-bg border-4 border-quote-edge ring-2 ring-quote-edge2 rounded-2xl p-8 flex flex-col gap-4">
           <p class="text-quote-text text-base leading-relaxed italic">"What stands out about Lauren is how <strong class="text-quote-text">she focuses on where you're going, not where you've been</strong>, and guides you there with confidence.<br><br>She brings the perfect mix of kindness and expertise and makes managing money feel approachable and actually doable."</p>
           <p class="text-quote-name font-bold text-sm">Liam <span class="font-normal text-quote-name">— Salt Lake City</span></p>
         </div>
 
-        <div class="reveal d2 bg-quote-bg rounded-2xl p-8 flex flex-col gap-4">
+        <div class="reveal d2 bg-quote-bg border-4 border-quote-edge ring-2 ring-quote-edge2 rounded-2xl p-8 flex flex-col gap-4">
           <p class="text-quote-text text-base leading-relaxed italic">"Lauren has such a grounded and <strong class="text-quote-text">empowering</strong> approach to money.<br><br>Her advice is practical, realistic, and sustainable, which makes it easy to stay accountable. She creates a totally <strong class="text-quote-text">safe, shame-free space</strong>."</p>
           <p class="text-quote-name font-bold text-sm">Kaycee <span class="font-normal text-quote-name">— San Francisco</span></p>
         </div>
@@ -563,14 +573,8 @@
   </section>
 
   <!-- ── Rates ───────────────────────────────────── -->
-  <section id="packages" class="bg-price-bg px-6 md:px-12 pt-16 pb-24">
+  <section id="packages" class="bg-price-bg px-6 md:px-12 py-24">
     <div class="max-w-5xl mx-auto">
-
-      <!-- a quiet hand-off from the testimonials -->
-      <div class="mb-14" aria-hidden="true">
-        <div class="border-t border-tint-ink/70"></div>
-        <div class="border-t-2 border-dotted border-tint-ink/50 mt-2"></div>
-      </div>
 
       <!-- Rate + intro call -->
       <div class="reveal-left flex flex-col md:flex-row md:items-end gap-4 md:gap-10 mb-6">
@@ -582,7 +586,7 @@
       <!-- Session types -->
       <div class="grid md:grid-cols-3 gap-4">
 
-        <div class="reveal d1 bg-p1-bg rounded-2xl p-8 flex flex-col">
+        <div class="reveal d1 bg-p1-bg border-2 border-p1-border rounded-2xl p-8 flex flex-col">
           <p class="text-xs uppercase tracking-widest text-p1-body mb-3">New to YNAB</p>
           <h3 class="font-bold text-xl text-p1-title mb-3">Getting Started</h3>
           <p class="text-p1-body text-sm leading-relaxed">
@@ -590,7 +594,7 @@
           </p>
         </div>
 
-        <div class="reveal d2 bg-p2-bg rounded-2xl p-8 flex flex-col">
+        <div class="reveal d2 bg-p2-bg border-2 border-p2-border rounded-2xl p-8 flex flex-col">
           <p class="text-xs uppercase tracking-widest text-p2-body mb-3">Ongoing</p>
           <h3 class="font-bold text-xl text-p2-title mb-3">Regular Check-ins</h3>
           <p class="text-p2-body text-sm leading-relaxed">
@@ -598,7 +602,7 @@
           </p>
         </div>
 
-        <div class="reveal d3 border-2 border-card-border bg-p3-bg rounded-2xl p-8 flex flex-col">
+        <div class="reveal d3 bg-p3-bg border-2 border-p3-border rounded-2xl p-8 flex flex-col">
           <p class="text-xs uppercase tracking-widest text-p3-body mb-3">One-off</p>
           <h3 class="font-bold text-xl text-p3-title mb-3">Pick My Brain</h3>
           <p class="text-p3-body text-sm leading-relaxed">
